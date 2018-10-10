@@ -9,7 +9,7 @@ boxscore.py contains the BoxScore class that
 enables API calls for boxscore related endpoints
 """
 
-from . import api_call
+from __init__ import api_call, parse_api_call
 
 class BoxScore:
     """ The BoxScore class contains all resources needed to use the boxscore-
@@ -96,24 +96,5 @@ class BoxScore:
         # Storing the API response in a dictionary called data
         # The results can come in different formats, namely a
         # dictionary keyed by either resultSets or resultSet
-        self.data = {}
-        if 'resultSets' in self.api_resp:
-            dictionary_key = 'resultSets'
-        elif 'resultSet' in self.api_resp:
-            dictionary_key = 'resultSet'
-
-        if isinstance(self.api_resp[dictionary_key], list):
-            for result_set in self.api_resp[dictionary_key]:
-                headers = result_set['headers']
-                values = result_set['rowSet']
-                name = result_set['name']
-                self.data[name] = [dict(zip(headers, value)) 
-                                   for value in values]
-        else:
-            result_set = self.api_resp[dictionary_key]
-            headers = result_set['headers']
-            values = result_set['rowSet']
-            name = result_set['name']
-            self.data[name] = [dict(zip(headers, value)) 
-                               for value in values]
+        self.data = parse_api_call(self.api_resp)
                 

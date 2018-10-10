@@ -12,7 +12,7 @@ This script initializes the py_ball package
 
 from requests import get
 
-BASE_URL = 'http://stats.nba.com/stats/{endpoint}'
+BASE_URL = 'http://stats.nba.com/stats/{endpoint}/'
 
 HEADERS = {'Accept': 'text/html,application/xhtml+xml,application/' + \
                      'xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
@@ -38,3 +38,31 @@ def api_call(endpoint, params):
 
     api_response.raise_for_status()
     return api_response.json()
+
+def parse_api_call(api_resp):
+    """
+    """
+
+    data = {}
+    if 'resultSets' in api_resp:
+        dictionary_key = 'resultSets'
+    elif 'resultSet' in api_resp:
+        dictionary_key = 'resultSet'
+
+    if isinstance(api_resp[dictionary_key], list):
+        for result_set in api_resp[dictionary_key]:
+            headers = result_set['headers']
+            values = result_set['rowSet']
+            name = result_set['name']
+            data[name] = [dict(zip(headers, value)) 
+                          for value in values]
+    else:
+        result_set = api_resp[dictionary_key]
+        headers = result_set['headers']
+        values = result_set['rowSet']
+        name = result_set['name']
+        data[name] = [dict(zip(headers, value)) 
+                      for value in values]
+
+    return data
+    
