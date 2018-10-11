@@ -4,6 +4,9 @@
 Created on Tue Oct  9 19:29:03 2018
 
 @author: patrickmcfarlane
+
+playbyplay.py contains the PlayByPlay class that
+enables API calls for two play-by-play (pbp) endpoints
 """
 
 from __init__ import api_call, parse_api_call
