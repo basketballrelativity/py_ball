@@ -52,6 +52,23 @@ def parse_api_call(api_resp):
     if isinstance(api_resp[dictionary_key], list):
         for result_set in api_resp[dictionary_key]:
             headers = result_set['headers']
+            if isinstance(headers[0], dict):
+                add_on = headers[0]['columnNames']
+                keep_header = headers[1]['columnNames']
+                col_ind = 0
+                col_count = 0
+                add_count = 0
+                for col_name in keep_header:
+                    col_count += 1
+                    if col_count <= 5:
+                        continue
+                    else:
+                        keep_header[col_count] += '_' + add_on[col_ind]
+                        add_count += 1
+                        if add_count == 2:
+                            add_count = 0
+                            col_ind = 1
+                headers = keep_header
             values = result_set['rowSet']
             name = result_set['name']
             data[name] = [dict(zip(headers, value)) 
@@ -59,6 +76,26 @@ def parse_api_call(api_resp):
     else:
         result_set = api_resp[dictionary_key]
         headers = result_set['headers']
+        if isinstance(headers[0], dict):
+            add_on = headers[0]['columnNames']
+            keep_header = headers[1]['columnNames']
+            print(keep_header)
+            col_ind = 0
+            col_count = -1
+            add_count = 0
+            for col_name in keep_header:
+                col_count += 1
+                print(col_ind)
+                if col_count <= 4:
+                    continue
+                else:
+                    keep_header[col_count] += '_' + add_on[col_ind]
+                    add_count += 1
+                    if add_count == 3:
+                        add_count = 0
+                        col_ind += 1
+            headers = keep_header
+                    
         values = result_set['rowSet']
         name = result_set['name']
         data[name] = [dict(zip(headers, value)) 
