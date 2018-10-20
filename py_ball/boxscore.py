@@ -35,11 +35,12 @@ class BoxScore:
 
         @param game_id (GameID in the API): 10-digit string that represents
         a unique game. The format is two leading zeroes, followed by a
-        '2', then the trailing digits of the season in which the game
+        season indicator number ('1' for preseason, '2' for regular season),
+        then the trailing digits of the season in which the game
         took place (e.g. '17' for the 2017-18 season). The following
         5 digits increment from '00001' in order as the season progresses.
         For example, '0021600001' is the GameID of the first game of the
-        2016-17 NBA season.
+        2016-17 NBA regular season.
 
         @param range_type (RangeType in the API): RangeType controls the
         type of boxscore that is returned. If using the StartPeriod and

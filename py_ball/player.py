@@ -58,6 +58,9 @@ class Player:
         broken down by several shooting related splits (shot distance and
         area)
         - playersvsplayers: Currently not available
+        - shotchartdetail: Player and league shot chart data giving results
+        and location-related information for several player actions, 
+        such as shots and fouls.
 
     The Player class has the following required parameters:
 
@@ -196,6 +199,34 @@ class Player:
         API) is an integer 1 through 5. Valid only for the playersvsplayers
         endpoint.
 
+        @param rookie_year (RookieYear in the API): of a two-year
+        season in a YYYY-ZZ format, where the ZZ are the last two
+        digits of the following year. For example, '2017-18' is a valid
+        value of Season and represents the 2017-18 NBA season. This field
+        should correspond to the rookie year of the player given.
+
+        @param context_measure (ContextMeasure in the API): String of an
+        abbreviated statistic corresponding to the type of action to be
+        included in the data returned. Valid values include:
+            - 'PTS', 'FGM', 'FGA', 'FG_PCT', 'FG3M', 'FG3A', 'FG3_PCT',
+            'PF', 'EFG_PCT', 'TS_PCT', 'PTS_FB', 'PTS_OFF_TOV',
+            'PTS_2ND_CHANCE', 'PF'
+
+        @param player_position (PlayerPosition in the API): String of
+        a basketball position corresponding to the position of the player
+        given. An empty string returns data across all positions played.
+        Valid values include:
+            - 'Guard', 'Center', 'Forward'
+
+        @param game_id (GameID in the API): 10-digit string that represents
+        a unique game. The format is two leading zeroes, followed by a
+        season indicator number ('1' for preseason, '2' for regular season),
+        then the trailing digits of the season in which the game
+        took place (e.g. '17' for the 2017-18 season). The following
+        5 digits increment from '00001' in order as the season progresses.
+        For example, '0021600001' is the GameID of the first game of the
+        2016-17 NBA regular season.
+
     Attributes:
 
         api_resp: JSON object of the API response. The API response
@@ -229,7 +260,9 @@ class Player:
                  player_id_5='0',
                  vs_player_id_1 = '201939', vs_player_id_2='0',
                  vs_player_id_3='0', vs_player_id_4='0',
-                 vs_player_id_5='0'):
+                 vs_player_id_5='0', rookie_year='',
+                 context_measure = 'FGA', player_position='',
+                 game_id='0011800079'):
 
         # Controlling the parameters depending on the endpoint
         if endpoint not in ['playercareerstats', 'playergamelog',
@@ -295,6 +328,12 @@ class Player:
             params['VsPlayerID3'] = vs_player_id_3
             params['VsPlayerID4'] = vs_player_id_4
             params['VsPlayerID5'] = vs_player_id_5
+        elif endpoint in ['shotchartdetail']:
+            params['TeamID'] = team_id
+            params['RookieYear'] = rookie_year
+            params['ContextMeasure'] = context_measure
+            params['PlayerPosition'] = player_position
+            params['GameID'] = game_id
 
         self.api_resp = api_call(endpoint=endpoint,
                                  params=params)
