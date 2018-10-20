@@ -1,50 +1,82 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu Oct 11 20:44:34 2018
+Created on Tue Oct 16 18:47:46 2018
 
 @author: patrickmcfarlane
 
-league_dash.py contains the LeagueDashboard class that
-enables API calls for general league performance statitics
-related endpoints
+player.py contains the Player class that
+enables API calls for player-related
+endpoints
 """
 
 from __init__ import api_call, parse_api_call
 
-class LeagueDash:
+class Player:
     """ The LeagueDash class contains all resources needed
-    to use the league performance stats related API calls. stats.nba.com
+    to use the player-related API calls. stats.nba.com
     has the following league performance stats related API endpoints:
-        - leaguedashlineups: Traditional and plus/minus statistics
-        for sets of lineups between sizes 2 to 5 players, inclusive.
-        - leaguedashplayerbiostats: Player metadata and performance
-        statistics for a given season.
-        - leaguedashplayerclutch: Traditional, plus/minus, and rank
-        statistics for players in a defined clutch period.
-        - leaguedashplayershotlocations: Player shooting-related statistics
-        by shot distance/type.
-        - leaguedashplayerptshot: Shooting-related statistics for a given
-        season by player.
-        - leaguedashplayerstats: Traditional, plus/minus, and rank
-        statistics for players.
-        - leaguedashptdefend: Defensive statistics for a given season
-        by player.
-        - leaguedashptteamdefend: Defensive statistics for a given season
-        by team.
-        - leaguedashteamptshot: Shooting-related statistics for a given
-        season by team.
+        - playercareerstats: Season and career stats for a given player,
+        broken down by season type (including college).
+        - playercompare: Individual and combined (overall) statistics
+        for a given list of players and opposing players.
+        - playerdashboardbyclutch: Traditional and rank statistics broken
+        down by different definitions of clutch for a player.
+        - playerdashboardbygamesplits: Traditional and rank statistics
+        broken down by different splits (half, quarter, and score
+        differential).
+        - playerdashboardbygeneralsplits: Traditional and rank statistics
+        broken down by different splits (win/loss, location, month,
+        pre/post All-Star, days rest). 
+        - playerdashboardbylastngames: Traditional and rank statistics
+        broken down by the number of n recent games and game number
+        bins.
+        - playerdashboardbyopponent: Traditional and rank statistics
+        broken down by opponent splits (conference, division, and
+        individual team).
+        - playerdashboardbyshootingsplits: Traditional and rank statistics
+        broken down by shooting splits (shot distance, shot area,
+        assisted/unassisted, shot type, and indivdual assistant).
+        - playerdashboardbyteamperformance: Traditional and rank statistics
+        broken down by team performance splits (win/loss, score differential,
+        points for, and points against).
+        - playerdashboardbyyearoveryear: Traditional and rank statistics
+        broken down by year.
+        - playerdashptpass: Shooting statistics for passes to and from
+        a player broken down by teammates.
+        - playerdashptreb: Rebound statistics broken down by shot type,
+        contesting players, and shot/rebound distance.
+        - playerdashptshotdefend: Defensive statistics broken down
+        by shot type/distance.
+        - playerdashptshots: Shooting statistics broken down by shot
+        type, shot clock time, number of tribbles, defender proximity, and
+        length of touch.
+        - playergamelog: Game log statistics for a given year.
+        - playerprofilev2: Career and season summary statistics broken down
+        by season type.
+        - playervsplayer: Player statistics versus a given opponent player
+        broken down by several shooting related splits (shot distance and
+        area)
+        - playersvsplayers: Currently not available
 
-    The LeagueDash class has the following required parameters:
+    The Player class has the following required parameters:
 
         @param league_id (LeagueID in the API): String of a two-digit
         number corresponding to the league. '00' is the NBA, '10' is
         the WNBA, and '01' is the ABA.
 
-        @param group_quantity (GroupQuantity in the API): String of
-        an integer indicating the number of players to include a
-        lineup for the leaguedashlineups endpoint. The minimum value
-        is '1' and the maximum value is '5'.
+        @param player_id (PlayerID in the API): String of an integer
+        corresponding to a player ID for a given player.
+
+        @param player_id_list (PlayerIDList in the API): String of a
+        comma-separated list of player IDs for player comparisons to the
+        players given in vs_player_id_list. Valid only for
+        the playercompare endpoint.
+
+        @param vs_player_id_list (VsPlayerIDList in the API): String of a
+        comma-separated list of player IDs for player comparisons to the
+        players given in player_id_list. Valid only for the
+        playercompare endpoint.
 
         @param per_mode (PerMode in the API): String indicating the type
         of rate stats to be returned. Valid values include:
@@ -145,56 +177,24 @@ class LeagueDash:
         returns data across all season segments. Valid values include:
             - 'Pre All-Star', 'Post All-Star', ''
 
-        @param clutch_time (ClutchTime in the API): String that defines
-        the type of clutch time for the data to be returned. Valid values
-        include:
-            - 'Last 5 Minutes', 'Last 4 Minutes', 'Last 3 Minutes',
-            'Last 2 Minutes', 'Last 1 Minute', 'Last 30 Seconds',
-            'Last 10 Seconds'
+        @param vs_player_id (VsPlayerID in the API): String of an integer
+        corresponding to a player ID for a given player.
 
-        @param ahead_behind (AheadBehind in the API): String indicating
-        the type of score differential for the data to be returned. Valid
-        values include:
-            - 'Ahead or Behind', 'Behind or Tied', 'Ahead or Tied'
+        @param player_team_id (PlayerTeamID in the API): String of an integer
+        corresponding to a team ID for a given team.
 
-        @param point_diff (PointDiff in the API): String of zero
-        or a positive integer indicating the maximum point
-        differential for data to be returned. 
+        @param vs_player_team_id (VsPlayerTeamID in the API): String of 
+        an integer corresponding to a team ID for a given team.
 
-        @param game_scope (GameScope in the API): String indicating
-        the recency of the data to be returned. An empty string returns
-        data across all past games, subject to other constraints
-        in the API call. Valid values include:
-            - 'Yesterday', 'Last 10', ''
+        @param player_id_x (PlayerIDX in the API): String of an integer
+        corresponding to a player ID for a given player. The x (X in the
+        API) is an integer 1 through 5. Valid only for the playersvsplayers
+        endpoint.
 
-        @param player_experience (PlayerExperience in the API): String
-        indicating the level of player experience for data to be
-        returned. An empty string returns data across all levels
-        of player experience. Valid values include:
-            - 'Rookie', 'Sophomore', 'Veteran', ''
-
-        @param player_position (PlayerPosition in the API): String
-        indicating the player position for data to be returned. An
-        empty string returns data across all player positions. Valid
-        values include:
-            - 'F', 'C', 'G', 'C-F', 'F-C', 'F-G', 'G-F', ''
-
-        @param starters_bench (StarterBench in the API): String indicating
-        whether data should be returned for either or both starters or
-        bench players. An empty string returns data across both starters
-        and bench players. Valid values include:
-            - 'Starters', 'Bench', ''
-
-        @param distance_range (DistanceRange in the API): String indicating
-        the size/type of the distance range bins for data to be returned.
-        Valid values include:
-            - '5ft Range', '8ft Range', 'By Zone'
-
-        @param defense_category (DefenseCategory in the API): String
-        indicating the shot type of defensive data to be returned.
-        Valid values include:
-            - 'Overall', '3 Pointers', '2 Pointers', 'Less Than 6Ft',
-            'Less Than 10Ft', 'Greater Than 15Ft'
+        @param vs_player_id_x (VsPlayerIDX in the API): String of an integer
+        corresponding to a player ID for a given player. The x (X in the
+        API) is an integer 1 through 5. Valid only for the playersvsplayers
+        endpoint.
 
     Attributes:
 
@@ -208,8 +208,10 @@ class LeagueDash:
         key to a list of dictionaries containing the corresponding data.
     """
 
-    def __init__(self, endpoint='leaguedashlineups',
-                 league_id='00', group_quantity='5',
+    def __init__(self, endpoint='playercareerstats',
+                 player_id='2544',
+                 player_id_list='2544', vs_player_id_list='201939',
+                 league_id='00',
                  per_mode='PerGame', plus_minus='N',
                  rank='Y', pace_adjust='N',
                  measure_type='Base', period='0',
@@ -219,20 +221,19 @@ class LeagueDash:
                  season='2017-18', vs_division='',
                  game_segment='', month='0',
                  season_type='Regular Season', season_segment='',
-                 clutch_time='Last 5 Minutes',
-                 ahead_behind='Ahead or Behind',
-                 point_diff='0', game_scope='',
-                 player_experience='',
-                 player_position='', starters_bench='',
-                 distance_range='By Zone',
-                 defense_category='Overall'):
+                 vs_player_id='201939',
+                 player_team_id='1610612747',
+                 vs_player_team_id='1610612744',
+                 player_id_1='2544', player_id_2='0',
+                 player_id_3='0', player_id_4='0',
+                 player_id_5='0',
+                 vs_player_id_1 = '201939', vs_player_id_2='0',
+                 vs_player_id_3='0', vs_player_id_4='0',
+                 vs_player_id_5='0'):
 
         # Controlling the parameters depending on the endpoint
-        if endpoint not in ['leaguedashplayerbiostats',
-                            'leaguedashplayerptshot',
-                            'leaguedashteamptshot',
-                            'leaguedashptdefend',
-                            'leaguedashptteamdefend']:
+        if endpoint not in ['playercareerstats', 'playergamelog',
+                            'playerprofilev2']:
             params = {'LeagueID': league_id,
                       'PerMode': per_mode,
                       'PlusMinus': plus_minus,
@@ -245,7 +246,7 @@ class LeagueDash:
                       'Outcome': outcome,
                       'DateFrom': date_from,
                       'DateTo': date_to,
-                      'TeamID': team_id,
+                      'PlayerID': player_id,
                       'OpponentTeamID': opp_team_id,
                       'Season': season,
                       'VsDivision': vs_division,
@@ -253,31 +254,47 @@ class LeagueDash:
                       'Month': month,
                       'SeasonType': season_type,
                       'SeasonSegment': season_segment,
-                      'LastNGames': last_n_games,
-                      'GameScope': game_scope,
-                      'PlayerExperience': player_experience,
-                      'PlayerPosition': player_position,
-                      'StarterBench': starters_bench}
-        else:
-            params = {'LeagueID': league_id,
-                      'PerMode': per_mode,
+                      'LastNGames': last_n_games}
+        elif endpoint in  ['playercareerstats',
+                          'playerprofilev2']:
+            params = {'PlayerID': player_id,
+                      'PerMode': per_mode}
+        elif endpoint == 'playergamelog':
+            params = {'PlayerID': player_id,
                       'Season': season,
                       'SeasonType': season_type}
+        
 
-        if endpoint in ['leaguedashlineups']:
-            params['GroupQuantity'] = group_quantity
-        elif endpoint in ['leaguedashplayerclutch',
-                          'leaguedashteamclutch']:
-            params['ClutchTime'] = clutch_time
-            params['AheadBehind'] = ahead_behind
-            params['PointDiff'] = point_diff
-        elif endpoint in ['leaguedashplayershotlocations',
-                          'leaguedashteamshotlocations']:
-            params['DistanceRange'] = distance_range
-        elif endpoint in ['leaguedashptdefend',
-                          'leaguedashptteamdefend']:
-            params['DefenseCategory'] = defense_category
-
+        if endpoint in ['playercompare']:
+            params['PlayerIDList'] = player_id_list
+            params['VsPlayerIDList'] = vs_player_id_list
+        elif endpoint in ['playerdashptpass']:
+            del params['PlusMinus'], params['PaceAdjust']
+            del params['Rank'], params['MeasureType']
+            del params['Period'], params['GameSegment']
+            params['TeamID'] = team_id
+        elif endpoint in ['playerdashptreb',
+                          'playerdashptshotdefend',
+                          'playerdashptshots']:
+            del params['PlusMinus'], params['PaceAdjust']
+            del params['Rank'], params['MeasureType']
+            params['TeamID'] = team_id
+        elif endpoint in ['playervsplayer']:
+            params['PlayerID'] = player_id
+            params['VsPlayerID'] = vs_player_id
+        elif endpoint in ['playersvsplayers']:
+            params['PlayerTeamID'] = player_team_id
+            params['VsTeamID'] = vs_player_team_id
+            params['PlayerID1'] = player_id_1
+            params['PlayerID2'] = player_id_2
+            params['PlayerID3'] = player_id_3
+            params['PlayerID4'] = player_id_4
+            params['PlayerID5'] = player_id_5
+            params['VsPlayerID1'] = vs_player_id_1
+            params['VsPlayerID2'] = vs_player_id_2
+            params['VsPlayerID3'] = vs_player_id_3
+            params['VsPlayerID4'] = vs_player_id_4
+            params['VsPlayerID5'] = vs_player_id_5
 
         self.api_resp = api_call(endpoint=endpoint,
                                  params=params)
