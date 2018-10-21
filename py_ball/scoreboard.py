@@ -14,40 +14,43 @@ from datetime import datetime
 
 class ScoreBoard:
     """ The ScoreBoard class contains all resources needed to use the
-    score board API calls. stats.nba.com has the following score board
-    API endpoints:
-        - scoreboard: Live scores across the league, with series metadata
+    score board API calls. `stats.nba.com <https://stats.nba.com>`_
+    has the following score board API endpoints:
+
+        - **scoreboard**: Live scores across the league, with series metadata \
         and standings information.
-        - scoreboardv2: Live scores across the league, with series metadata
-        and standings information. Also, scoreboardv2 has ticket, win
+        - **scoreboardv2**: Live scores across the league, with series metadata \
+        and standings information. Also, scoreboardv2 has ticket, win \
         probability, and team leader information.
 
     The ScoreBoard class has the following required parameters:
 
-        @param league_id (LeagueID in the API): String of a two-digit
-        number corresponding to the league. '00' is the NBA, '10' is
-        the WNBA, and '01' is the ABA.
+        @param **league_id** (*str*): LeagueID in the API. String of a \
+            two-digit number corresponding to the league. '00' is the NBA, \
+            '10' is the WNBA, and '01' is the ABA.
 
-        @param game_date (GameDate in the API): String of a date formatted
-        as 'MM/DD/YYYY' representing the date for which the ScoreBoard
-        is desired.
+        @param **game_date** (*str*): GameDate in the API. String of a \
+            date formatted as 'MM/DD/YYYY' representing the date for \
+            which data is desired.
 
-        @param day_offset (DayOffset in the API): String of an integer
-        representing days from or before the date given in game_date
-        for which the ScoreBoard is desired. Positive values indicate
-        days into the future, zero represents the current day, and
-        negative values indicate days into the past.
+        @param **day_offset** (*str*): DayOffset in the API. String of an \
+            integer representing days from or before the date given in \
+            **game_date** for which data is desired. Positive values \
+            indicate days into the future, zero represents the current \
+            day, and negative values indicate days into the past.
 
     Attributes:
 
-        api_resp: JSON object of the API response. The API response
-        has three keys. The 'resource' key describes the type of
-        response returned (the endpoint in this instance). The 'parameters'
-        key describes the parameters provided in the API call. The
-        'resultSets' key contains the data returned in the API call.
+        **api_resp** (*dict*): JSON object of the API response. The API \
+            response has three keys. The 'resource' key describes the \
+            type of response returned (the endpoint in this instance). \
+            The 'parameters' key describes the parameters provided in \
+            the API call. The 'resultSets' key contains the data returned \
+            in the API call.
 
-        data: A dictionary of response names. Each response name is a
-        key to a list of dictionaries containing the corresponding data.
+        **data** (*dict*): A dictionary of response names. Each response \
+            name is a key to a list of dictionaries containing the \
+            corresponding data.
     """
 
     cur_day = datetime.today().day

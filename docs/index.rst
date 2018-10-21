@@ -30,3 +30,35 @@ Classes
 BoxScore class
 ==============
 .. autoclass:: py_ball.boxscore.BoxScore
+
+Draft class
+==============
+.. autoclass:: py_ball.draft.Draft
+
+LeaderBoard class
+=================
+.. autoclass:: py_ball.leaderboard.LeaderBoard
+
+League class
+============
+.. autoclass:: py_ball.league.League
+
+LeagueDash class
+================
+.. autoclass:: py_ball.league_dash.LeagueDash
+
+PlayByPlay class
+================
+.. autoclass:: py_ball.playbyplay.PlayByPlay
+
+Player class
+============
+.. autoclass:: py_ball.player.Player
+
+ScoreBoard class
+================
+.. autoclass:: py_ball.scoreboard.ScoreBoard
+
+Team class
+==========
+.. autoclass:: py_ball.team.Team

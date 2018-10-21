@@ -14,198 +14,229 @@ from __init__ import api_call, parse_api_call
 
 class LeagueDash:
     """ The LeagueDash class contains all resources needed
-    to use the league performance stats related API calls. stats.nba.com
-    has the following league performance stats related API endpoints:
-        - leaguedashlineups: Traditional and plus/minus statistics
+    to use the league performance stats related API calls.
+    `stats.nba.com <https://stats.nba.com>`_ has the following
+    league performance stats related API endpoints:
+
+        - **leaguedashlineups**: Traditional and plus/minus statistics \
         for sets of lineups between sizes 2 to 5 players, inclusive.
-        - leaguedashplayerbiostats: Player metadata and performance
+        - **leaguedashplayerbiostats**: Player metadata and performance \
         statistics for a given season.
-        - leaguedashplayerclutch: Traditional, plus/minus, and rank
+        - **leaguedashplayerclutch**: Traditional, plus/minus, and rank \
         statistics for players in a defined clutch period.
-        - leaguedashplayershotlocations: Player shooting-related statistics
-        by shot distance/type.
-        - leaguedashplayerptshot: Shooting-related statistics for a given
-        season by player.
-        - leaguedashplayerstats: Traditional, plus/minus, and rank
+        - **leaguedashplayershotlocations**: Player shooting-related \
+        statistics by shot distance/type.
+        - **leaguedashplayerptshot**: Shooting-related statistics for \
+        a given season by player.
+        - **leaguedashplayerstats**: Traditional, plus/minus, and rank \
         statistics for players.
-        - leaguedashptdefend: Defensive statistics for a given season
+        - **leaguedashptdefend**: Defensive statistics for a given season \
         by player.
-        - leaguedashptteamdefend: Defensive statistics for a given season
-        by team.
-        - leaguedashteamptshot: Shooting-related statistics for a given
+        - **leaguedashptteamdefend**: Defensive statistics for a given \
         season by team.
+        - **leaguedashteamptshot**: Shooting-related statistics for a \
+        given season by team.
 
     The LeagueDash class has the following required parameters:
 
-        @param league_id (LeagueID in the API): String of a two-digit
-        number corresponding to the league. '00' is the NBA, '10' is
-        the WNBA, and '01' is the ABA.
+        @param **league_id** (*str*): LeagueID in the API). String of a \
+            two-digit number corresponding to the league. '00' is the NBA, \
+            '10' is the WNBA, and '01' is the ABA.
 
-        @param group_quantity (GroupQuantity in the API): String of
-        an integer indicating the number of players to include a
-        lineup for the leaguedashlineups endpoint. The minimum value
-        is '1' and the maximum value is '5'.
+        @param **group_quantity** (*str*): GroupQuantity in the API. String \
+            of an integer indicating the number of players to include a \
+            lineup for the **leaguedashlineups** endpoint. The minimum value \
+            is '2' and the maximum value is '5'.
 
-        @param per_mode (PerMode in the API): String indicating the type
-        of rate stats to be returned. Valid values include:
-            - 'Totals', 'PerGame', 'MinutesPer', 'Per48', 'Per40',
-            'Per36', 'PerMinute', 'PerPossession', 'PerPlay',
-            'Per100Possessions', 'Per100Plays'
+        @param **per_mode** (*str*): PerMode in the API. String indicating \
+            the type of rate stats to be returned. Valid values include:
 
-        @param plus_minus (PlusMinus in the API): String representing
-        a Boolean value that indicates whether the values being returned
-        should be in plus-minus form. Valid values include:
-            - 'Y', 'N'
+                - 'Totals', 'PerGame', 'MinutesPer', 'Per48', 'Per40', \
+                'Per36', 'PerMinute', 'PerPossession', 'PerPlay', \
+                'Per100Possessions', 'Per100Plays'
 
-        @param rank (Rank in the API): String representing a Boolean
-        value that indicates whether the values being returned should
-        be in rank form. Valid values include:
-            - 'Y', 'N'
+        @param **plus_minus** (*str*): PlusMinus in the API. String \
+            representing a Boolean value that indicates whether the values \
+            being returned should be in plus-minus form. Valid values \
+            include:
 
-        @param pace_adjust (PaceAdjust in the API): String representing
-        a Boolean value that indicates whether the values being returned
-        should be pace-adjusted. Valid values include:
-            - 'Y', 'N'
+                - 'Y', 'N'
 
-        @param measure_type (MeasureType in the API): String indicating
-        the set of statistics to be returned. Valid values include:
-            - 'Base', 'Advanced', 'Misc', 'Four Factors', 'Scoring',
-            'Opponent', 'Usage', 'Defense'
+        @param **rank** (*str*): Rank in the API. String representing \
+            a Boolean value that indicates whether the values being \
+            returned should be in rank form. Valid values include:
 
-        @param period (Period in the API): String of an integer value
-        that corresponds to a desired quarter for data to be returned.
-        A value of '0' returns data across all quarters.
+                - 'Y', 'N'
 
-        @param vs_conference (VsConference in the API): String indicating
-        the conference of the opposing team for data to be returned. An
-        empty string returns data across all conferences. Valid values
-        include:
-            - 'East', 'West', ''
+        @param **pace_adjust** (*str*): PaceAdjust in the API. String \
+            representing a Boolean value that indicates whether the \
+            values being returned should be pace-adjusted. Valid \
+            values include:
 
-        @param last_n_games (LastNGames in the API): String of an integer
-        indicating the desired number of most recent games for data
-        to be returned. A value of '0' returns data across all previous
-        games, subject to other constraints in the API call.
+                - 'Y', 'N'
 
-        @param team_id (TeamID in the API): String of a 10-digit integer
-        that uniquely identifies a team for which data is to be returned.
+        @param **measure_type** (*str*): MeasureType in the API. String \
+            indicating the set of statistics to be returned. Valid \
+            values include:
 
-        @param location (Location in the API): String indicating the game
-        location for the data to be returned. An empty string returns
-        data across both home and road games. Valid values include:
-            - 'Home', 'Road', ''
+                - 'Base', 'Advanced', 'Misc', 'Four Factors', 'Scoring', \
+                'Opponent', 'Usage', 'Defense'
 
-        @param outcome (Outcome in the API): String indicating the game
-        outcome for the data to be returned. An empty string returns
-        data across both wins and losses. Valid values include:
-            - '', 'W', 'L'
+        @param **period** (*str*): Period in the API. String of an \
+            integer value that corresponds to a desired quarter for data \
+            to be returned. A value of '0' returns data across all quarters.
 
-        @param date_from (DateFrom in the API): String of a date
-        in a MM/DD/YYYY format indicating the start date for which
-        data is to be returned.
+        @param **vs_conference** (*str*): VsConference in the API. String \
+            indicating the conference of the opposing team for data to be \
+            returned. An empty string returns data across all conferences. \
+            Valid values include:
 
-        @param date_to (DateTo in the API): String of a date
-        in a MM/DD/YYYY format indicating the end date for which
-        data is to be returned.
+                - 'East', 'West', ''
 
-        @param opp_team_id (OpponentTeamID in the API): String of a 
-        10-digit integer that uniquely identifies an opposing
-        team for which data is to be returned.
+        @param **last_n_games** (*str*): LastNGames in the API. String of \
+            an integer indicating the desired number of most recent games \
+            for data to be returned. A value of '0' returns data across \
+            all previous games, subject to other constraints in the API call.
 
-        @param season (Season in the API): String of a two-year
-        season in a YYYY-ZZ format, where the ZZ are the last two
-        digits of the following year. For example, '2017-18' is a valid
-        value of Season and represents the 2017-18 NBA season. Season is
-        required by the 'commonallplayers' and 'commonplayoffseries'
-        endpoints.
+        @param **team_id** (*str*): TeamID in the API. String of a 10-digit \
+            integer that uniquely identifies a team for which data is to \
+            be returned.
 
-        @param vs_division (VsDivision in the API): String indicating
-        the division of the opposing team for data to be returned. An
-        empty string returns data across all divisions. Valid values
-        include:
-            - 'Atlantic', 'Central', 'Northwest', 'Pacific',
-            'Southeast', 'Southwest', 'East', 'West',  ''
-        The 'East' and 'West' values correspond to conferences.
+        @param **location** (*str*): Location in the API. String indicating \
+            the game location for the data to be returned. An empty string \
+            returns data across both home and road games. Valid values \
+            include:
 
-        @param game_segment (GameSegment in the API): String indicating
-        the section of a game for data to be returned. An empty string
-        returns data across all game segments. Valid values include:
-            - 'First Half', 'Overtime', 'Second Half', ''
+                - 'Home', 'Road', ''
 
-        @param month (Month in the API): String of an integer corresponding
-        to a month for data to be returned. A value of '0' returns data
-        across all months.
+        @param **outcome** (*str*): Outcome in the API. String indicating \
+            the game outcome for the data to be returned. An empty string \
+            returns data across both wins and losses. Valid values include:
 
-        @param season_type (SeasonType in the API): String indicating
-        the type of season for data to be returned. Valid values include:
-            - 'Regular Season', 'Pre Season', 'Playoffs', 'All Star'
+                - 'W', 'L', ''
 
-        @param season_segment (SeasonSegment in the API): String indicating
-        the section of the season for data to be returned. An empty string
-        returns data across all season segments. Valid values include:
-            - 'Pre All-Star', 'Post All-Star', ''
+        @param **date_from** (*str*): DateFrom in the API. String of a date \
+            in a MM/DD/YYYY format indicating the start date for which \
+            data is to be returned.
 
-        @param clutch_time (ClutchTime in the API): String that defines
-        the type of clutch time for the data to be returned. Valid values
-        include:
-            - 'Last 5 Minutes', 'Last 4 Minutes', 'Last 3 Minutes',
-            'Last 2 Minutes', 'Last 1 Minute', 'Last 30 Seconds',
-            'Last 10 Seconds'
+        @param **date_to** (*str*): DateTo in the API. String of a date \
+            in a MM/DD/YYYY format indicating the end date for which \
+            data is to be returned.
 
-        @param ahead_behind (AheadBehind in the API): String indicating
-        the type of score differential for the data to be returned. Valid
-        values include:
-            - 'Ahead or Behind', 'Behind or Tied', 'Ahead or Tied'
+        @param **opp_team_id** (*str*): OpponentTeamID in the API. String \
+            of a 10-digit integer that uniquely identifies an opposing \
+            team for which data is to be returned.
 
-        @param point_diff (PointDiff in the API): String of zero
-        or a positive integer indicating the maximum point
-        differential for data to be returned. 
+        @param **season** (*str*): Season in the API. String of a two-year \
+            season in a YYYY-ZZ format, where the ZZ are the last two \
+            digits of the following year. For example, '2017-18' is a valid \
+            value of **season** and represents the 2017-18 NBA season.
 
-        @param game_scope (GameScope in the API): String indicating
-        the recency of the data to be returned. An empty string returns
-        data across all past games, subject to other constraints
-        in the API call. Valid values include:
-            - 'Yesterday', 'Last 10', ''
+        @param **vs_division** (*str*): VsDivision in the API. String \
+            indicating the division of the opposing team for data to be \
+            returned. An empty string returns data across all divisions. \
+            Valid values include:
 
-        @param player_experience (PlayerExperience in the API): String
-        indicating the level of player experience for data to be
-        returned. An empty string returns data across all levels
-        of player experience. Valid values include:
-            - 'Rookie', 'Sophomore', 'Veteran', ''
+                - 'Atlantic', 'Central', 'Northwest', 'Pacific', \
+                'Southeast', 'Southwest', 'East', 'West',  ''
 
-        @param player_position (PlayerPosition in the API): String
-        indicating the player position for data to be returned. An
-        empty string returns data across all player positions. Valid
-        values include:
-            - 'F', 'C', 'G', 'C-F', 'F-C', 'F-G', 'G-F', ''
+            The 'East' and 'West' values correspond to conferences.
 
-        @param starters_bench (StarterBench in the API): String indicating
-        whether data should be returned for either or both starters or
-        bench players. An empty string returns data across both starters
-        and bench players. Valid values include:
-            - 'Starters', 'Bench', ''
+        @param **game_segment** (*str*): GameSegment in the API. String \
+            indicating the section of a game for data to be returned. \
+            An empty string returns data across all game segments. \
+            Valid values include:
 
-        @param distance_range (DistanceRange in the API): String indicating
-        the size/type of the distance range bins for data to be returned.
-        Valid values include:
-            - '5ft Range', '8ft Range', 'By Zone'
+                - 'First Half', 'Overtime', 'Second Half', ''
 
-        @param defense_category (DefenseCategory in the API): String
-        indicating the shot type of defensive data to be returned.
-        Valid values include:
-            - 'Overall', '3 Pointers', '2 Pointers', 'Less Than 6Ft',
-            'Less Than 10Ft', 'Greater Than 15Ft'
+        @param **month** (*str*): Month in the API. String of an integer \
+            corresponding to a month for data to be returned. \
+            A value of '0' returns data across all months.
+
+        @param **season_type** (*str*): SeasonType in the API. String \
+            indicating the type of season for data to be returned. \
+            Valid values include:
+
+                - 'Regular Season', 'Pre Season', 'Playoffs', 'All Star'
+
+        @param **season_segment** (*str*): SeasonSegment in the API. String \
+            indicating the section of the season for data to be returned. \
+            An empty string returns data across all season segments. \
+            Valid values include:
+
+                - 'Pre All-Star', 'Post All-Star', ''
+
+        @param **clutch_time** (*str*): ClutchTime in the API. String that \
+            defines the type of clutch time for the data to be returned. \
+            Valid values include:
+
+                - 'Last 5 Minutes', 'Last 4 Minutes', 'Last 3 Minutes', \
+                'Last 2 Minutes', 'Last 1 Minute', 'Last 30 Seconds', \
+                'Last 10 Seconds'
+
+        @param **ahead_behind** (*str*): AheadBehind in the API. String \
+            indicating the type of score differential for the data to \
+            be returned. Valid values include:
+
+                - 'Ahead or Behind', 'Behind or Tied', 'Ahead or Tied'
+
+        @param **point_diff** (*str*): PointDiff in the API. String of zero \
+            or a positive integer indicating the maximum point \
+            differential for data to be returned. 
+
+        @param **game_scope** (*str*): GameScope in the API. String \
+            indicating the recency of the data to be returned. An \
+            empty string returns data across all past games, subject \
+            to other constraints in the API call. Valid values include:
+
+                - 'Yesterday', 'Last 10', ''
+
+        @param **player_experience** (*str*): PlayerExperience in the API. \
+            String indicating the level of player experience for data to be \
+            returned. An empty string returns data across all levels \
+            of player experience. Valid values include:
+
+                - 'Rookie', 'Sophomore', 'Veteran', ''
+
+        @param **player_position** (*str*): PlayerPosition in the API. \
+            String indicating the player position for data to be returned. \
+            An empty string returns data across all player positions. Valid \
+            values include:
+
+                - 'F', 'C', 'G', 'C-F', 'F-C', 'F-G', 'G-F', ''
+
+        @param **starters_bench** (*str*): StarterBench in the API. String \
+            indicating whether data should be returned for either or both \
+            starters or bench players. An empty string returns data across \
+            both starters and bench players. Valid values include:
+
+                - 'Starters', 'Bench', ''
+
+        @param **distance_range** (*str*): DistanceRange in the API. String \
+            indicating the size/type of the distance range bins for data \
+            to be returned. Valid values include:
+
+                - '5ft Range', '8ft Range', 'By Zone'
+
+        @param **defense_category** (*str*): DefenseCategory in the API. \
+            String indicating the shot type of defensive data to be returned. \
+            Valid values include:
+
+                - 'Overall', '3 Pointers', '2 Pointers', 'Less Than 6Ft', \
+                'Less Than 10Ft', 'Greater Than 15Ft'
 
     Attributes:
 
-        api_resp: JSON object of the API response. The API response
-        has three keys. The 'resource' key describes the type of
-        response returned (the endpoint in this instance). The 'parameters'
-        key describes the parameters provided in the API call. The
-        'resultSets' key contains the data returned in the API call.
+        **api_resp** (*dict*): JSON object of the API response. The API \
+            response has three keys. The 'resource' key describes the \
+            type of response returned (the endpoint in this instance). \
+            The 'parameters' key describes the parameters provided in the \
+            API call. The 'resultSets' key contains the data returned in \
+            the API call.
 
-        data: A dictionary of response names. Each response name is a
-        key to a list of dictionaries containing the corresponding data.
+        **data** (*dict*): A dictionary of response names. Each response \
+            name is a key to a list of dictionaries containing the \
+            corresponding data.
     """
 
     def __init__(self, endpoint='leaguedashlineups',

@@ -13,51 +13,55 @@ from __init__ import api_call, parse_api_call
 
 class League:
     """ The League class contains all resources needed to use the league-
-    related API calls. stats.nba.com has the following league-related
-    API endpoints:
-        - commonallplayers: Current roster information is the current_season
-        flag is '1', historical player information if the current_season
-        flag is '0'.
-        - commonteamyears: Start and end dates for teams in league history.
-        - commonplayoffseries: Playoff series matchup breakdown by game.
-        - franchisehistory: Current and defunct franchise histories, including
-        performance and franchise metadata.
-        - playoffpicture: Current state of the playoff picture by conference
+    related API calls. `stats.nba.com <https://stats.nba.com>`_
+    has the following league-related API endpoints:
+
+        - **commonallplayers**: Current roster information if the \
+        **current_season** flag is '1', historical player information \
+        if the **current_season** flag is '0'.
+        - **commonteamyears**: Start and end dates for teams in league \
+        history.
+        - **commonplayoffseries**: Playoff series matchup breakdown by game.
+        - **franchisehistory**: Current and defunct franchise histories, \
+        including performance and franchise metadata.
+        - **playoffpicture**: Current state of the playoff picture by \
+        conference.
 
     The League class has the following required parameters:
 
-        @param league_id (LeagueID in the API): String of a two-digit
-        number corresponding to the league. '00' is the NBA, '10' is
-        the WNBA, and '01' is the ABA.
+        @param **league_id** (*str*): LeagueID in the API. String of a \
+            two-digit number corresponding to the league. '00' is the NBA, \
+            '10' is the WNBA, and '01' is the ABA.
 
-        @param season (Season in the API): String of a two-year
-        season in a YYYY-ZZ format, where the ZZ are the last two
-        digits of the following year. For example, '2017-18' is a valid
-        value of Season and represents the 2017-18 NBA season. Season is
-        required by the 'commonallplayers' and 'commonplayoffseries'
-        endpoints.
+        @param **season** (*str*): Season in the API. String of a two-year
+            season in a YYYY-ZZ format, where the ZZ are the last two \
+            digits of the following year. For example, '2017-18' is a valid \
+            value of **season** and represents the 2017-18 NBA season. \
+            **season** is required by the 'commonallplayers' and \
+            'commonplayoffseries' endpoints.
 
-        @param season_id (SeasonID in the API): String of a year
-        season in a YYYY format. For example, '2017' is a valid
-        value of SeasonID and represents the 2017-18 NBA season.
-        SeasonID is required by the 'playoffpicture' endpoint.
+        @param **season_id** (*str*): SeasonID in the API. String of a year \
+            season in a YYYY format. For example, '2017' is a valid \
+            value of **season_id** and represents the 2017-18 NBA season. \
+            **season_id** is required by the 'playoffpicture' endpoint.
 
-        @param current_season (IsOnlyCurrentSeason in the API): Boolean
-        value ('1' or '0') indicating whether only the current season
-        should be returned ('1'). A value of '0' returns all players
-        in league history. IsOnlyCurrentSeason is required by the
-        'commonallplayers' endpoint.
+        @param **current_season** (*str*): IsOnlyCurrentSeason in the API. \
+            Boolean value ('1' or '0') indicating whether only the current \
+            season should be returned ('1'). A value of '0' returns all \
+            players in league history. **current_season** is required by the \
+            'commonallplayers' endpoint.
 
     Attributes:
 
-        api_resp: JSON object of the API response. The API response
-        has three keys. The 'resource' key describes the type of
-        response returned (the endpoint in this instance). The 'parameters'
-        key describes the parameters provided in the API call. The
-        'resultSets' key contains the data returned in the API call.
+        **api_resp** (*dict*): JSON object of the API response. The API \
+            response has three keys. The 'resource' key describes the type of \
+            response returned (the endpoint in this instance). The 'parameters' \
+            key describes the parameters provided in the API call. The \
+            'resultSets' key contains the data returned in the API call.
 
-        data: A dictionary of response names. Each response name is a
-        key to a list of dictionaries containing the corresponding data.
+        **data** (*dict*): A dictionary of response names. Each response \
+            name is a key to a list of dictionaries containing the \
+            corresponding data.
     """
 
     def __init__(self, endpoint='commonallplayers',

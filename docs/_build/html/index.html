@@ -143,6 +143,671 @@ has the following boxscore-related API endpoints:</p>
 </dd></dl>
 
 </div>
+<div class="section" id="draft-class">
+<h2>Draft class<a class="headerlink" href="#draft-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="py_ball.draft.Draft">
+<em class="property">class </em><code class="descclassname">py_ball.draft.</code><code class="descname">Draft</code><span class="sig-paren">(</span><em>endpoint='draftcombinestats'</em>, <em>league_id='00'</em>, <em>season_year='2017-18'</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.draft.Draft" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Draft class contains all resources needed to use the draft-
+related API calls. <a class="reference external" href="https://stats.nba.com">stats.nba.com</a>
+has the following draft-related API endpoints:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>draftcombinestats</strong>: Draft combine drill results and measurement         data for players.</li>
+<li><strong>drafthistory</strong>: Draft results detailing metadata of draftees         by season.</li>
+</ul>
+</div></blockquote>
+<p>The Draft class has the following required parameters:</p>
+<blockquote>
+<div><p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API. String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA.</p>
+<p>&#64;param <strong>season_year</strong> (<em>str</em>): SeasonYear in the API. String of             a two-year season year in a YYYY-ZZ format, where the ZZ are the             last two digits of the following year. For example, &#8216;2017-18&#8217; is             a valid value of <strong>season_year</strong> and represents the 2017-18 NBA season.             &#8216;All Time&#8217; is a valid value for the &#8216;draftcombinestats&#8217; endpoint.</p>
+</div></blockquote>
+<p>Attributes:</p>
+<blockquote>
+<div><p><strong>api_resp</strong> (<em>dict</em>): JSON object of the API response. The API             response has three keys. The &#8216;resource&#8217; key describes the type of             response returned (the endpoint in this instance). The &#8216;parameters&#8217;             key describes the parameters provided in the API call. The             &#8216;resultSets&#8217; key contains the data returned in the API call.</p>
+<p><strong>data</strong> (<em>dict</em>): A dictionary of response names. Each response             name is a key to a list of dictionaries containing the corresponding             data.</p>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="leaderboard-class">
+<h2>LeaderBoard class<a class="headerlink" href="#leaderboard-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="py_ball.leaderboard.LeaderBoard">
+<em class="property">class </em><code class="descclassname">py_ball.leaderboard.</code><code class="descname">LeaderBoard</code><span class="sig-paren">(</span><em>endpoint='homepageleaders'</em>, <em>league_id='00'</em>, <em>stat_category='Points'</em>, <em>stat_category_ll='PTS'</em>, <em>stat_type='Tracking'</em>, <em>stat='PTS'</em>, <em>season='2017-18'</em>, <em>season_type='Regular Season'</em>, <em>player_or_team='Player'</em>, <em>game_scope='Season'</em>, <em>player_scope='All Players'</em>, <em>per_mode='PerGame'</em>, <em>scope='S'</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.leaderboard.LeaderBoard" title="Permalink to this definition">¶</a></dt>
+<dd><p>The LeaderBoard class contains all resources needed to use the
+leader board API calls. <a class="reference external" href="https://stats.nba.com">stats.nba.com</a>
+has the following leader board API endpoints:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>homepageleaders</strong>: Top 5 leaders in a number of statistical         categories.</li>
+<li><strong>homepagev2</strong>: Groups of top 5 leaders in statistical categories         related to a given concept.</li>
+<li><strong>leaderstiles</strong>: Top 5 leaders in a number of statistical         categories, some included in &#8216;homepageleaders&#8217; and some         not.</li>
+<li><strong>leagueleaders</strong>: Longer list of league leaders in a number         of statistical categories.</li>
+</ul>
+</div></blockquote>
+<p>The LeaderBoard class has the following required parameters:</p>
+<blockquote>
+<div><p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API. String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA.</p>
+<p>&#64;param <strong>stat_category</strong> (<em>str</em>): StatCategory in the API. String             corresponding to the <strong>stat_category</strong> desired in the API             response. Valid values include:</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li>&#8216;Points&#8217;, &#8216;Rebounds&#8217;, &#8216;Assists&#8217;, &#8216;Defense&#8217;, &#8216;Clutch&#8217;,                 &#8216;Playmaking&#8217;, &#8216;Efficiency&#8217;, &#8216;Fast Break&#8217;,&#8217;Scoring Breakdown&#8217;</li>
+</ul>
+</div></blockquote>
+<p>The stat_category parameter is only required by the             &#8216;homepageleaders&#8217; endpoint.</p>
+</div></blockquote>
+<p>&#64;param <strong>stat_category_ll</strong> (<em>str</em>): StatCategory in the API. String             corresponding to the <strong>stat_category</strong> desired in the API response.             Valid values include:</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li>&#8216;MIN&#8217;, &#8216;FGM&#8217;, &#8216;FGA&#8217;, &#8216;FG_PCT&#8217;, &#8216;FG3M&#8217;, &#8216;FG3A&#8217;, &#8216;FG3_PCT&#8217;                 &#8216;FTM&#8217;, &#8216;FTA&#8217;, &#8216;FT_PCT&#8217;, &#8216;OREB&#8217;, &#8216;DREB&#8217;, &#8216;REB&#8217;, &#8216;AST&#8217;                 &#8216;STL&#8217;, &#8216;BLK&#8217;, &#8216;TOV&#8217;, &#8216;PTS&#8217;, &#8216;EFF&#8217;</li>
+</ul>
+</div></blockquote>
+<p>The <strong>stat_category_ll</strong> parameter is only required by the             &#8216;leagueleaders&#8217; endpoint.</p>
+</div></blockquote>
+<p>&#64;param <strong>stat_type</strong> (<em>str</em>): StatType in the API. String corresponding             to the <strong>stat_type</strong> desired in the API response. Valid values             include:</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li>&#8216;Traditional&#8217;, &#8216;Advanced&#8217;, &#8216;Tracking&#8217;</li>
+</ul>
+</div></blockquote>
+<p>The <strong>stat_type</strong> parameter is only required by the &#8216;homepagev2&#8217;             endpoint.</p>
+</div></blockquote>
+<p>&#64;param <strong>stat</strong> (<em>str</em>): Stat in the API. String corresponding             to the <strong>stat</strong> desired in the API response. Valid values             include:</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li>&#8216;PTS&#8217;, &#8216;REB&#8217;, &#8216;AST&#8217;, &#8216;FG_PCT&#8217;, &#8216;FT_PCT&#8217;, &#8216;FG3_PCT&#8217;                 &#8216;STL&#8217;, &#8216;BLK&#8217;</li>
+</ul>
+</div></blockquote>
+<p>The <strong>stat</strong> parameter is only required by the &#8216;leaderstiles&#8217;             endpoint.</p>
+</div></blockquote>
+<p>&#64;param <strong>season</strong> (<em>str</em>): Season in the API. String of a two-year             season in a YYYY-ZZ format, where the ZZ are the last two             digits of the following year. For example, &#8216;2017-18&#8217; is a valid             value of <strong>season</strong> and represents the 2017-18 NBA season.</p>
+<p>&#64;param <strong>season_type</strong> (<em>str</em>): SeasonType in the API. String             indicating the type of season for which data is desired.             Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Regular Season&#8217;, &#8216;Pre Season&#8217;, &#8216;Playoffs&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>player_or_team</strong> (<em>str</em>): PlayerOrTeam in the API. String             indicating whether data returned is for &#8216;Player&#8217; or &#8216;Team&#8217;             leaders.</p>
+<p>&#64;param <strong>game_scope</strong> (<em>str</em>): GameScope in the API. String             indicating the period of time for which data is desired.             Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Season&#8217;, &#8216;Last 10&#8217;, &#8216;Yesterday&#8217;, &#8216;Finals&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>player_scope</strong> (<em>str</em>): PlayerScope in the API. String             indicating the type of players for which data is desired.             Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;All Players&#8217;, &#8216;Rookies&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>per_mode</strong> (<em>str</em>): PerMode in the API. String             indicating the rate of the statistics to be returned.             Valid values include:</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li>&#8216;Totals&#8217;, &#8216;PerGame&#8217;, &#8216;Per48&#8217;</li>
+</ul>
+</div></blockquote>
+<p>The <strong>per_mode</strong> parameter is only required by the &#8216;leagueleaders&#8217;             endpoint.</p>
+</div></blockquote>
+<p>&#64;param <strong>scope</strong> (<em>str</em>): Scope in the API. String indicating             the type of players for which data is desired. This is             nearly identical to <strong>player_scope</strong> above, but for the             &#8216;leagueleaders&#8217; endpoint. Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;S&#8217; (All players), &#8216;Rookies&#8217;</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<p>Attributes:</p>
+<blockquote>
+<div><p><strong>api_resp</strong> (<em>dict</em>): JSON object of the API response. The API             response has three keys. The &#8216;resource&#8217; key describes the type of             response returned (the endpoint in this instance). The &#8216;parameters&#8217;             key describes the parameters provided in the API call. The             &#8216;resultSets&#8217; key contains the data returned in the API call.</p>
+<p><strong>data</strong> (<em>dict</em>): A dictionary of response names. Each response         name is a key to a list of dictionaries containing the         corresponding data.</p>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="league-class">
+<h2>League class<a class="headerlink" href="#league-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="py_ball.league.League">
+<em class="property">class </em><code class="descclassname">py_ball.league.</code><code class="descname">League</code><span class="sig-paren">(</span><em>endpoint='commonallplayers'</em>, <em>league_id='00'</em>, <em>season='2017-18'</em>, <em>season_id='2017'</em>, <em>current_season='1'</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.league.League" title="Permalink to this definition">¶</a></dt>
+<dd><p>The League class contains all resources needed to use the league-
+related API calls. <a class="reference external" href="https://stats.nba.com">stats.nba.com</a>
+has the following league-related API endpoints:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>commonallplayers</strong>: Current roster information if the         <strong>current_season</strong> flag is &#8216;1&#8217;, historical player information         if the <strong>current_season</strong> flag is &#8216;0&#8217;.</li>
+<li><strong>commonteamyears</strong>: Start and end dates for teams in league         history.</li>
+<li><strong>commonplayoffseries</strong>: Playoff series matchup breakdown by game.</li>
+<li><strong>franchisehistory</strong>: Current and defunct franchise histories,         including performance and franchise metadata.</li>
+<li><strong>playoffpicture</strong>: Current state of the playoff picture by         conference.</li>
+</ul>
+</div></blockquote>
+<p>The League class has the following required parameters:</p>
+<blockquote>
+<div><p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API. String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA.</p>
+<dl class="docutils">
+<dt>&#64;param <strong>season</strong> (<em>str</em>): Season in the API. String of a two-year</dt>
+<dd>season in a YYYY-ZZ format, where the ZZ are the last two             digits of the following year. For example, &#8216;2017-18&#8217; is a valid             value of <strong>season</strong> and represents the 2017-18 NBA season.             <strong>season</strong> is required by the &#8216;commonallplayers&#8217; and             &#8216;commonplayoffseries&#8217; endpoints.</dd>
+</dl>
+<p>&#64;param <strong>season_id</strong> (<em>str</em>): SeasonID in the API. String of a year             season in a YYYY format. For example, &#8216;2017&#8217; is a valid             value of <strong>season_id</strong> and represents the 2017-18 NBA season.             <strong>season_id</strong> is required by the &#8216;playoffpicture&#8217; endpoint.</p>
+<p>&#64;param <strong>current_season</strong> (<em>str</em>): IsOnlyCurrentSeason in the API.             Boolean value (&#8216;1&#8217; or &#8216;0&#8217;) indicating whether only the current             season should be returned (&#8216;1&#8217;). A value of &#8216;0&#8217; returns all             players in league history. <strong>current_season</strong> is required by the             &#8216;commonallplayers&#8217; endpoint.</p>
+</div></blockquote>
+<p>Attributes:</p>
+<blockquote>
+<div><p><strong>api_resp</strong> (<em>dict</em>): JSON object of the API response. The API             response has three keys. The &#8216;resource&#8217; key describes the type of             response returned (the endpoint in this instance). The &#8216;parameters&#8217;             key describes the parameters provided in the API call. The             &#8216;resultSets&#8217; key contains the data returned in the API call.</p>
+<p><strong>data</strong> (<em>dict</em>): A dictionary of response names. Each response             name is a key to a list of dictionaries containing the             corresponding data.</p>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="leaguedash-class">
+<h2>LeagueDash class<a class="headerlink" href="#leaguedash-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="py_ball.league_dash.LeagueDash">
+<em class="property">class </em><code class="descclassname">py_ball.league_dash.</code><code class="descname">LeagueDash</code><span class="sig-paren">(</span><em>endpoint='leaguedashlineups'</em>, <em>league_id='00'</em>, <em>group_quantity='5'</em>, <em>per_mode='PerGame'</em>, <em>plus_minus='N'</em>, <em>rank='Y'</em>, <em>pace_adjust='N'</em>, <em>measure_type='Base'</em>, <em>period='0'</em>, <em>vs_conference=''</em>, <em>last_n_games='0'</em>, <em>team_id='0'</em>, <em>location=''</em>, <em>outcome=''</em>, <em>date_from=''</em>, <em>date_to=''</em>, <em>opp_team_id='0'</em>, <em>season='2017-18'</em>, <em>vs_division=''</em>, <em>game_segment=''</em>, <em>month='0'</em>, <em>season_type='Regular Season'</em>, <em>season_segment=''</em>, <em>clutch_time='Last 5 Minutes'</em>, <em>ahead_behind='Ahead or Behind'</em>, <em>point_diff='0'</em>, <em>game_scope=''</em>, <em>player_experience=''</em>, <em>player_position=''</em>, <em>starters_bench=''</em>, <em>distance_range='By Zone'</em>, <em>defense_category='Overall'</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.league_dash.LeagueDash" title="Permalink to this definition">¶</a></dt>
+<dd><p>The LeagueDash class contains all resources needed
+to use the league performance stats related API calls.
+<a class="reference external" href="https://stats.nba.com">stats.nba.com</a> has the following
+league performance stats related API endpoints:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>leaguedashlineups</strong>: Traditional and plus/minus statistics         for sets of lineups between sizes 2 to 5 players, inclusive.</li>
+<li><strong>leaguedashplayerbiostats</strong>: Player metadata and performance         statistics for a given season.</li>
+<li><strong>leaguedashplayerclutch</strong>: Traditional, plus/minus, and rank         statistics for players in a defined clutch period.</li>
+<li><strong>leaguedashplayershotlocations</strong>: Player shooting-related         statistics by shot distance/type.</li>
+<li><strong>leaguedashplayerptshot</strong>: Shooting-related statistics for         a given season by player.</li>
+<li><strong>leaguedashplayerstats</strong>: Traditional, plus/minus, and rank         statistics for players.</li>
+<li><strong>leaguedashptdefend</strong>: Defensive statistics for a given season         by player.</li>
+<li><strong>leaguedashptteamdefend</strong>: Defensive statistics for a given         season by team.</li>
+<li><strong>leaguedashteamptshot</strong>: Shooting-related statistics for a         given season by team.</li>
+</ul>
+</div></blockquote>
+<p>The LeagueDash class has the following required parameters:</p>
+<blockquote>
+<div><p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API). String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA.</p>
+<p>&#64;param <strong>group_quantity</strong> (<em>str</em>): GroupQuantity in the API. String             of an integer indicating the number of players to include a             lineup for the <strong>leaguedashlineups</strong> endpoint. The minimum value             is &#8216;2&#8217; and the maximum value is &#8216;5&#8217;.</p>
+<p>&#64;param <strong>per_mode</strong> (<em>str</em>): PerMode in the API. String indicating             the type of rate stats to be returned. Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Totals&#8217;, &#8216;PerGame&#8217;, &#8216;MinutesPer&#8217;, &#8216;Per48&#8217;, &#8216;Per40&#8217;,                 &#8216;Per36&#8217;, &#8216;PerMinute&#8217;, &#8216;PerPossession&#8217;, &#8216;PerPlay&#8217;,                 &#8216;Per100Possessions&#8217;, &#8216;Per100Plays&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>plus_minus</strong> (<em>str</em>): PlusMinus in the API. String             representing a Boolean value that indicates whether the values             being returned should be in plus-minus form. Valid values             include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Y&#8217;, &#8216;N&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>rank</strong> (<em>str</em>): Rank in the API. String representing             a Boolean value that indicates whether the values being             returned should be in rank form. Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Y&#8217;, &#8216;N&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>pace_adjust</strong> (<em>str</em>): PaceAdjust in the API. String             representing a Boolean value that indicates whether the             values being returned should be pace-adjusted. Valid             values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Y&#8217;, &#8216;N&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>measure_type</strong> (<em>str</em>): MeasureType in the API. String             indicating the set of statistics to be returned. Valid             values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Base&#8217;, &#8216;Advanced&#8217;, &#8216;Misc&#8217;, &#8216;Four Factors&#8217;, &#8216;Scoring&#8217;,                 &#8216;Opponent&#8217;, &#8216;Usage&#8217;, &#8216;Defense&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>period</strong> (<em>str</em>): Period in the API. String of an             integer value that corresponds to a desired quarter for data             to be returned. A value of &#8216;0&#8217; returns data across all quarters.</p>
+<p>&#64;param <strong>vs_conference</strong> (<em>str</em>): VsConference in the API. String             indicating the conference of the opposing team for data to be             returned. An empty string returns data across all conferences.             Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;East&#8217;, &#8216;West&#8217;, &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>last_n_games</strong> (<em>str</em>): LastNGames in the API. String of             an integer indicating the desired number of most recent games             for data to be returned. A value of &#8216;0&#8217; returns data across             all previous games, subject to other constraints in the API call.</p>
+<p>&#64;param <strong>team_id</strong> (<em>str</em>): TeamID in the API. String of a 10-digit             integer that uniquely identifies a team for which data is to             be returned.</p>
+<p>&#64;param <strong>location</strong> (<em>str</em>): Location in the API. String indicating             the game location for the data to be returned. An empty string             returns data across both home and road games. Valid values             include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Home&#8217;, &#8216;Road&#8217;, &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>outcome</strong> (<em>str</em>): Outcome in the API. String indicating             the game outcome for the data to be returned. An empty string             returns data across both wins and losses. Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;W&#8217;, &#8216;L&#8217;, &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>date_from</strong> (<em>str</em>): DateFrom in the API. String of a date             in a MM/DD/YYYY format indicating the start date for which             data is to be returned.</p>
+<p>&#64;param <strong>date_to</strong> (<em>str</em>): DateTo in the API. String of a date             in a MM/DD/YYYY format indicating the end date for which             data is to be returned.</p>
+<p>&#64;param <strong>opp_team_id</strong> (<em>str</em>): OpponentTeamID in the API. String             of a 10-digit integer that uniquely identifies an opposing             team for which data is to be returned.</p>
+<p>&#64;param <strong>season</strong> (<em>str</em>): Season in the API. String of a two-year             season in a YYYY-ZZ format, where the ZZ are the last two             digits of the following year. For example, &#8216;2017-18&#8217; is a valid             value of <strong>season</strong> and represents the 2017-18 NBA season.</p>
+<p>&#64;param <strong>vs_division</strong> (<em>str</em>): VsDivision in the API. String             indicating the division of the opposing team for data to be             returned. An empty string returns data across all divisions.             Valid values include:</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li>&#8216;Atlantic&#8217;, &#8216;Central&#8217;, &#8216;Northwest&#8217;, &#8216;Pacific&#8217;,                 &#8216;Southeast&#8217;, &#8216;Southwest&#8217;, &#8216;East&#8217;, &#8216;West&#8217;,  &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>The &#8216;East&#8217; and &#8216;West&#8217; values correspond to conferences.</p>
+</div></blockquote>
+<p>&#64;param <strong>game_segment</strong> (<em>str</em>): GameSegment in the API. String             indicating the section of a game for data to be returned.             An empty string returns data across all game segments.             Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;First Half&#8217;, &#8216;Overtime&#8217;, &#8216;Second Half&#8217;, &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>month</strong> (<em>str</em>): Month in the API. String of an integer             corresponding to a month for data to be returned.             A value of &#8216;0&#8217; returns data across all months.</p>
+<p>&#64;param <strong>season_type</strong> (<em>str</em>): SeasonType in the API. String             indicating the type of season for data to be returned.             Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Regular Season&#8217;, &#8216;Pre Season&#8217;, &#8216;Playoffs&#8217;, &#8216;All Star&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>season_segment</strong> (<em>str</em>): SeasonSegment in the API. String             indicating the section of the season for data to be returned.             An empty string returns data across all season segments.             Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Pre All-Star&#8217;, &#8216;Post All-Star&#8217;, &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>clutch_time</strong> (<em>str</em>): ClutchTime in the API. String that             defines the type of clutch time for the data to be returned.             Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Last 5 Minutes&#8217;, &#8216;Last 4 Minutes&#8217;, &#8216;Last 3 Minutes&#8217;,                 &#8216;Last 2 Minutes&#8217;, &#8216;Last 1 Minute&#8217;, &#8216;Last 30 Seconds&#8217;,                 &#8216;Last 10 Seconds&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>ahead_behind</strong> (<em>str</em>): AheadBehind in the API. String             indicating the type of score differential for the data to             be returned. Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Ahead or Behind&#8217;, &#8216;Behind or Tied&#8217;, &#8216;Ahead or Tied&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>point_diff</strong> (<em>str</em>): PointDiff in the API. String of zero             or a positive integer indicating the maximum point             differential for data to be returned.</p>
+<p>&#64;param <strong>game_scope</strong> (<em>str</em>): GameScope in the API. String             indicating the recency of the data to be returned. An             empty string returns data across all past games, subject             to other constraints in the API call. Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Yesterday&#8217;, &#8216;Last 10&#8217;, &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>player_experience</strong> (<em>str</em>): PlayerExperience in the API.             String indicating the level of player experience for data to be             returned. An empty string returns data across all levels             of player experience. Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Rookie&#8217;, &#8216;Sophomore&#8217;, &#8216;Veteran&#8217;, &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>player_position</strong> (<em>str</em>): PlayerPosition in the API.             String indicating the player position for data to be returned.             An empty string returns data across all player positions. Valid             values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;F&#8217;, &#8216;C&#8217;, &#8216;G&#8217;, &#8216;C-F&#8217;, &#8216;F-C&#8217;, &#8216;F-G&#8217;, &#8216;G-F&#8217;, &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>starters_bench</strong> (<em>str</em>): StarterBench in the API. String             indicating whether data should be returned for either or both             starters or bench players. An empty string returns data across             both starters and bench players. Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Starters&#8217;, &#8216;Bench&#8217;, &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>distance_range</strong> (<em>str</em>): DistanceRange in the API. String             indicating the size/type of the distance range bins for data             to be returned. Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;5ft Range&#8217;, &#8216;8ft Range&#8217;, &#8216;By Zone&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>defense_category</strong> (<em>str</em>): DefenseCategory in the API.             String indicating the shot type of defensive data to be returned.             Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Overall&#8217;, &#8216;3 Pointers&#8217;, &#8216;2 Pointers&#8217;, &#8216;Less Than 6Ft&#8217;,                 &#8216;Less Than 10Ft&#8217;, &#8216;Greater Than 15Ft&#8217;</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<p>Attributes:</p>
+<blockquote>
+<div><p><strong>api_resp</strong> (<em>dict</em>): JSON object of the API response. The API             response has three keys. The &#8216;resource&#8217; key describes the             type of response returned (the endpoint in this instance).             The &#8216;parameters&#8217; key describes the parameters provided in the             API call. The &#8216;resultSets&#8217; key contains the data returned in             the API call.</p>
+<p><strong>data</strong> (<em>dict</em>): A dictionary of response names. Each response             name is a key to a list of dictionaries containing the             corresponding data.</p>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="playbyplay-class">
+<h2>PlayByPlay class<a class="headerlink" href="#playbyplay-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="py_ball.playbyplay.PlayByPlay">
+<em class="property">class </em><code class="descclassname">py_ball.playbyplay.</code><code class="descname">PlayByPlay</code><span class="sig-paren">(</span><em>game_id</em>, <em>endpoint='playbyplay'</em>, <em>start_period='1'</em>, <em>end_period='10'</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.playbyplay.PlayByPlay" title="Permalink to this definition">¶</a></dt>
+<dd><p>The PlayByPlay class contains all resources needed to use the 
+pbp-related API calls. <a class="reference external" href="https://stats.nba.com">stats.nba.com</a>
+has the following pbp-related API endpoints:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>playbyplay</strong>: Game play-by-play with basic fields, such as         play desscription, score, margin, period, and game time.</li>
+<li><strong>playbyplayv2</strong>: Game play-by-play with the basic fields above,         as well as player information of those involved in the play.</li>
+</ul>
+</div></blockquote>
+<p>The PlayByPlay class has the following required parameters:</p>
+<blockquote>
+<div><p>&#64;param <strong>game_id</strong> (<em>str</em>): GameID in the API. 10-digit string             that represents a unique game. The format is two leading zeroes,             followed by a season indicator number (&#8216;1&#8217; for preseason,             &#8216;2&#8217; for regular season, &#8216;4&#8217; for the post-season),             then the trailing digits of the season in which the game             took place (e.g. &#8216;17&#8217; for the 2017-18 season). The following             5 digits increment from &#8216;00001&#8217; in order as the season progresses.             For example, &#8216;0021600001&#8217; is the <strong>game_id</strong> of the first game             of the 2016-17 NBA regular season.</p>
+<p>&#64;param <strong>start_period</strong> (<em>str</em>): StartPeriod in the API. String of             an integer that corresponds to the period for which the             boxscore begins.</p>
+<p>&#64;param <strong>end_period</strong> (<em>str</em>): EndPeriod in the API. String of an             integer that corresponds to the period for which the             boxscore ends (Overtime increments logically, e.g. &#8216;5&#8217; is             the first overtime period).</p>
+</div></blockquote>
+<p>Attributes:</p>
+<blockquote>
+<div><p><strong>api_resp</strong> (<em>dict</em>): JSON object of the API response. The API             response has three keys. The &#8216;resource&#8217; key describes the             type of response returned (&#8216;playbyplay&#8217; in this instance).             The &#8216;parameters&#8217; key describes the parameters provided in             the API call. The &#8216;resultSets&#8217; key contains the data returned             in the API call.</p>
+<p><strong>data</strong> (<em>dict</em>): A dictionary of response names. Each response             name is a key to a list of dictionaries containing the             corresponding data.</p>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="player-class">
+<h2>Player class<a class="headerlink" href="#player-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="py_ball.player.Player">
+<em class="property">class </em><code class="descclassname">py_ball.player.</code><code class="descname">Player</code><span class="sig-paren">(</span><em>endpoint='playercareerstats'</em>, <em>player_id='2544'</em>, <em>player_id_list='2544'</em>, <em>vs_player_id_list='201939'</em>, <em>league_id='00'</em>, <em>per_mode='PerGame'</em>, <em>plus_minus='N'</em>, <em>rank='Y'</em>, <em>pace_adjust='N'</em>, <em>measure_type='Base'</em>, <em>period='0'</em>, <em>vs_conference=''</em>, <em>last_n_games='0'</em>, <em>team_id='0'</em>, <em>location=''</em>, <em>outcome=''</em>, <em>date_from=''</em>, <em>date_to=''</em>, <em>opp_team_id='0'</em>, <em>season='2017-18'</em>, <em>vs_division=''</em>, <em>game_segment=''</em>, <em>month='0'</em>, <em>season_type='Regular Season'</em>, <em>season_segment=''</em>, <em>vs_player_id='201939'</em>, <em>player_team_id='1610612747'</em>, <em>vs_player_team_id='1610612744'</em>, <em>player_id_1='2544'</em>, <em>player_id_2='0'</em>, <em>player_id_3='0'</em>, <em>player_id_4='0'</em>, <em>player_id_5='0'</em>, <em>vs_player_id_1='201939'</em>, <em>vs_player_id_2='0'</em>, <em>vs_player_id_3='0'</em>, <em>vs_player_id_4='0'</em>, <em>vs_player_id_5='0'</em>, <em>rookie_year=''</em>, <em>context_measure='FGA'</em>, <em>player_position=''</em>, <em>game_id='0011800079'</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.player.Player" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Player class contains all resources needed
+to use the player-related API calls. <a class="reference external" href="https://stats.nba.com">stats.nba.com</a>
+has the following player performance stats related API endpoints:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>playercareerstats</strong>: Season and career stats for a given player,         broken down by season type (including college).</li>
+<li><strong>playercompare</strong>: Individual and combined (overall) statistics         for a given list of players and opposing players.</li>
+<li><strong>playerdashboardbyclutch</strong>: Traditional and rank statistics broken         down by different definitions of clutch for a player.</li>
+<li><strong>playerdashboardbygamesplits</strong>: Traditional and rank statistics         broken down by different splits (half, quarter, and score         differential).</li>
+<li><strong>playerdashboardbygeneralsplits</strong>: Traditional and rank statistics         broken down by different splits (win/loss, location, month,         pre/post All-Star, days rest).</li>
+<li><strong>playerdashboardbylastngames</strong>: Traditional and rank statistics         broken down by the number of n recent games and game number         bins.</li>
+<li><strong>playerdashboardbyopponent</strong>: Traditional and rank statistics         broken down by opponent splits (conference, division, and         individual team).</li>
+<li><strong>playerdashboardbyshootingsplits</strong>: Traditional and rank statistics         broken down by shooting splits (shot distance, shot area,         assisted/unassisted, shot type, and indivdual assistant).</li>
+<li><strong>playerdashboardbyteamperformance</strong>: Traditional and rank statistics         broken down by team performance splits (win/loss, score differential,         points for, and points against).</li>
+<li><strong>playerdashboardbyyearoveryear</strong>: Traditional and rank statistics         broken down by year.</li>
+<li><strong>playerdashptpass</strong>: Shooting statistics for passes to and from         a player broken down by teammates.</li>
+<li><strong>playerdashptreb</strong>: Rebound statistics broken down by shot type,         contesting players, and shot/rebound distance.</li>
+<li><strong>playerdashptshotdefend</strong>: Defensive statistics broken down         by shot type/distance.</li>
+<li><strong>playerdashptshots</strong>: Shooting statistics broken down by shot         type, shot clock time, number of tribbles, defender proximity, and         length of touch.</li>
+<li><strong>playergamelog</strong>: Game log statistics for a given year.</li>
+<li><strong>playerprofilev2</strong>: Career and season summary statistics broken down         by season type.</li>
+<li><strong>playervsplayer</strong>: Player statistics versus a given opponent player         broken down by several shooting related splits (shot distance and         area)</li>
+<li><strong>playersvsplayers</strong>: Currently not available</li>
+<li><strong>shotchartdetail</strong>: Player and league shot chart data giving results         and location-related information for several player actions,         such as shots and fouls.</li>
+</ul>
+</div></blockquote>
+<p>The Player class has the following required parameters:</p>
+<blockquote>
+<div><p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API. String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA.</p>
+<p>&#64;param <strong>player_id</strong> (<em>str</em>): PlayerID in the API. String of an             integer corresponding to a player ID for a given player.</p>
+<p>&#64;param <strong>player_id_list</strong> (<em>str</em>): PlayerIDList in the API. String             of a comma-separated list of player IDs for player comparisons             to the players given in <strong>vs_player_id_list</strong>. Valid only for             the &#8216;playercompare&#8217; endpoint.</p>
+<dl class="docutils">
+<dt>&#64;param <strong>vs_player_id_list</strong> (<em>str</em>): VsPlayerIDList in the API. </dt>
+<dd>String of a comma-separated list of player IDs for player             comparisons to the players given in <strong>player_id_list</strong>.             Valid only for the &#8216;playercompare&#8217; endpoint.</dd>
+</dl>
+<p>&#64;param <strong>per_mode</strong> (<em>str</em>): PerMode in the API String indicating             the type of rate stats to be returned. Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Totals&#8217;, &#8216;PerGame&#8217;, &#8216;MinutesPer&#8217;, &#8216;Per48&#8217;, &#8216;Per40&#8217;,                 &#8216;Per36&#8217;, &#8216;PerMinute&#8217;, &#8216;PerPossession&#8217;, &#8216;PerPlay&#8217;,                 &#8216;Per100Possessions&#8217;, &#8216;Per100Plays&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>plus_minus</strong> (<em>str</em>): PlusMinus in the API. String             representing a Boolean value that indicates whether the values             being returned should be in plus-minus form. Valid values             include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Y&#8217;, &#8216;N&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>rank</strong> (<em>str</em>): Rank in the API. String representing a             Boolean value that indicates whether the values being returned             should be in rank form. Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Y&#8217;, &#8216;N&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>pace_adjust</strong> (<em>str</em>): PaceAdjust in the API. String             representing a Boolean value that indicates whether the values             being returned should be pace-adjusted. Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Y&#8217;, &#8216;N&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>measure_type</strong> (<em>str</em>): MeasureType in the API. String             indicating the set of statistics to be returned. Valid values             include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Base&#8217;, &#8216;Advanced&#8217;, &#8216;Misc&#8217;, &#8216;Four Factors&#8217;, &#8216;Scoring&#8217;,                 &#8216;Opponent&#8217;, &#8216;Usage&#8217;, &#8216;Defense&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>period</strong> (<em>str</em>): Period in the API. String of an integer             value that corresponds to a desired quarter for data to be             returned. A value of &#8216;0&#8217; returns data across all quarters.</p>
+<p>&#64;param <strong>vs_conference</strong> (<em>str</em>): VsConference in the API. String             indicating the conference of the opposing team for data to be             returned. An empty string returns data across all conferences.             Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;East&#8217;, &#8216;West&#8217;, &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>last_n_games</strong> (<em>str</em>): LastNGames in the API. String of an             integer indicating the desired number of most recent games             for data to be returned. A value of &#8216;0&#8217; returns data across             all previous games, subject to other constraints in the API call.</p>
+<p>&#64;param <strong>team_id</strong> (<em>str</em>): TeamID in the API. String of a 10-digit             integer that uniquely identifies a team for which data is to             be returned.</p>
+<p>&#64;param <strong>location</strong> (<em>str</em>): Location in the API. String indicating             the game location for the data to be returned. An empty             string returns data across both home and road games.             Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Home&#8217;, &#8216;Road&#8217;, &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>outcome</strong> (<em>str</em>): Outcome in the API. String indicating             the game outcome for the data to be returned. An empty             string returns data across both wins and losses. Valid             values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;W&#8217;, &#8216;L&#8217;, &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>date_from</strong> (<em>str</em>): DateFrom in the API. String of a date             in a MM/DD/YYYY format indicating the start date for which             data is to be returned.</p>
+<p>&#64;param <strong>date_to</strong> (<em>str</em>): DateTo in the API. String of a date             in a MM/DD/YYYY format indicating the end date for which             data is to be returned.</p>
+<p>&#64;param <strong>opp_team_id</strong> (<em>str</em>): OpponentTeamID in the API. String             of a 10-digit integer that uniquely identifies an opposing             team for which data is to be returned.</p>
+<p>&#64;param <strong>season</strong> (<em>str</em>): Season in the API. String of a two-year             season in a YYYY-ZZ format, where the ZZ are the last two             digits of the following year. For example, &#8216;2017-18&#8217; is a valid             value of <strong>season</strong> and represents the 2017-18 NBA season.</p>
+<p>&#64;param <strong>vs_division</strong> (<em>str</em>): VsDivision in the API. String             indicating the division of the opposing team for data to be             returned. An empty string returns data across all divisions.             Valid values include:</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li>&#8216;Atlantic&#8217;, &#8216;Central&#8217;, &#8216;Northwest&#8217;, &#8216;Pacific&#8217;,                 &#8216;Southeast&#8217;, &#8216;Southwest&#8217;, &#8216;East&#8217;, &#8216;West&#8217;,  &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>The &#8216;East&#8217; and &#8216;West&#8217; values correspond to conferences.</p>
+</div></blockquote>
+<p>&#64;param <strong>game_segment</strong> (<em>str</em>): GameSegment in the API. String             indicating the section of a game for data to be returned.             An empty string returns data across all game segments.             Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;First Half&#8217;, &#8216;Overtime&#8217;, &#8216;Second Half&#8217;, &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>month</strong> (<em>str</em>): Month in the API. String of an integer             corresponding to a month for data to be returned. A value             of &#8216;0&#8217; returns data across all months.</p>
+<p>&#64;param <strong>season_type</strong> (<em>str</em>): SeasonType in the API. String             indicating the type of season for data to be returned.             Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Regular Season&#8217;, &#8216;Pre Season&#8217;, &#8216;Playoffs&#8217;, &#8216;All Star&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>season_segment</strong> (<em>str</em>): SeasonSegment in the API. String             indicating the section of the season for data to be returned.             An empty string returns data across all season segments.             Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Pre All-Star&#8217;, &#8216;Post All-Star&#8217;, &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>vs_player_id</strong> (<em>str</em>): VsPlayerID in the API. String of             an integer corresponding to a player ID for a given player.</p>
+<p>&#64;param <strong>player_team_id</strong> (<em>str</em>): PlayerTeamID in the API. String             of an integer corresponding to a team ID for a given team.</p>
+<p>&#64;param <strong>vs_player_team_id</strong> (<em>str</em>): VsPlayerTeamID in the API.             String of an integer corresponding to a team ID for a given team.</p>
+<p>&#64;param <strong>player_id_x</strong> (<em>str</em>): PlayerIDX in the API. String of an             integer corresponding to a player ID for a given player.             The x (X in the API) is an integer 1 through 5. Valid only             for the &#8216;playersvsplayers&#8217; endpoint.</p>
+<p>&#64;param <strong>vs_player_id_x</strong> (<em>str</em>): VsPlayerIDX in the API. String             of an integer corresponding to a player ID for a given player.             The x (X in the API) is an integer 1 through 5. Valid only for             the &#8216;playersvsplayers&#8217; endpoint.</p>
+<p>&#64;param <strong>rookie_year</strong> (<em>str</em>): RookieYear in the API. String of             a two-year  season in a YYYY-ZZ format, where the ZZ are the             last two digits of the following year. For example, &#8216;2017-18&#8217;             is a valid value of <strong>rookie_year</strong> and represents the 2017-18             NBA season. This field should correspond to the rookie year of             the player given.</p>
+<p>&#64;param <strong>context_measure</strong> (<em>str</em>): ContextMeasure in the API. String             of an abbreviated statistic corresponding to the type of action             to be included in the data returned. Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;PTS&#8217;, &#8216;FGM&#8217;, &#8216;FGA&#8217;, &#8216;FG_PCT&#8217;, &#8216;FG3M&#8217;, &#8216;FG3A&#8217;, &#8216;FG3_PCT&#8217;,                 &#8216;PF&#8217;, &#8216;EFG_PCT&#8217;, &#8216;TS_PCT&#8217;, &#8216;PTS_FB&#8217;, &#8216;PTS_OFF_TOV&#8217;,                 &#8216;PTS_2ND_CHANCE&#8217;, &#8216;PF&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>player_position</strong> (<em>str</em>): PlayerPosition in the API.             String of a basketball position corresponding to the position             of the player given. An empty string returns data across all             positions played. Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Guard&#8217;, &#8216;Center&#8217;, &#8216;Forward&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>game_id</strong> (<em>str</em>): GameID in the API. 10-digit string             that represents a unique game. The format is two leading             zeroes, followed by a season indicator number (&#8216;1&#8217; for             preseason, &#8216;2&#8217; for regular season, &#8216;4&#8217; for the post-season),             then the trailing digits of the season in which the game             took place (e.g. &#8216;17&#8217; for the 2017-18 season). The following             5 digits increment from &#8216;00001&#8217; in order as the season progresses.             For example, &#8216;0021600001&#8217; is the <strong>game_id</strong> of the first game of             the 2016-17 NBA regular season.</p>
+</div></blockquote>
+<p>Attributes:</p>
+<blockquote>
+<div><p><strong>api_resp</strong> (<em>dict</em>): JSON object of the API response. The API             response has three keys. The &#8216;resource&#8217; key describes the             type of response returned (the endpoint in this instance).             The &#8216;parameters&#8217; key describes the parameters provided in the             API call. The &#8216;resultSets&#8217; key contains the data returned in             the API call.</p>
+<p><strong>data</strong> (<em>dict</em>): A dictionary of response names. Each response             name is a key to a list of dictionaries containing the             corresponding data.</p>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="scoreboard-class">
+<h2>ScoreBoard class<a class="headerlink" href="#scoreboard-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="py_ball.scoreboard.ScoreBoard">
+<em class="property">class </em><code class="descclassname">py_ball.scoreboard.</code><code class="descname">ScoreBoard</code><span class="sig-paren">(</span><em>endpoint='scoreboard'</em>, <em>league_id='00'</em>, <em>game_date='10/21/2018'</em>, <em>day_offset='0'</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.scoreboard.ScoreBoard" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ScoreBoard class contains all resources needed to use the
+score board API calls. <a class="reference external" href="https://stats.nba.com">stats.nba.com</a>
+has the following score board API endpoints:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>scoreboard</strong>: Live scores across the league, with series metadata         and standings information.</li>
+<li><strong>scoreboardv2</strong>: Live scores across the league, with series metadata         and standings information. Also, scoreboardv2 has ticket, win         probability, and team leader information.</li>
+</ul>
+</div></blockquote>
+<p>The ScoreBoard class has the following required parameters:</p>
+<blockquote>
+<div><p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API. String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA.</p>
+<p>&#64;param <strong>game_date</strong> (<em>str</em>): GameDate in the API. String of a             date formatted as &#8216;MM/DD/YYYY&#8217; representing the date for             which data is desired.</p>
+<p>&#64;param <strong>day_offset</strong> (<em>str</em>): DayOffset in the API. String of an             integer representing days from or before the date given in             <strong>game_date</strong> for which data is desired. Positive values             indicate days into the future, zero represents the current             day, and negative values indicate days into the past.</p>
+</div></blockquote>
+<p>Attributes:</p>
+<blockquote>
+<div><p><strong>api_resp</strong> (<em>dict</em>): JSON object of the API response. The API             response has three keys. The &#8216;resource&#8217; key describes the             type of response returned (the endpoint in this instance).             The &#8216;parameters&#8217; key describes the parameters provided in             the API call. The &#8216;resultSets&#8217; key contains the data returned             in the API call.</p>
+<p><strong>data</strong> (<em>dict</em>): A dictionary of response names. Each response             name is a key to a list of dictionaries containing the             corresponding data.</p>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="team-class">
+<h2>Team class<a class="headerlink" href="#team-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="py_ball.team.Team">
+<em class="property">class </em><code class="descclassname">py_ball.team.</code><code class="descname">Team</code><span class="sig-paren">(</span><em>endpoint='teamdashboardbyclutch'</em>, <em>player_id='2544'</em>, <em>league_id='00'</em>, <em>per_mode='PerGame'</em>, <em>plus_minus='N'</em>, <em>rank='Y'</em>, <em>pace_adjust='N'</em>, <em>measure_type='Base'</em>, <em>period='0'</em>, <em>vs_conference=''</em>, <em>last_n_games='0'</em>, <em>team_id='1610612747'</em>, <em>location=''</em>, <em>outcome=''</em>, <em>date_from=''</em>, <em>date_to=''</em>, <em>opp_team_id='0'</em>, <em>season='2017-18'</em>, <em>vs_division=''</em>, <em>game_segment=''</em>, <em>month='0'</em>, <em>season_type='Regular Season'</em>, <em>season_segment=''</em>, <em>vs_player_id='201939'</em>, <em>game_id='0011800079'</em>, <em>group_quantity='5'</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.team.Team" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Team class contains all resources needed
+to use the team-related API calls. <a class="reference external" href="https://stats.nba.com">stats.nba.com</a>
+has the following team-related API endpoints:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>teamdashboardbyclutch</strong>: Traditional and rank statistics broken         down by different definitions of clutch for a team.</li>
+<li><strong>teamdashboardbygamesplits</strong>: Traditional and rank statistics         broken down by different splits (half, quarter, and score         differential).</li>
+<li><strong>teamdashboardbygeneralsplits</strong>: Traditional and rank statistics         broken down by different splits (win/loss, location, month,         pre/post All-Star, days rest).</li>
+<li><strong>teamdashboardbylastngames</strong>: Traditional and rank statistics         broken down by the number of n recent games and game number         bins.</li>
+<li><strong>teamdashboardbyopponent</strong>: Traditional and rank statistics         broken down by opponent splits (conference, division, and         individual team).</li>
+<li><strong>teamdashboardbyshootingsplits</strong>: Traditional and rank statistics         broken down by shooting splits (shot distance, shot area,         assisted/unassisted, shot type, and indivdual assistant).</li>
+<li><strong>teamdashboardbyteamperformance</strong>: Traditional and rank statistics         broken down by team performance splits (win/loss, score differential,         points for, and points against).</li>
+<li><strong>teamdashboardbyyearoveryear</strong>: Traditional and rank statistics         broken down by year.</li>
+<li><strong>teamdashlineups</strong>: Traditional and plus/minus statistics         for sets of lineups between sizes 2 to 5 players, inclusive.</li>
+<li><strong>teamdashptpass</strong>: Shooting statistics for passes to and from         a player broken down by teammates.</li>
+<li><strong>teamdashptreb</strong>: Rebound statistics broken down by shot type,         contesting players, and shot/rebound distance.</li>
+<li><strong>teamdashptshots</strong>: Shooting statistics broken down by shot         type, shot clock time, number of tribbles, defender proximity, and         length of touch.</li>
+<li><strong>teamgamelog</strong>: Game log statistics for a given year.</li>
+<li><strong>teaminfocommon</strong>: Team information for a given year.</li>
+<li><strong>teamplayerdashboard</strong>: Player traditional and rank statistics         for a given team.</li>
+<li><strong>teamplayeronoffdetails</strong>: Team traditional and rank statistics         broken down by on/off splits per player.</li>
+<li><strong>teamplayeronoffsummary</strong>: Team summary statistics broken down         by on/off splits per player.</li>
+<li><strong>teamvsplayer</strong>: Team statistics versus a given opponent player         broken down by several shooting related splits (shot distance and         area)</li>
+<li><strong>teamyearbyyearstats</strong>: Team statistics and performance broken         down by year.</li>
+</ul>
+</div></blockquote>
+<p>The Team class has the following required parameters:</p>
+<blockquote>
+<div><p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API. String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA.</p>
+<p>&#64;param <strong>player_id</strong> (<em>str</em>): PlayerID in the API. String of an             integer corresponding to a player ID for a given player.</p>
+<p>&#64;param <strong>per_mode</strong> (<em>str</em>): PerMode in the API. String indicating             the type of rate stats to be returned. Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Totals&#8217;, &#8216;PerGame&#8217;, &#8216;MinutesPer&#8217;, &#8216;Per48&#8217;, &#8216;Per40&#8217;,                 &#8216;Per36&#8217;, &#8216;PerMinute&#8217;, &#8216;PerPossession&#8217;, &#8216;PerPlay&#8217;,                 &#8216;Per100Possessions&#8217;, &#8216;Per100Plays&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>plus_minus</strong> (<em>str</em>): PlusMinus in the API. String             representing a Boolean value that indicates whether the             values being returned should be in plus-minus form.             Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Y&#8217;, &#8216;N&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>rank</strong> (<em>str</em>): Rank in the API. String representing             a Boolean value that indicates whether the values being             returned should be in rank form. Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Y&#8217;, &#8216;N&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>pace_adjust</strong> (<em>str</em>): PaceAdjust in the API. String             representing a Boolean value that indicates whether the             values being returned should be pace-adjusted.             Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Y&#8217;, &#8216;N&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>measure_type</strong> (<em>str</em>): MeasureType in the API. String             indicating the set of statistics to be returned. Valid values             include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Base&#8217;, &#8216;Advanced&#8217;, &#8216;Misc&#8217;, &#8216;Four Factors&#8217;, &#8216;Scoring&#8217;,                 &#8216;Opponent&#8217;, &#8216;Usage&#8217;, &#8216;Defense&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>period</strong> (<em>str</em>): Period in the API. String of an integer             value that corresponds to a desired quarter for data to be             returned. A value of &#8216;0&#8217; returns data across all quarters.</p>
+<p>&#64;param <strong>vs_conference</strong> (<em>str</em>): VsConference in the API. String             indicating the conference of the opposing team for data to be             returned. An empty string returns data across all conferences.             Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;East&#8217;, &#8216;West&#8217;, &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>last_n_games</strong> (<em>str</em>): LastNGames in the API. String of             an integer indicating the desired number of most recent games             for data to be returned. A value of &#8216;0&#8217; returns data across             all previous games, subject to other constraints in the API call.</p>
+<p>&#64;param <strong>team_id</strong> (<em>str</em>): TeamID in the API. String of a 10-digit             integer that uniquely identifies a team for which data             is to be returned.</p>
+<p>&#64;param <strong>location</strong> (<em>str</em>): Location in the API. String indicating             the game location for the data to be returned. An empty string             returns data across both home and road games. Valid values             include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Home&#8217;, &#8216;Road&#8217;, &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>outcome</strong> (<em>str</em>): Outcome in the API. String indicating             the game outcome for the data to be returned. An empty string             returns data across both wins and losses. Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;W&#8217;, &#8216;L&#8217;, &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>date_from</strong> (<em>str</em>): DateFrom in the API. String of a date             in a MM/DD/YYYY format indicating the start date for which             data is to be returned.</p>
+<p>&#64;param <strong>date_to</strong> (<em>str</em>): DateTo in the API. String of a date             in a MM/DD/YYYY format indicating the end date for which             data is to be returned.</p>
+<p>&#64;param <strong>opp_team_id</strong> (<em>str</em>): OpponentTeamID in the API. String             of a 10-digit integer that uniquely identifies an opposing             team for which data is to be returned.</p>
+<p>&#64;param <strong>season</strong> (<em>str</em>): Season in the API. String of a two-year             season in a YYYY-ZZ format, where the ZZ are the last two             digits of the following year. For example, &#8216;2017-18&#8217; is a valid             value of <strong>season</strong> and represents the 2017-18 NBA season.</p>
+<p>&#64;param <strong>vs_division</strong> (<em>str</em>): VsDivision in the API. String             indicating the division of the opposing team for data to be             returned. An empty string returns data across all divisions.             Valid values include:</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li>&#8216;Atlantic&#8217;, &#8216;Central&#8217;, &#8216;Northwest&#8217;, &#8216;Pacific&#8217;,                 &#8216;Southeast&#8217;, &#8216;Southwest&#8217;, &#8216;East&#8217;, &#8216;West&#8217;,  &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>The &#8216;East&#8217; and &#8216;West&#8217; values correspond to conferences.</p>
+</div></blockquote>
+<p>&#64;param <strong>game_segment</strong> (<em>str</em>): GameSegment in the API. String             indicating the section of a game for data to be returned.             An empty string returns data across all game segments. Valid             values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;First Half&#8217;, &#8216;Overtime&#8217;, &#8216;Second Half&#8217;, &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>month</strong> (<em>str</em>): Month in the API. String of an integer             corresponding to a month for data to be returned. A value             of &#8216;0&#8217; returns data across all months.</p>
+<p>&#64;param <strong>season_type</strong> (<em>str</em>): SeasonType in the API. String             indicating the type of season for data to be returned.             Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Regular Season&#8217;, &#8216;Pre Season&#8217;, &#8216;Playoffs&#8217;, &#8216;All Star&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>season_segment</strong> (<em>str</em>): SeasonSegment in the API): String             indicating the section of the season for data to be returned.             An empty string returns data across all season segments.             Valid values include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Pre All-Star&#8217;, &#8216;Post All-Star&#8217;, &#8216;&#8217;</li>
+</ul>
+</div></blockquote>
+<p>&#64;param <strong>vs_player_id</strong> (<em>str</em>): VsPlayerID in the API. String of             an integer corresponding to a player ID for a given player.</p>
+<p>&#64;param <strong>game_id</strong> (<em>str</em>): GameID in the API. 10-digit string             that represents a unique game. The format is two leading zeroes,             followed by a season indicator number (&#8216;1&#8217; for preseason,             &#8216;2&#8217; for regular season, &#8216;4&#8217; for the post-season),             then the trailing digits of the season in which the game             took place (e.g. &#8216;17&#8217; for the 2017-18 season). The following             5 digits increment from &#8216;00001&#8217; in order as the season progresses.             For example, &#8216;0021600001&#8217; is the <strong>game_id</strong> of the first game             of the 2016-17 NBA regular season.</p>
+<p>&#64;param <strong>group_quantity</strong> (<em>str</em>): GroupQuantity in the API. String             of an integer indicating the number of players to include a             lineup for the <strong>leaguedashlineups</strong> endpoint. The minimum value             is &#8216;2&#8217; and the maximum value is &#8216;5&#8217;.</p>
+</div></blockquote>
+<p>Attributes:</p>
+<blockquote>
+<div><p><strong>api_resp</strong> (<em>dict</em>): JSON object of the API response. The API             response has three keys. The &#8216;resource&#8217; key describes the             type of response returned (the endpoint in this instance).             The &#8216;parameters&#8217; key describes the parameters provided in             the API call. The &#8216;resultSets&#8217; key contains the data returned             in the API call.</p>
+<p><strong>data</strong> (<em>dict</em>): A dictionary of response names. Each response             name is a key to a list of dictionaries containing the             corresponding data.</p>
+</div></blockquote>
+</dd></dl>
+
+</div>
 </div>
 
 
@@ -160,6 +825,14 @@ has the following boxscore-related API endpoints:</p>
 </li>
 <li><a class="reference internal" href="#classes">Classes</a><ul>
 <li><a class="reference internal" href="#boxscore-class">BoxScore class</a></li>
+<li><a class="reference internal" href="#draft-class">Draft class</a></li>
+<li><a class="reference internal" href="#leaderboard-class">LeaderBoard class</a></li>
+<li><a class="reference internal" href="#league-class">League class</a></li>
+<li><a class="reference internal" href="#leaguedash-class">LeagueDash class</a></li>
+<li><a class="reference internal" href="#playbyplay-class">PlayByPlay class</a></li>
+<li><a class="reference internal" href="#player-class">Player class</a></li>
+<li><a class="reference internal" href="#scoreboard-class">ScoreBoard class</a></li>
+<li><a class="reference internal" href="#team-class">Team class</a></li>
 </ul>
 </li>
 </ul>

@@ -13,35 +13,37 @@ from __init__ import api_call, parse_api_call
 
 class Draft:
     """ The Draft class contains all resources needed to use the draft-
-    related API calls. stats.nba.com has the following draft-related
-    API endpoints:
-        - draftcombinestats: Draft combine drill results and measurement
+    related API calls. `stats.nba.com <https://stats.nba.com>`_
+    has the following draft-related API endpoints:
+
+        - **draftcombinestats**: Draft combine drill results and measurement \
         data for players.
-        - drafthistory: Draft results detailing metadata of draftees
+        - **drafthistory**: Draft results detailing metadata of draftees \
         by season.
 
     The Draft class has the following required parameters:
 
-        @param league_id (LeagueID in the API): String of a two-digit
-        number corresponding to the league. '00' is the NBA, '10' is
-        the WNBA, and '01' is the ABA.
+        @param **league_id** (*str*): LeagueID in the API. String of a \
+            two-digit number corresponding to the league. '00' is the NBA, \
+            '10' is the WNBA, and '01' is the ABA.
 
-        @param season_year (SeasonYear in the API): String of a two-year
-        season year in a YYYY-ZZ format, where the ZZ are the last two
-        digits of the following year. For example, '2017-18' is a valid
-        value of SeasonYear and represents the 2017-18 NBA season.
-        'All Time' is a valid value for the 'draftcombinestats' endpoint.
+        @param **season_year** (*str*): SeasonYear in the API. String of \
+            a two-year season year in a YYYY-ZZ format, where the ZZ are the \
+            last two digits of the following year. For example, '2017-18' is \
+            a valid value of **season_year** and represents the 2017-18 NBA season. \
+            'All Time' is a valid value for the 'draftcombinestats' endpoint.
 
     Attributes:
 
-        api_resp: JSON object of the API response. The API response
-        has three keys. The 'resource' key describes the type of
-        response returned (the endpoint in this instance). The 'parameters'
-        key describes the parameters provided in the API call. The
-        'resultSets' key contains the data returned in the API call.
+        **api_resp** (*dict*): JSON object of the API response. The API \
+            response has three keys. The 'resource' key describes the type of \
+            response returned (the endpoint in this instance). The 'parameters' \
+            key describes the parameters provided in the API call. The \
+            'resultSets' key contains the data returned in the API call.
 
-        data: A dictionary of response names. Each response name is a
-        key to a list of dictionaries containing the corresponding data.
+        **data** (*dict*): A dictionary of response names. Each response \
+            name is a key to a list of dictionaries containing the corresponding \
+            data.
     """
 
     def __init__(self, endpoint='draftcombinestats',

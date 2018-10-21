@@ -13,100 +13,119 @@ from __init__ import api_call, parse_api_call
 
 class LeaderBoard:
     """ The LeaderBoard class contains all resources needed to use the
-    leader board API calls. stats.nba.com has the following leader board
-    API endpoints:
-        - homepageleaders: Top 5 leaders in a number of statistical
+    leader board API calls. `stats.nba.com <https://stats.nba.com>`_
+    has the following leader board API endpoints:
+
+        - **homepageleaders**: Top 5 leaders in a number of statistical \
         categories.
-        - homepagev2: Groups of top 5 leaders in statistical categories
+        - **homepagev2**: Groups of top 5 leaders in statistical categories \
         related to a given concept.
-        - leaderstiles: Top 5 leaders in a number of statistical
-        categories, some included in 'homepageleaders' and some
+        - **leaderstiles**: Top 5 leaders in a number of statistical \
+        categories, some included in 'homepageleaders' and some \
         not.
-        - leagueleaders: Longer list of league leaders in a number
+        - **leagueleaders**: Longer list of league leaders in a number \
         of statistical categories.
 
     The LeaderBoard class has the following required parameters:
 
-        @param league_id (LeagueID in the API): String of a two-digit
-        number corresponding to the league. '00' is the NBA, '10' is
-        the WNBA, and '01' is the ABA.
+        @param **league_id** (*str*): LeagueID in the API. String of a \
+            two-digit number corresponding to the league. '00' is the NBA, \
+            '10' is the WNBA, and '01' is the ABA.
 
-        @param stat_category (StatCategory in the API): String corresponding
-        to the StatCategory desired in the API response. Valid values
-        include:
-            - 'Points', 'Rebounds', 'Assists', 'Defense', 'Clutch',
-            'Playmaking', 'Efficiency', 'Fast Break','Scoring Breakdown'
-        The stat_category parameter is only required by the 'homepageleaders'
-        endpoint
+        @param **stat_category** (*str*): StatCategory in the API. String \
+            corresponding to the **stat_category** desired in the API \
+            response. Valid values include:
+
+                - 'Points', 'Rebounds', 'Assists', 'Defense', 'Clutch', \
+                'Playmaking', 'Efficiency', 'Fast Break','Scoring Breakdown'
+
+            The stat_category parameter is only required by the \
+            'homepageleaders' endpoint.
         
-        @param stat_category_ll (StatCategory in the API): String corresponding
-        to the StatCategory desired in the API response. Valid values
-        include:
-            - 'MIN', 'FGM', 'FGA', 'FG_PCT', 'FG3M', 'FG3A', 'FG3_PCT'
-            'FTM', 'FTA', 'FT_PCT', 'OREB', 'DREB', 'REB', 'AST'
-            'STL', 'BLK', 'TOV', 'PTS', 'EFF'
-        The stat_category_ll parameter is only required by the 'leagueleaders'
-        endpoint
+        @param **stat_category_ll** (*str*): StatCategory in the API. String \
+            corresponding to the **stat_category** desired in the API response. \
+            Valid values include:
 
-        @param stat_type (StatType in the API): String corresponding
-        to the StatType desired in the API response. Valid values
-        include:
-            - 'Traditional', 'Advanced', 'Tracking'
-        The stat_type parameter is only required by the 'homepagev2'
-        endpoint.
+                - 'MIN', 'FGM', 'FGA', 'FG_PCT', 'FG3M', 'FG3A', 'FG3_PCT' \
+                'FTM', 'FTA', 'FT_PCT', 'OREB', 'DREB', 'REB', 'AST' \
+                'STL', 'BLK', 'TOV', 'PTS', 'EFF'
 
-        @param stat (Stat in the API): String corresponding
-        to the Stat desired in the API response. Valid values
-        include:
-            - 'PTS', 'REB', 'AST', 'FG_PCT', 'FT_PCT', 'FG3_PCT'
-            'STL', 'BLK'
-        The stat parameter is only required by the 'leaderstiles'
-        endpoint.
+            The **stat_category_ll** parameter is only required by the \
+            'leagueleaders' endpoint.
 
-        @param season (Season in the API): String of a two-year
-        season in a YYYY-ZZ format, where the ZZ are the last two
-        digits of the following year. For example, '2017-18' is a valid
-        value of Season and represents the 2017-18 NBA season. Season is
-        required by the 'commonallplayers' and 'commonplayoffseries'
-        endpoints.
+        @param **stat_type** (*str*): StatType in the API. String corresponding \
+            to the **stat_type** desired in the API response. Valid values \
+            include:
 
-        @param season_type (SeasonType in the API): String indicating
-        the type of season for which data is desired. Valid values include:
-            - 'Regular Season', 'Pre Season', 'Playoffs'
+                - 'Traditional', 'Advanced', 'Tracking'
 
-        @param player_or_team (PlayerOrTeam in the API): String indicating
-        whether data returned is for 'Player' or 'Team' leaders.
+            The **stat_type** parameter is only required by the 'homepagev2' \
+            endpoint.
 
-        @param game_scope (GameScope in the API): String indicating the
-        period of time for which data is desired. Valid values include:
-            - 'Season', 'Last 10', 'Yesterday', 'Finals'
+        @param **stat** (*str*): Stat in the API. String corresponding \
+            to the **stat** desired in the API response. Valid values \
+            include:
 
-        @param player_scope (PlayerScope in the API): String indicating
-        the type of players for which data is desired. Valid values include:
-            - 'All Players', 'Rookies'
+                - 'PTS', 'REB', 'AST', 'FG_PCT', 'FT_PCT', 'FG3_PCT' \
+                'STL', 'BLK'
 
-        @param per_mode (PerMode in the API): String indicating the rate
-        of the statistics to be returned. Valid values include:
-            - 'Totals', 'PerGame', 'Per48'
-        The per_mode parameter is only required by the 'leagueleaders'
-        endpoint.
+            The **stat** parameter is only required by the 'leaderstiles' \
+            endpoint.
 
-        @param scope (Scope in the API): String indicating the type of
-        players for which data is desired. This is nearly identical to
-        player_scope above, but for the 'leagueleaders' endpoint. Valid
-        values include:
-            - 'S' (All players), 'Rookies'
+        @param **season** (*str*): Season in the API. String of a two-year \
+            season in a YYYY-ZZ format, where the ZZ are the last two \
+            digits of the following year. For example, '2017-18' is a valid \
+            value of **season** and represents the 2017-18 NBA season.
+
+        @param **season_type** (*str*): SeasonType in the API. String \
+            indicating the type of season for which data is desired. \
+            Valid values include:
+
+                - 'Regular Season', 'Pre Season', 'Playoffs'
+
+        @param **player_or_team** (*str*): PlayerOrTeam in the API. String \
+            indicating whether data returned is for 'Player' or 'Team' \
+            leaders.
+
+        @param **game_scope** (*str*): GameScope in the API. String \
+            indicating the period of time for which data is desired. \
+            Valid values include:
+
+                - 'Season', 'Last 10', 'Yesterday', 'Finals'
+
+        @param **player_scope** (*str*): PlayerScope in the API. String \
+            indicating the type of players for which data is desired. \
+            Valid values include:
+
+                - 'All Players', 'Rookies'
+
+        @param **per_mode** (*str*): PerMode in the API. String \
+            indicating the rate of the statistics to be returned. \
+            Valid values include:
+
+                - 'Totals', 'PerGame', 'Per48'
+
+            The **per_mode** parameter is only required by the 'leagueleaders' \
+            endpoint.
+
+        @param **scope** (*str*): Scope in the API. String indicating \
+            the type of players for which data is desired. This is \
+            nearly identical to **player_scope** above, but for the \
+            'leagueleaders' endpoint. Valid values include:
+
+                - 'S' (All players), 'Rookies'
 
     Attributes:
 
-        api_resp: JSON object of the API response. The API response
-        has three keys. The 'resource' key describes the type of
-        response returned (the endpoint in this instance). The 'parameters'
-        key describes the parameters provided in the API call. The
-        'resultSets' key contains the data returned in the API call.
+        **api_resp** (*dict*): JSON object of the API response. The API \
+            response has three keys. The 'resource' key describes the type of \
+            response returned (the endpoint in this instance). The 'parameters' \
+            key describes the parameters provided in the API call. The \
+            'resultSets' key contains the data returned in the API call.
 
-        data: A dictionary of response names. Each response name is a
-        key to a list of dictionaries containing the corresponding data.
+        **data** (*dict*): A dictionary of response names. Each response \
+        name is a key to a list of dictionaries containing the \
+        corresponding data.
     """
 
     def __init__(self, endpoint='homepageleaders',
