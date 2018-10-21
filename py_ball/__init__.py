@@ -30,7 +30,12 @@ def api_call(endpoint, params):
     """ This function completes the API call at the given
     end point with the provided parameters.
 
-    @param endpoint: string corresponding to a stats.nba.com API endpoint
+    Args:
+        - @param **endpoint** (*str*): string corresponding to a \
+            `stats.nba.com <https://stats.nba.com>`_ API endpoint
+
+    Returns:
+        - JSON object of the API response
     """
 
     api_response = get(BASE_URL.format(endpoint=endpoint), params=params,
@@ -40,7 +45,20 @@ def api_call(endpoint, params):
     return api_response.json()
 
 def parse_api_call(api_resp):
-    """
+    """ This function parses the API call returned from **api_call**
+    and stores the response in a dictionary.
+
+    Args:
+        - @param **api_resp** (*dict*): JSON object of an API response. \
+        This dictionary is keyed by 'resource', 'parameters', and \
+        'resultSets'/'resultSet'. 'resource' contains the endpoint of the \
+        API call. 'parameters' contains the parameters passed to the API call. \
+        'resultSets'/'resultSet' contains the data returned from the \
+        API call.
+
+    Returns:
+        - Dictionary keyed by all table names returned from the API call \
+        containing all data in 'resultSets'/'resultSet'.
     """
 
     data = {}

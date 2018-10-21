@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Welcome to py_ball’s documentation! &#8212; py_ball 1 documentation</title>
+    <title>py_ball &#8212; py_ball 1 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -41,8 +41,21 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="module-py_ball">
-<span id="welcome-to-py-ball-s-documentation"></span><h1>Welcome to py_ball&#8217;s documentation!<a class="headerlink" href="#module-py_ball" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="py-ball">
+<h1>py_ball<a class="headerlink" href="#py-ball" title="Permalink to this headline">¶</a></h1>
+<p>Python API for <a class="reference external" href="https://stats.nba.com">stats.nba.com</a> with a focus on NBA and WNBA applications</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+<div class="section" id="module-py_ball">
+<span id="init"></span><h2>__init__<a class="headerlink" href="#module-py_ball" title="Permalink to this headline">¶</a></h2>
 <p>Created on Mon Oct  8 11:26:44 2018</p>
 <p>&#64;author: patrickmcfarlane</p>
 <p>__init__.py</p>
@@ -52,15 +65,51 @@
 <code class="descclassname">py_ball.</code><code class="descname">api_call</code><span class="sig-paren">(</span><em>endpoint</em>, <em>params</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.api_call" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function completes the API call at the given
 end point with the provided parameters.</p>
-<p>&#64;param endpoint: string corresponding to a stats.nba.com API endpoint</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>&#64;param <strong>endpoint</strong> (<em>str</em>): string corresponding to a             <a class="reference external" href="https://stats.nba.com">stats.nba.com</a> API endpoint</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>JSON object of the API response</li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
+<dl class="function">
+<dt id="py_ball.parse_api_call">
+<code class="descclassname">py_ball.</code><code class="descname">parse_api_call</code><span class="sig-paren">(</span><em>api_resp</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.parse_api_call" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function parses the API call returned from <strong>api_call</strong>
+and stores the response in a dictionary.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>&#64;param <strong>api_resp</strong> (<em>dict</em>): JSON object of an API response.         This dictionary is keyed by &#8216;resource&#8217;, &#8216;parameters&#8217;, and         &#8216;resultSets&#8217;/&#8217;resultSet&#8217;. &#8216;resource&#8217; contains the endpoint of the         API call. &#8216;parameters&#8217; contains the parameters passed to the API call.         &#8216;resultSets&#8217;/&#8217;resultSet&#8217; contains the data returned from the         API call.</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>Dictionary keyed by all table names returned from the API call         containing all data in &#8216;resultSets&#8217;/&#8217;resultSet&#8217;.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="classes">
+<h1>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="boxscore-class">
+<h2>BoxScore class<a class="headerlink" href="#boxscore-class" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="boxscore.BoxScore">
-<em class="property">class </em><code class="descclassname">boxscore.</code><code class="descname">BoxScore</code><span class="sig-paren">(</span><em>game_id</em>, <em>endpoint='boxscoreadvancedv2'</em>, <em>range_type='1'</em>, <em>start_period='0'</em>, <em>end_period='10'</em>, <em>start_range='0'</em>, <em>end_range='0'</em><span class="sig-paren">)</span><a class="headerlink" href="#boxscore.BoxScore" title="Permalink to this definition">¶</a></dt>
+<dt id="py_ball.boxscore.BoxScore">
+<em class="property">class </em><code class="descclassname">py_ball.boxscore.</code><code class="descname">BoxScore</code><span class="sig-paren">(</span><em>game_id</em>, <em>endpoint='boxscoreadvancedv2'</em>, <em>range_type='1'</em>, <em>start_period='0'</em>, <em>end_period='10'</em>, <em>start_range='0'</em>, <em>end_range='0'</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.boxscore.BoxScore" title="Permalink to this definition">¶</a></dt>
 <dd><p>The BoxScore class contains all resources needed to use the boxscore-
-related API calls. stats.nba.com has the following boxscore-related
-API endpoints:</p>
+related API calls. <a class="reference external" href="https://stats.nba.com">stats.nba.com</a>
+has the following boxscore-related API endpoints:</p>
 <blockquote>
 <div><ul class="simple">
 <li><strong>boxscoreadvancedv2</strong>: Game boxscore containing several advanced         statistcs</li>
@@ -93,16 +142,7 @@ API endpoints:</p>
 </div></blockquote>
 </dd></dl>
 
-<div class="toctree-wrapper compound">
 </div>
-</div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
-</ul>
 </div>
 
 
@@ -113,8 +153,15 @@ API endpoints:</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Welcome to py_ball&#8217;s documentation!</a></li>
+<li><a class="reference internal" href="#">py_ball</a><ul>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+<li><a class="reference internal" href="#module-py_ball">__init__</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#classes">Classes</a><ul>
+<li><a class="reference internal" href="#boxscore-class">BoxScore class</a></li>
+</ul>
+</li>
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>

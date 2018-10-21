@@ -14,8 +14,8 @@ from __init__ import api_call, parse_api_call
 class BoxScore:
     """
     The BoxScore class contains all resources needed to use the boxscore-
-    related API calls. stats.nba.com has the following boxscore-related
-    API endpoints:
+    related API calls. `stats.nba.com <https://stats.nba.com>`_
+    has the following boxscore-related API endpoints:
 
         - **boxscoreadvancedv2**: Game boxscore containing several advanced \
         statistcs
