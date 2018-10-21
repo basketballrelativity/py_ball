@@ -12,68 +12,66 @@ enables API calls for boxscore related endpoints
 from __init__ import api_call, parse_api_call
 
 class BoxScore:
-    """ The BoxScore class contains all resources needed to use the boxscore-
+    """
+    The BoxScore class contains all resources needed to use the boxscore-
     related API calls. stats.nba.com has the following boxscore-related
     API endpoints:
-        - boxscoreadvancedv2: Game boxscore containing several advanced
+
+        - **boxscoreadvancedv2**: Game boxscore containing several advanced \
         statistcs
-        - boxscorefourfactorsv2: Game boxscore containing statistics related
+        - **boxscorefourfactorsv2**: Game boxscore containing statistics related \
         to the Four Factors, for team and opponent
-        - boxscoremiscv2: Game boxscore containing points scored by type
+        - **boxscoremiscv2**: Game boxscore containing points scored by type \
         of change (paint, fastbreak, etc.) for team and opponent
-        - boxscoreplayertrackv2: Game boxscore containing aggregated player
+        - **boxscoreplayertrackv2**: Game boxscore containing aggregated player \
         tracking statistics
-        - boxscorescoringv2: Game boxscore containing percentage scoring
+        - **boxscorescoringv2**: Game boxscore containing percentage scoring \
         statistics broken down by shot type.
-        - boxscoresummaryv2: Game boxscore containing a summary of a
+        - **boxscoresummaryv2**: Game boxscore containing a summary of a \
         particular matchup (including game metadata and results)
-        - boxscoretraditionalv2: Game boxscore containing basic statistics
-        - boxscoreusagev2: Game boxscore containing usage statistics
+        - **boxscoretraditionalv2**: Game boxscore containing basic statistics
+        - **boxscoreusagev2**: Game boxscore containing usage statistics \
         and percentage
 
     The BoxScore class has the following required parameters:
 
-        @param game_id (GameID in the API): 10-digit string that represents
-        a unique game. The format is two leading zeroes, followed by a
-        season indicator number ('1' for preseason, '2' for regular season),
-        then the trailing digits of the season in which the game
-        took place (e.g. '17' for the 2017-18 season). The following
-        5 digits increment from '00001' in order as the season progresses.
-        For example, '0021600001' is the GameID of the first game of the
-        2016-17 NBA regular season.
-
-        @param range_type (RangeType in the API): RangeType controls the
-        type of boxscore that is returned. If using the StartPeriod and
-        EndPeriod parameters (defined below), RangeType should have a value
-        of '0' (DNP players included) or '1' (DNP players excluded). With
-        a RangeType value of '2', the StartRange and EndRange values can be
-        used to return a boxscore from a customized subset of the given game.
-
-        @param start_period (StartPeriod in the API): String of an integer
-        that corresponds to the period for which the boxscore begins.
-
-        @param end_period (EndPeriod in the API): String of an integer that
-        corresponds to the period for which the boxscore ends (Overtime
-        increments logically, e.g. '5' is the first overtime period).
-
-        @param start_range (StartRange in the API): String of an integer
-        that corresponds to the tenths of seconds that have elapsed in the
-        game for which the boxscore begins. Valid when RangeType='2'.
-
-        @param end_range (EndRange in the API): String of an integer
-        that corresponds to the tenths of seconds that have elapsed in the
-        game for which the boxscore ends. Valid when RangeType='2'.
+        - @param **game_id** (*str*): GameID in the API. 10-digit string that represents \
+            a unique game. The format is two leading zeroes, followed by a \
+            season indicator number ('1' for preseason, '2' for regular season), \
+            then the trailing digits of the season in which the game \
+            took place (e.g. '17' for the 2017-18 season). The following \
+            5 digits increment from '00001' in order as the season progresses. \
+            For example, '0021600001' is the **game_id** of the first game of the \
+            2016-17 NBA regular season.
+        - @param **range_type** (*str*): RangeType in the API. **range_type** controls the \
+            type of boxscore that is returned. If using the **start_period** and \
+            **end_period** parameters (defined below), **range_type** should have a value \
+            of '0' (DNP players included) or '1' (DNP players excluded). With \
+            a **range_type** value of '2', the **start_range** and **end_range** values can be \
+            used to return a boxscore from a customized subset of the given game.
+        - @param **start_period** (*str*): StartPeriod in the API. String of an integer \
+            that corresponds to the period for which the boxscore begins.
+        - @param **end_period** (str): EndPeriod in the API. String of an integer that \
+            corresponds to the period for which the boxscore ends (Overtime \
+            increments logically, e.g. '5' is the first overtime period).
+        - @param **start_range** (*str*): StartRange in the API. String of an integer \
+            that corresponds to the tenths of seconds that have elapsed in the \
+            game for which the boxscore begins. Valid when **range_type** ='2'.
+        - @param **end_range** (*str*) : EndRange in the API. String of an integer \
+            that corresponds to the tenths of seconds that have elapsed in the \
+            game for which the boxscore ends. Valid when **range_type** ='2'.
         
     Attributes:
 
-        api_resp: JSON object of the API response. The API response
-        has three keys. The 'resource' key describes the type of
-        response returned ('boxscore' in this instance). The 'parameters'
-        key describes the parameters provided in the API call. The
-        'resultSets' key contains the data returned in the API call.
+        - **api_resp** (*dict*): JSON object of the API response. The API response \
+            has three keys. The 'resource' key describes the type of \
+            response returned ('boxscore' in this instance). The 'parameters' \
+            key describes the parameters provided in the API call. The \
+            'resultSets' key contains the data returned in the API call.
 
-        data: A dictionary of response names. Each response name is a
-        key to a list of dictionaries containing the corresponding data.
+        - **data** (*dict*): A dictionary of response names. Each response name is a \
+            key to a list of dictionaries containing the corresponding data.
+
     """
 
     def __init__(self, game_id, endpoint='boxscoreadvancedv2',

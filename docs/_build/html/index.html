@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to py_ball’s documentation! &#8212; py_ball 1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-py_ball">
+<span id="welcome-to-py-ball-s-documentation"></span><h1>Welcome to py_ball&#8217;s documentation!<a class="headerlink" href="#module-py_ball" title="Permalink to this headline">¶</a></h1>
+<p>Created on Mon Oct  8 11:26:44 2018</p>
+<p>&#64;author: patrickmcfarlane</p>
+<p>__init__.py</p>
+<p>This script initializes the py_ball package</p>
+<dl class="function">
+<dt id="py_ball.api_call">
+<code class="descclassname">py_ball.</code><code class="descname">api_call</code><span class="sig-paren">(</span><em>endpoint</em>, <em>params</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.api_call" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function completes the API call at the given
+end point with the provided parameters.</p>
+<p>&#64;param endpoint: string corresponding to a stats.nba.com API endpoint</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="boxscore.BoxScore">
+<em class="property">class </em><code class="descclassname">boxscore.</code><code class="descname">BoxScore</code><span class="sig-paren">(</span><em>game_id</em>, <em>endpoint='boxscoreadvancedv2'</em>, <em>range_type='1'</em>, <em>start_period='0'</em>, <em>end_period='10'</em>, <em>start_range='0'</em>, <em>end_range='0'</em><span class="sig-paren">)</span><a class="headerlink" href="#boxscore.BoxScore" title="Permalink to this definition">¶</a></dt>
+<dd><p>The BoxScore class contains all resources needed to use the boxscore-
+related API calls. stats.nba.com has the following boxscore-related
+API endpoints:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>boxscoreadvancedv2</strong>: Game boxscore containing several advanced         statistcs</li>
+<li><strong>boxscorefourfactorsv2</strong>: Game boxscore containing statistics related         to the Four Factors, for team and opponent</li>
+<li><strong>boxscoremiscv2</strong>: Game boxscore containing points scored by type         of change (paint, fastbreak, etc.) for team and opponent</li>
+<li><strong>boxscoreplayertrackv2</strong>: Game boxscore containing aggregated player         tracking statistics</li>
+<li><strong>boxscorescoringv2</strong>: Game boxscore containing percentage scoring         statistics broken down by shot type.</li>
+<li><strong>boxscoresummaryv2</strong>: Game boxscore containing a summary of a         particular matchup (including game metadata and results)</li>
+<li><strong>boxscoretraditionalv2</strong>: Game boxscore containing basic statistics</li>
+<li><strong>boxscoreusagev2</strong>: Game boxscore containing usage statistics         and percentage</li>
+</ul>
+</div></blockquote>
+<p>The BoxScore class has the following required parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#64;param <strong>game_id</strong> (<em>str</em>): GameID in the API. 10-digit string that represents             a unique game. The format is two leading zeroes, followed by a             season indicator number (&#8216;1&#8217; for preseason, &#8216;2&#8217; for regular season),             then the trailing digits of the season in which the game             took place (e.g. &#8216;17&#8217; for the 2017-18 season). The following             5 digits increment from &#8216;00001&#8217; in order as the season progresses.             For example, &#8216;0021600001&#8217; is the <strong>game_id</strong> of the first game of the             2016-17 NBA regular season.</li>
+<li>&#64;param <strong>range_type</strong> (<em>str</em>): RangeType in the API. <strong>range_type</strong> controls the             type of boxscore that is returned. If using the <strong>start_period</strong> and             <strong>end_period</strong> parameters (defined below), <strong>range_type</strong> should have a value             of &#8216;0&#8217; (DNP players included) or &#8216;1&#8217; (DNP players excluded). With             a <strong>range_type</strong> value of &#8216;2&#8217;, the <strong>start_range</strong> and <strong>end_range</strong> values can be             used to return a boxscore from a customized subset of the given game.</li>
+<li>&#64;param <strong>start_period</strong> (<em>str</em>): StartPeriod in the API. String of an integer             that corresponds to the period for which the boxscore begins.</li>
+<li>&#64;param <strong>end_period</strong> (str): EndPeriod in the API. String of an integer that             corresponds to the period for which the boxscore ends (Overtime             increments logically, e.g. &#8216;5&#8217; is the first overtime period).</li>
+<li>&#64;param <strong>start_range</strong> (<em>str</em>): StartRange in the API. String of an integer             that corresponds to the tenths of seconds that have elapsed in the             game for which the boxscore begins. Valid when <strong>range_type</strong> =&#8216;2&#8217;.</li>
+<li>&#64;param <strong>end_range</strong> (<em>str</em>) : EndRange in the API. String of an integer             that corresponds to the tenths of seconds that have elapsed in the             game for which the boxscore ends. Valid when <strong>range_type</strong> =&#8216;2&#8217;.</li>
+</ul>
+</div></blockquote>
+<p>Attributes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>api_resp</strong> (<em>dict</em>): JSON object of the API response. The API response             has three keys. The &#8216;resource&#8217; key describes the type of             response returned (&#8216;boxscore&#8217; in this instance). The &#8216;parameters&#8217;             key describes the parameters provided in the API call. The             &#8216;resultSets&#8217; key contains the data returned in the API call.</li>
+<li><strong>data</strong> (<em>dict</em>): A dictionary of response names. Each response name is a             key to a list of dictionaries containing the corresponding data.</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to py_ball&#8217;s documentation!</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Patrick McFarlane.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
