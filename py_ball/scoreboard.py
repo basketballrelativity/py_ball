@@ -9,7 +9,7 @@ scoreboard.py contains the ScoreBoard class that
 enables API calls for two score board endpoints
 """
 
-from __init__ import api_call, parse_api_call
+from utils import api_call, parse_api_call
 from datetime import datetime
 
 class ScoreBoard:

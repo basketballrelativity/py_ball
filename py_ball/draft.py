@@ -9,7 +9,7 @@ draft.py contains the Draft class that
 enables API calls for draft related endpoints
 """
 
-from __init__ import api_call, parse_api_call
+from utils import api_call, parse_api_call
 
 class Draft:
     """ The Draft class contains all resources needed to use the draft-

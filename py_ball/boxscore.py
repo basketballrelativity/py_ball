@@ -9,7 +9,7 @@ boxscore.py contains the BoxScore class that
 enables API calls for boxscore related endpoints
 """
 
-from __init__ import api_call, parse_api_call
+from utils import api_call, parse_api_call
 
 class BoxScore:
     """
