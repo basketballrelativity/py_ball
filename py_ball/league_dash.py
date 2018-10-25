@@ -10,7 +10,7 @@ enables API calls for general league performance statitics
 related endpoints
 """
 
-from utils import api_call, parse_api_call
+from .utils import api_call, parse_api_call
 
 class LeagueDash:
     """ The LeagueDash class contains all resources needed

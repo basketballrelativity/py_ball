@@ -9,7 +9,7 @@ league.py contains the League class that
 enables API calls for general league related endpoints
 """
 
-from utils import api_call, parse_api_call
+from .utils import api_call, parse_api_call
 
 class League:
     """ The League class contains all resources needed to use the league-

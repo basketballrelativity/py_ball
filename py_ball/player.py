@@ -10,7 +10,7 @@ enables API calls for player-related
 endpoints
 """
 
-from utils import api_call, parse_api_call
+from .utils import api_call, parse_api_call
 
 class Player:
     """ The Player class contains all resources needed

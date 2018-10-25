@@ -9,7 +9,7 @@ leaderboard.py contains the LeaderBoard class that
 enables API calls for leader board endpoints
 """
 
-from utils import api_call, parse_api_call
+from .utils import api_call, parse_api_call
 
 class LeaderBoard:
     """ The LeaderBoard class contains all resources needed to use the

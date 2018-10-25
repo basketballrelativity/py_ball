@@ -10,7 +10,7 @@ enables API calls for team-related
 endpoints
 """
 
-from utils import api_call, parse_api_call
+from .utils import api_call, parse_api_call
 
 class Team:
     """ The Team class contains all resources needed
