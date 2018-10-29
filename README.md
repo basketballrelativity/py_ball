@@ -22,7 +22,7 @@ While `nba_api` improves greatly upon the documentation of the [stats.nba.com](h
 ### Current Documentation
 
 Classes
-- (BoxScore)[https://github.com/basketballrelativity/py_ball/wiki/BoxScore]
+- [BoxScore](https://github.com/basketballrelativity/py_ball/wiki/BoxScore)
 
 ## Development
 
