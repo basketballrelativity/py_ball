@@ -37,7 +37,8 @@ class BoxScore:
 
         - @param **game_id** (*str*): GameID in the API. 10-digit string that represents \
             a unique game. The format is two leading zeroes, followed by a \
-            season indicator number ('1' for preseason, '2' for regular season), \
+            season indicator number ('1' for preseason, \
+            '2' for regular season, '4' for the post-season), \
             then the trailing digits of the season in which the game \
             took place (e.g. '17' for the 2017-18 season). The following \
             5 digits increment from '00001' in order as the season progresses. \
