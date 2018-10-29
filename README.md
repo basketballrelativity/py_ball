@@ -19,6 +19,11 @@ While `nba_api` improves greatly upon the documentation of the [stats.nba.com](h
 - Fully documented code, including function, class, and script docstrings.
 - Extend endpoint and parameter documentation to include feature definitions.
 
+### Current Documentation
+
+Classes
+- (BoxScore)[https://github.com/basketballrelativity/py_ball/wiki/BoxScore]
+
 ## Development
 
 1. ~~Initially map [stats.nba.com](https://stats.nba.com) API and fully document code.~~
