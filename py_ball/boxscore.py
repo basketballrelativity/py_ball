@@ -18,7 +18,7 @@ class BoxScore:
     has the following boxscore-related API endpoints:
 
         - **boxscoreadvancedv2**: Game boxscore containing several advanced \
-        statistcs
+        statistics
         - **boxscorefourfactorsv2**: Game boxscore containing statistics related \
         to the Four Factors, for team and opponent
         - **boxscoremiscv2**: Game boxscore containing points scored by type \
