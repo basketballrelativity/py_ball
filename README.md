@@ -25,6 +25,7 @@ Classes
 - [BoxScore](https://github.com/basketballrelativity/py_ball/wiki/BoxScore)
 - [Draft](https://github.com/basketballrelativity/py_ball/wiki/Draft)
 - [Image](https://github.com/basketballrelativity/py_ball/wiki/Image)
+- [LeaderBoard](https://github.com/basketballrelativity/py_ball/wiki/LeaderBoard)
 
 ## Development
 
