@@ -26,6 +26,7 @@ Classes
 - [Draft](https://github.com/basketballrelativity/py_ball/wiki/Draft)
 - [Image](https://github.com/basketballrelativity/py_ball/wiki/Image)
 - [LeaderBoard](https://github.com/basketballrelativity/py_ball/wiki/LeaderBoard)
+- [League](https://github.com/basketballrelativity/py_ball/wiki/League)
 
 ## Development
 
