@@ -1,5 +1,5 @@
 # py_ball
-Python API for stats.nba.com with a focus on NBA and WNBA applications
+Python API wrapper for stats.nba.com with a focus on NBA and WNBA applications
 
 ## Introduction
 
@@ -27,6 +27,7 @@ Classes
 - [Image](https://github.com/basketballrelativity/py_ball/wiki/Image)
 - [LeaderBoard](https://github.com/basketballrelativity/py_ball/wiki/LeaderBoard)
 - [League](https://github.com/basketballrelativity/py_ball/wiki/League)
+- [LeagueDash](https://github.com/basketballrelativity/py_ball/wiki/LeagueDash)
 
 ## Development
 
