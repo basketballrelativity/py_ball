@@ -28,6 +28,7 @@ Classes
 - [LeaderBoard](https://github.com/basketballrelativity/py_ball/wiki/LeaderBoard)
 - [League](https://github.com/basketballrelativity/py_ball/wiki/League)
 - [LeagueDash](https://github.com/basketballrelativity/py_ball/wiki/LeagueDash)
+- [PlayByPlay](https://github.com/basketballrelativity/py_ball/wiki/PlayByPlay)
 
 ## Development
 
