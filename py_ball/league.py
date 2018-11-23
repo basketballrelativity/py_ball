@@ -41,9 +41,12 @@ class League:
             'commonplayoffseries' endpoints.
 
         @param **season_id** (*str*): SeasonID in the API. String of a year \
-            season in a YYYY format. For example, '2017' is a valid \
-            value of **season_id** and represents the 2017-18 NBA season. \
-            **season_id** is required by the 'playoffpicture' endpoint.
+            season in a XYYYY format. X indicates the season type \
+            ('1' for preseason, '2' for regular season, '4' for the playoffs). \
+            For example, '22017' is a valid \
+            value of **season_id** and represents the 2017-18 NBA regular
+            season. **season_id** is required by the 'playoffpicture' \
+            endpoint.
 
         @param **current_season** (*str*): IsOnlyCurrentSeason in the API. \
             Boolean value ('1' or '0') indicating whether only the current \
@@ -66,7 +69,7 @@ class League:
 
     def __init__(self, endpoint='commonallplayers',
                  league_id='00', season='2017-18',
-                 season_id='2017', current_season='1'):
+                 season_id='22017', current_season='1'):
 
         # Controlling the parameters depending on the endpoint
         if endpoint in ['commonteamyears', 'franchisehistory']:

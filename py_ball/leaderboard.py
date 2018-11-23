@@ -36,7 +36,7 @@ class LeaderBoard:
             corresponding to the **stat_category** desired in the API \
             response. Valid values include:
 
-                - 'Points', 'Rebounds', 'Assists', 'Defense', 'Clutch', \
+                - 'Points', 'Rebounds', 'Assists', 'Defense', \
                 'Playmaking', 'Efficiency', 'Fast Break','Scoring Breakdown'
 
             The stat_category parameter is only required by the \

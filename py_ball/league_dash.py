@@ -18,17 +18,17 @@ class LeagueDash:
     `stats.nba.com <https://stats.nba.com>`_ has the following
     league performance stats related API endpoints:
 
-        - **leaguedashlineups**: Traditional and plus/minus statistics \
+        *- **leaguedashlineups**: Traditional and plus/minus statistics \
         for sets of lineups between sizes 2 to 5 players, inclusive.
         - **leaguedashplayerbiostats**: Player metadata and performance \
         statistics for a given season.
-        - **leaguedashplayerclutch**: Traditional, plus/minus, and rank \
+        *- **leaguedashplayerclutch**: Traditional, plus/minus, and rank \
         statistics for players in a defined clutch period.
-        - **leaguedashplayershotlocations**: Player shooting-related \
+        *- **leaguedashplayershotlocations**: Player shooting-related \
         statistics by shot distance/type.
         - **leaguedashplayerptshot**: Shooting-related statistics for \
         a given season by player.
-        - **leaguedashplayerstats**: Traditional, plus/minus, and rank \
+        *- **leaguedashplayerstats**: Traditional, plus/minus, and rank \
         statistics for players.
         - **leaguedashptdefend**: Defensive statistics for a given season \
         by player.

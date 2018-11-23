@@ -56,7 +56,7 @@ class Headshot:
     The Headshot class has the following required parameters:
 
         @param **league** (*str*): String, either 'WNBA' or 'NBA',
-            to the league in which the desired player plays.
+            to the league in which the desired player or team plays.
 
         @param **player_id** (*str*): String of an \
             integer corresponding to a player ID for a given player.
