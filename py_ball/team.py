@@ -68,9 +68,6 @@ class Team:
             two-digit number corresponding to the league. '00' is the NBA, \
             '10' is the WNBA, and '01' is the ABA.
 
-        @param **player_id** (*str*): PlayerID in the API. String of an \
-            integer corresponding to a player ID for a given player.
-
         @param **per_mode** (*str*): PerMode in the API. String indicating \
             the type of rate stats to be returned. Valid values include:
 
@@ -274,7 +271,9 @@ class Team:
         if endpoint in ['teamdashlineups']:
             params['GroupQuantity'] = group_quantity
             params['GameID'] = game_id
-        elif endpoint in ['teamdashptpass']:
+        elif endpoint in ['teamdashptpass',
+                          'teamdashptreb',
+                          'teamdashptshots']:
             del params['PlusMinus'], params['PaceAdjust']
             del params['Rank'], params['MeasureType']
             del params['Period'], params['GameSegment']
