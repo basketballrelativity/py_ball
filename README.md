@@ -30,6 +30,8 @@ Classes
 - [LeagueDash](https://github.com/basketballrelativity/py_ball/wiki/LeagueDash)
 - [PlayByPlay](https://github.com/basketballrelativity/py_ball/wiki/PlayByPlay)
 - [Player](https://github.com/basketballrelativity/py_ball/wiki/Player)
+- [ScoreBoard](https://github.com/basketballrelativity/py_ball/wiki/ScoreBoard)
+- [Team](https://github.com/basketballrelativity/py_ball/wiki/Team)
 
 ## Development
 
