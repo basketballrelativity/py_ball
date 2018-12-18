@@ -128,7 +128,7 @@ class LeaderBoard:
         corresponding data.
     """
 
-    def __init__(self, endpoint='homepageleaders',
+    def __init__(self, headers, endpoint='homepageleaders',
                  league_id='00', stat_category='Points',
                  stat_category_ll='PTS',
                  stat_type='Tracking', stat='PTS',
@@ -157,7 +157,8 @@ class LeaderBoard:
             params['Scope'] = scope
 
         self.api_resp = api_call(endpoint=endpoint,
-                                 params=params)
+                                 params=params,
+                                 headers=headers)
 
         # Storing the API response in a dictionary called data
         # The results can come in different formats, namely a

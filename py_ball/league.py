@@ -67,7 +67,7 @@ class League:
             corresponding data.
     """
 
-    def __init__(self, endpoint='commonallplayers',
+    def __init__(self, headers, endpoint='commonallplayers',
                  league_id='00', season='2017-18',
                  season_id='22017', current_season='1'):
 
@@ -86,7 +86,8 @@ class League:
                       'IsOnlyCurrentSeason': current_season}
 
         self.api_resp = api_call(endpoint=endpoint,
-                                 params=params)
+                                 params=params,
+                                 headers=headers)
 
         # Storing the API response in a dictionary called data
         # The results can come in different formats, namely a

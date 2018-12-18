@@ -75,7 +75,7 @@ class BoxScore:
 
     """
 
-    def __init__(self, game_id, endpoint='boxscoreadvancedv2',
+    def __init__(self, headers, game_id, endpoint='boxscoreadvancedv2',
                  range_type='1', start_period='0', end_period='10',
                  start_range='0', end_range='0'):
 
@@ -91,7 +91,8 @@ class BoxScore:
                       'EndRange': end_range}
 
         self.api_resp = api_call(endpoint=endpoint,
-                                 params=params)
+                                 params=params,
+                                 headers=headers)
 
         # Storing the API response in a dictionary called data
         # The results can come in different formats, namely a

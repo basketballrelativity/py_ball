@@ -10,7 +10,7 @@ enables API calls for team-related
 endpoints
 """
 
-from .utils import api_call, parse_api_call
+from utils import api_call, parse_api_call
 
 class Team:
     """ The Team class contains all resources needed
@@ -218,7 +218,7 @@ class Team:
             corresponding data.
     """
 
-    def __init__(self, endpoint='teamdashboardbyclutch',
+    def __init__(self, headers, endpoint='teamdashboardbyclutch',
                  player_id='2544',
                  league_id='00',
                  per_mode='PerGame', plus_minus='N',
@@ -281,7 +281,8 @@ class Team:
             params['VsPlayerID'] = vs_player_id
 
         self.api_resp = api_call(endpoint=endpoint,
-                                 params=params)
+                                 params=params,
+                                 headers=headers)
 
         # Storing the API response in a dictionary called data
         # The results can come in different formats, namely a

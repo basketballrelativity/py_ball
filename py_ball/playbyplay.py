@@ -56,7 +56,7 @@ class PlayByPlay:
             corresponding data.
     """
 
-    def __init__(self, game_id, endpoint='playbyplay',
+    def __init__(self, headers, game_id, endpoint='playbyplay',
                  start_period='1', end_period='10'):
 
         # Controlling the parameters depending on the endpoint
@@ -65,7 +65,8 @@ class PlayByPlay:
                   'EndPeriod': end_period}
 
         self.api_resp = api_call(endpoint=endpoint,
-                                 params=params)
+                                 params=params,
+                                 headers=headers)
 
         # Storing the API response in a dictionary called data
         # The results can come in different formats, namely a

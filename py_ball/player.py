@@ -265,7 +265,7 @@ class Player:
             corresponding data.
     """
 
-    def __init__(self, endpoint='playercareerstats',
+    def __init__(self, headers, endpoint='playercareerstats',
                  player_id='2544',
                  player_id_list='2544', vs_player_id_list='201939',
                  league_id='00',
@@ -362,7 +362,8 @@ class Player:
             params['GameID'] = game_id
 
         self.api_resp = api_call(endpoint=endpoint,
-                                 params=params)
+                                 params=params,
+                                 headers=headers)
 
         # Storing the API response in a dictionary called data
         # The results can come in different formats, namely a

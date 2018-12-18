@@ -70,7 +70,7 @@ class ScoreBoard:
                    cur_day + '/' + \
                    cur_year
 
-    def __init__(self, endpoint='scoreboard',
+    def __init__(self, headers, endpoint='scoreboard',
                  league_id='00', game_date=current_date,
                  day_offset='0'):
         
@@ -80,7 +80,8 @@ class ScoreBoard:
                   'DayOffset': day_offset}
 
         self.api_resp = api_call(endpoint=endpoint,
-                                 params=params)
+                                 params=params,
+                                 headers=headers)
 
         # Storing the API response in a dictionary called data
         # The results can come in different formats, namely a

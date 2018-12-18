@@ -239,7 +239,7 @@ class LeagueDash:
             corresponding data.
     """
 
-    def __init__(self, endpoint='leaguedashlineups',
+    def __init__(self, headers, endpoint='leaguedashlineups',
                  league_id='00', group_quantity='5',
                  per_mode='PerGame', plus_minus='N',
                  rank='Y', pace_adjust='N',
@@ -311,7 +311,8 @@ class LeagueDash:
 
 
         self.api_resp = api_call(endpoint=endpoint,
-                                 params=params)
+                                 params=params,
+                                 headers=headers)
 
         # Storing the API response in a dictionary called data
         # The results can come in different formats, namely a

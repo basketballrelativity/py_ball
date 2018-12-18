@@ -47,7 +47,7 @@ class Draft:
             data.
     """
 
-    def __init__(self, endpoint='draftcombinestats',
+    def __init__(self, headers, endpoint='draftcombinestats',
                  league_id='00', season_year='2017-18'):
 
         # Controlling the parameters depending on the endpoint
@@ -58,7 +58,8 @@ class Draft:
                       'SeasonYear': season_year}
 
         self.api_resp = api_call(endpoint=endpoint,
-                                 params=params)
+                                 params=params,
+                                 headers=headers)
 
         # Storing the API response in a dictionary called data
         # The results can come in different formats, namely a
