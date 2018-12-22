@@ -5,7 +5,7 @@ Created on Sat Dec 22 14:37:05 2018
 
 @author: patrickmcfarlane
 
-test_leadgue.py
+test_league.py
 
 This function contains the tests for
 functions in the league.py
