@@ -10,7 +10,7 @@ enables API calls for team-related
 endpoints
 """
 
-from utils import api_call, parse_api_call
+from .utils import api_call, parse_api_call
 
 class Team:
     """ The Team class contains all resources needed
@@ -276,7 +276,8 @@ class Team:
                           'teamdashptshots']:
             del params['PlusMinus'], params['PaceAdjust']
             del params['Rank'], params['MeasureType']
-            del params['Period'], params['GameSegment']
+            if endpoint == 'teamdashptpass':
+                del params['Period'], params['GameSegment']
         elif endpoint in ['teamvsplayer']:
             params['VsPlayerID'] = vs_player_id
 
