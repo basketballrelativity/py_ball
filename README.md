@@ -39,5 +39,5 @@ Classes
 2. ~~Refactor code to generate a more consistent structure across classes.~~
 3. ~~Document endpoints and parameters with definitions.~~ (See Wiki [here](https://github.com/basketballrelativity/py_ball/wiki))
 4. Research other basketball-related APIs to map.
-5. Write unit tests for the package.
+5. ~Write unit tests for the package.~
 6. Begin introductory basketball analytics analyses.
