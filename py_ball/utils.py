@@ -30,7 +30,10 @@ def api_call(endpoint, params, headers):
                        headers=headers)
 
     api_response.raise_for_status()
-    return api_response.json()
+    json_resp = api_response.json()
+
+    api_response.close()
+    return json_resp
 
 def parse_api_call(api_resp):
     """ This function parses the API call returned from **api_call**
