@@ -7,8 +7,9 @@ Created on Mon Dec 17 20:51:55 2018
 """
 
 HEADERS = {'Connection': 'close',
-           'Accept': 'application/vnd.travis-ci.2+json',
           'Host': 'stats.nba.com',
           'Origin': 'http://stats.nba.com',
           'Upgrade-Insecure-Requests': '1',
-          'User-Agent': 'TravisMyClient/1.0.0'}
+          'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2)' + \
+                        'AppleWebKit/537.36 (KHTML, like Gecko) ' + \
+                        'Chrome/66.0.3359.117 Safari/537.36'}
