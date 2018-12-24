@@ -7,6 +7,7 @@ Created on Mon Dec 17 20:51:55 2018
 """
 
 HEADERS = {'Connection': 'close',
+           'Accept': 'application/vnd.travis-ci.2+json',
           'Host': 'stats.nba.com',
           'Origin': 'http://stats.nba.com',
           'Upgrade-Insecure-Requests': '1',
