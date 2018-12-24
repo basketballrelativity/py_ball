@@ -6,4 +6,4 @@ python:
 install:
   - pip install -r requirements.txt
 
-script: pytest py_ball/tests/test_image.py
+script: pytest py_ball/tests
