@@ -3,10 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-pyball
+py_ball
 *******
 Python API for `stats.nba.com <https://stats.nba.com>`_ with a focus on NBA and WNBA applications.
-Documentation for the wrapper can be found `here <https://github.com/basketballrelativity/pyball/wiki>`_.
+Documentation for the wrapper can be found `here <https://github.com/basketballrelativity/py_ball/wiki>`_.
 The documentation includes endpoint, parameter, and feature definitions for the API.
 
 .. toctree::
@@ -23,7 +23,7 @@ Indices and tables
 utils
 ========
 
-.. automodule:: pyball.utils
+.. automodule:: py_ball.utils
 	:members: api_call, parse_api_call
 
 Classes
@@ -31,66 +31,66 @@ Classes
 
 BoxScore class
 ==============
-(additional documentation `here <https://github.com/basketballrelativity/pyball/wiki/BoxScore>`_)
+(additional documentation `here <https://github.com/basketballrelativity/py_ball/wiki/BoxScore>`_)
 
-.. autoclass:: pyball.boxscore.BoxScore
+.. autoclass:: py_ball.boxscore.BoxScore
 
 Draft class
 ==============
- (additional documentation `here <https://github.com/basketballrelativity/pyball/wiki/Draft>`_)
+ (additional documentation `here <https://github.com/basketballrelativity/py_ball/wiki/Draft>`_)
 
-.. autoclass:: pyball.draft.Draft
+.. autoclass:: py_ball.draft.Draft
 
 Headshot class
 ==============
-(additional documentation `here <https://github.com/basketballrelativity/pyball/wiki/Image>`_)
+(additional documentation `here <https://github.com/basketballrelativity/py_ball/wiki/Image>`_)
 
-.. autoclass:: pyball.image.Headshot
+.. autoclass:: py_ball.image.Headshot
 
 Logo class
 ==============
-(additional documentation `here <https://github.com/basketballrelativity/pyball/wiki/Image>`_)
+(additional documentation `here <https://github.com/basketballrelativity/py_ball/wiki/Image>`_)
 
-.. autoclass:: pyball.image.Logo
+.. autoclass:: py_ball.image.Logo
 
 LeaderBoard class
 =================
-(additional documentation `here <https://github.com/basketballrelativity/pyball/wiki/LeaderBoard>`_)
+(additional documentation `here <https://github.com/basketballrelativity/py_ball/wiki/LeaderBoard>`_)
 
-.. autoclass:: pyball.leaderboard.LeaderBoard
+.. autoclass:: py_ball.leaderboard.LeaderBoard
 
 League class
 ============
-(additional documentation `here <https://github.com/basketballrelativity/pyball/wiki/League>`_)
+(additional documentation `here <https://github.com/basketballrelativity/py_ball/wiki/League>`_)
 
-.. autoclass:: pyball.league.League
+.. autoclass:: py_ball.league.League
 
 LeagueDash class
 ================
-(additional documentation `here <https://github.com/basketballrelativity/pyball/wiki/LeagueDash>`_)
+(additional documentation `here <https://github.com/basketballrelativity/py_ball/wiki/LeagueDash>`_)
 
-.. autoclass:: pyball.league_dash.LeagueDash
+.. autoclass:: py_ball.league_dash.LeagueDash
 
 PlayByPlay class
 ================
-(additional documentation `here <https://github.com/basketballrelativity/pyball/wiki/PlayByPlay>`_)
+(additional documentation `here <https://github.com/basketballrelativity/py_ball/wiki/PlayByPlay>`_)
 
-.. autoclass:: pyball.playbyplay.PlayByPlay
+.. autoclass:: py_ball.playbyplay.PlayByPlay
 
 Player class
 ============
-(additional documentation `here <https://github.com/basketballrelativity/pyball/wiki/Player>`_)
+(additional documentation `here <https://github.com/basketballrelativity/py_ball/wiki/Player>`_)
 
-.. autoclass:: pyball.player.Player
+.. autoclass:: py_ball.player.Player
 
 ScoreBoard class
 ================
-(additional documentation `here <https://github.com/basketballrelativity/pyball/wiki/ScoreBoard>`_)
+(additional documentation `here <https://github.com/basketballrelativity/py_ball/wiki/ScoreBoard>`_)
 
-.. autoclass:: pyball.scoreboard.ScoreBoard
+.. autoclass:: py_ball.scoreboard.ScoreBoard
 
 Team class
 ==========
-(additional documentation `here <https://github.com/basketballrelativity/pyball/wiki/Team>`_)
+(additional documentation `here <https://github.com/basketballrelativity/py_ball/wiki/Team>`_)
 
-.. autoclass:: pyball.team.Team
+.. autoclass:: py_ball.team.Team
