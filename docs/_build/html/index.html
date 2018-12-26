@@ -43,7 +43,9 @@
             
   <div class="section" id="py-ball">
 <h1>py_ball<a class="headerlink" href="#py-ball" title="Permalink to this headline">¶</a></h1>
-<p>Python API for <a class="reference external" href="https://stats.nba.com">stats.nba.com</a> with a focus on NBA and WNBA applications</p>
+<p>Python API for <a class="reference external" href="https://stats.nba.com">stats.nba.com</a> with a focus on NBA and WNBA applications.
+Documentation for the wrapper can be found <a class="reference external" href="https://github.com/basketballrelativity/py_ball/wiki">here</a>.
+The documentation includes endpoint, parameter, and feature definitions for the API.</p>
 <div class="toctree-wrapper compound">
 </div>
 <div class="section" id="indices-and-tables">
@@ -54,18 +56,57 @@
 <li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
 </ul>
 </div>
-<div class="section" id="init">
-<h2>__init__<a class="headerlink" href="#init" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-py_ball"></span><p>Created on Mon Oct  8 11:26:44 2018</p>
+<div class="section" id="module-py_ball.utils">
+<span id="utils"></span><h2>utils<a class="headerlink" href="#module-py_ball.utils" title="Permalink to this headline">¶</a></h2>
+<p>Created on Sun Oct 21 16:06:31 2018</p>
 <p>&#64;author: patrickmcfarlane</p>
-<p>__init__.py</p>
-<p>This script initializes the py_ball package</p>
+<p>utils.py</p>
+<p>Utilities for the py_ball package</p>
+<dl class="function">
+<dt id="py_ball.utils.api_call">
+<code class="descclassname">py_ball.utils.</code><code class="descname">api_call</code><span class="sig-paren">(</span><em>endpoint</em>, <em>params</em>, <em>headers</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.utils.api_call" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function completes the API call at the given
+end point with the provided parameters.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>&#64;param <strong>endpoint</strong> (<em>str</em>): string corresponding to a             <a class="reference external" href="https://stats.nba.com">stats.nba.com</a> API endpoint</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>JSON object of the API response</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="py_ball.utils.parse_api_call">
+<code class="descclassname">py_ball.utils.</code><code class="descname">parse_api_call</code><span class="sig-paren">(</span><em>api_resp</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.utils.parse_api_call" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function parses the API call returned from <strong>api_call</strong>
+and stores the response in a dictionary.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>&#64;param <strong>api_resp</strong> (<em>dict</em>): JSON object of an API response.         This dictionary is keyed by &#8216;resource&#8217;, &#8216;parameters&#8217;, and         &#8216;resultSets&#8217;/&#8217;resultSet&#8217;. &#8216;resource&#8217; contains the endpoint of the         API call. &#8216;parameters&#8217; contains the parameters passed to the API call.         &#8216;resultSets&#8217;/&#8217;resultSet&#8217; contains the data returned from the         API call.</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>Dictionary keyed by all table names returned from the API call         containing all data in &#8216;resultSets&#8217;/&#8217;resultSet&#8217;.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 </div>
 <div class="section" id="classes">
 <h1>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="boxscore-class">
 <h2>BoxScore class<a class="headerlink" href="#boxscore-class" title="Permalink to this headline">¶</a></h2>
+<p>(additional documentation <a class="reference external" href="https://github.com/basketballrelativity/py_ball/wiki/BoxScore">here</a>)</p>
 <dl class="class">
 <dt id="py_ball.boxscore.BoxScore">
 <em class="property">class </em><code class="descclassname">py_ball.boxscore.</code><code class="descname">BoxScore</code><span class="sig-paren">(</span><em>headers</em>, <em>game_id</em>, <em>endpoint='boxscoreadvancedv2'</em>, <em>range_type='1'</em>, <em>start_period='0'</em>, <em>end_period='10'</em>, <em>start_range='0'</em>, <em>end_range='0'</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.boxscore.BoxScore" title="Permalink to this definition">¶</a></dt>
@@ -107,6 +148,8 @@ has the following boxscore-related API endpoints:</p>
 </div>
 <div class="section" id="draft-class">
 <h2>Draft class<a class="headerlink" href="#draft-class" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div>(additional documentation <a class="reference external" href="https://github.com/basketballrelativity/py_ball/wiki/Draft">here</a>)</div></blockquote>
 <dl class="class">
 <dt id="py_ball.draft.Draft">
 <em class="property">class </em><code class="descclassname">py_ball.draft.</code><code class="descname">Draft</code><span class="sig-paren">(</span><em>headers</em>, <em>endpoint='draftcombinestats'</em>, <em>league_id='00'</em>, <em>season_year='2017-18'</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.draft.Draft" title="Permalink to this definition">¶</a></dt>
@@ -132,8 +175,66 @@ has the following draft-related API endpoints:</p>
 </dd></dl>
 
 </div>
+<div class="section" id="headshot-class">
+<h2>Headshot class<a class="headerlink" href="#headshot-class" title="Permalink to this headline">¶</a></h2>
+<p>(additional documentation <a class="reference external" href="https://github.com/basketballrelativity/py_ball/wiki/Image">here</a>)</p>
+<dl class="class">
+<dt id="py_ball.image.Headshot">
+<em class="property">class </em><code class="descclassname">py_ball.image.</code><code class="descname">Headshot</code><span class="sig-paren">(</span><em>league='WNBA'</em>, <em>player_id='203400'</em>, <em>team_id=''</em>, <em>season=''</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.image.Headshot" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Headshot class contains all resources needed to pull
+headshot images for NBA and WNBA players.</p>
+<p>The Headshot class has the following required parameters:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#64;param <strong>league</strong> (<em>str</em>): String, either &#8216;WNBA&#8217; or &#8216;NBA&#8217;,</dt>
+<dd>to the league in which the desired player or team plays.</dd>
+</dl>
+<p>&#64;param <strong>player_id</strong> (<em>str</em>): String of an             integer corresponding to a player ID for a given player.</p>
+<p>&#64;param <strong>team_id</strong> (<em>str</em>): String of a 10-digit             integer that uniquely identifies a team for which data             is to be returned.</p>
+<p>&#64;param <strong>season</strong> (<em>str</em>): String of a year in YYYY format             corresponding to the year in which the NBA season begins.</p>
+</div></blockquote>
+<p>Attributes:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt><strong>image</strong> (<em>PngImageFile</em>): Image file of the desired headshot.</dt>
+<dd>Note that this image file is not saved locally, but stored
+in the Headshot class object.</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="logo-class">
+<h2>Logo class<a class="headerlink" href="#logo-class" title="Permalink to this headline">¶</a></h2>
+<p>(additional documentation <a class="reference external" href="https://github.com/basketballrelativity/py_ball/wiki/Image">here</a>)</p>
+<dl class="class">
+<dt id="py_ball.image.Logo">
+<em class="property">class </em><code class="descclassname">py_ball.image.</code><code class="descname">Logo</code><span class="sig-paren">(</span><em>league='WNBA'</em>, <em>team_id='1611661319'</em>, <em>season_year='2017-18'</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.image.Logo" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Logo class contains all resources needed to pull
+logo images for NBA and WNBA players.</p>
+<p>The Logo class has the following required parameters:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#64;param <strong>league</strong> (<em>str</em>): String, either &#8216;WNBA&#8217; or &#8216;NBA&#8217;,</dt>
+<dd>to the league in which the desired player plays.</dd>
+</dl>
+<p>&#64;param <strong>team_id</strong> (<em>str</em>): String of a 10-digit             integer that uniquely identifies a team for which data             is to be returned.</p>
+<p>&#64;param <strong>season_year</strong> (<em>str</em>): String of a two-year season             year in a YYYY-ZZ format, where the ZZ are the             last two digits of the following year. For example,             &#8216;2017-18&#8217; is a valid value of <strong>season_year</strong> and             represents the 2017-18 NBA season. <strong>season_year</strong> is             only required for NBA logos.</p>
+</div></blockquote>
+<p>Attributes:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt><strong>image</strong> (<em>PngImageFile</em>): Image file of the desired headshot.</dt>
+<dd>Note that this image file is not saved locally, but stored
+in the Headshot class object.</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+</div>
 <div class="section" id="leaderboard-class">
 <h2>LeaderBoard class<a class="headerlink" href="#leaderboard-class" title="Permalink to this headline">¶</a></h2>
+<p>(additional documentation <a class="reference external" href="https://github.com/basketballrelativity/py_ball/wiki/LeaderBoard">here</a>)</p>
 <dl class="class">
 <dt id="py_ball.leaderboard.LeaderBoard">
 <em class="property">class </em><code class="descclassname">py_ball.leaderboard.</code><code class="descname">LeaderBoard</code><span class="sig-paren">(</span><em>headers</em>, <em>endpoint='homepageleaders'</em>, <em>league_id='00'</em>, <em>stat_category='Points'</em>, <em>stat_category_ll='PTS'</em>, <em>stat_type='Tracking'</em>, <em>stat='PTS'</em>, <em>season='2017-18'</em>, <em>season_type='Regular Season'</em>, <em>player_or_team='Player'</em>, <em>game_scope='Season'</em>, <em>player_scope='All Players'</em>, <em>per_mode='PerGame'</em>, <em>scope='S'</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.leaderboard.LeaderBoard" title="Permalink to this definition">¶</a></dt>
@@ -233,6 +334,7 @@ has the following leader board API endpoints:</p>
 </div>
 <div class="section" id="league-class">
 <h2>League class<a class="headerlink" href="#league-class" title="Permalink to this headline">¶</a></h2>
+<p>(additional documentation <a class="reference external" href="https://github.com/basketballrelativity/py_ball/wiki/League">here</a>)</p>
 <dl class="class">
 <dt id="py_ball.league.League">
 <em class="property">class </em><code class="descclassname">py_ball.league.</code><code class="descname">League</code><span class="sig-paren">(</span><em>headers</em>, <em>endpoint='commonallplayers'</em>, <em>league_id='00'</em>, <em>season='2017-18'</em>, <em>season_id='22017'</em>, <em>current_season='1'</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.league.League" title="Permalink to this definition">¶</a></dt>
@@ -269,6 +371,7 @@ has the following league-related API endpoints:</p>
 </div>
 <div class="section" id="leaguedash-class">
 <h2>LeagueDash class<a class="headerlink" href="#leaguedash-class" title="Permalink to this headline">¶</a></h2>
+<p>(additional documentation <a class="reference external" href="https://github.com/basketballrelativity/py_ball/wiki/LeagueDash">here</a>)</p>
 <dl class="class">
 <dt id="py_ball.league_dash.LeagueDash">
 <em class="property">class </em><code class="descclassname">py_ball.league_dash.</code><code class="descname">LeagueDash</code><span class="sig-paren">(</span><em>headers</em>, <em>endpoint='leaguedashlineups'</em>, <em>league_id='00'</em>, <em>group_quantity='5'</em>, <em>per_mode='PerGame'</em>, <em>plus_minus='N'</em>, <em>rank='Y'</em>, <em>pace_adjust='N'</em>, <em>measure_type='Base'</em>, <em>period='0'</em>, <em>vs_conference=''</em>, <em>last_n_games='0'</em>, <em>team_id='0'</em>, <em>location=''</em>, <em>outcome=''</em>, <em>date_from=''</em>, <em>date_to=''</em>, <em>opp_team_id='0'</em>, <em>season='2017-18'</em>, <em>vs_division=''</em>, <em>game_segment=''</em>, <em>month='0'</em>, <em>season_type='Regular Season'</em>, <em>season_segment=''</em>, <em>clutch_time='Last 5 Minutes'</em>, <em>ahead_behind='Ahead or Behind'</em>, <em>point_diff='0'</em>, <em>game_scope=''</em>, <em>player_experience=''</em>, <em>player_position=''</em>, <em>starters_bench=''</em>, <em>distance_range='By Zone'</em>, <em>defense_category='Overall'</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.league_dash.LeagueDash" title="Permalink to this definition">¶</a></dt>
@@ -433,6 +536,7 @@ league performance stats related API endpoints:</p>
 </div>
 <div class="section" id="playbyplay-class">
 <h2>PlayByPlay class<a class="headerlink" href="#playbyplay-class" title="Permalink to this headline">¶</a></h2>
+<p>(additional documentation <a class="reference external" href="https://github.com/basketballrelativity/py_ball/wiki/PlayByPlay">here</a>)</p>
 <dl class="class">
 <dt id="py_ball.playbyplay.PlayByPlay">
 <em class="property">class </em><code class="descclassname">py_ball.playbyplay.</code><code class="descname">PlayByPlay</code><span class="sig-paren">(</span><em>headers</em>, <em>game_id</em>, <em>endpoint='playbyplay'</em>, <em>start_period='1'</em>, <em>end_period='10'</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.playbyplay.PlayByPlay" title="Permalink to this definition">¶</a></dt>
@@ -461,6 +565,7 @@ has the following pbp-related API endpoints:</p>
 </div>
 <div class="section" id="player-class">
 <h2>Player class<a class="headerlink" href="#player-class" title="Permalink to this headline">¶</a></h2>
+<p>(additional documentation <a class="reference external" href="https://github.com/basketballrelativity/py_ball/wiki/Player">here</a>)</p>
 <dl class="class">
 <dt id="py_ball.player.Player">
 <em class="property">class </em><code class="descclassname">py_ball.player.</code><code class="descname">Player</code><span class="sig-paren">(</span><em>headers</em>, <em>endpoint='playercareerstats'</em>, <em>player_id='2544'</em>, <em>player_id_list='2544'</em>, <em>vs_player_id_list='201939'</em>, <em>league_id='00'</em>, <em>per_mode='PerGame'</em>, <em>plus_minus='N'</em>, <em>rank='Y'</em>, <em>pace_adjust='N'</em>, <em>measure_type='Base'</em>, <em>period='0'</em>, <em>vs_conference=''</em>, <em>last_n_games='0'</em>, <em>team_id='0'</em>, <em>location=''</em>, <em>outcome=''</em>, <em>date_from=''</em>, <em>date_to=''</em>, <em>opp_team_id='0'</em>, <em>season='2017-18'</em>, <em>vs_division=''</em>, <em>game_segment=''</em>, <em>month='0'</em>, <em>season_type='Regular Season'</em>, <em>season_segment=''</em>, <em>vs_player_id='201939'</em>, <em>player_team_id='1610612747'</em>, <em>vs_player_team_id='1610612744'</em>, <em>player_id_1='2544'</em>, <em>player_id_2='0'</em>, <em>player_id_3='0'</em>, <em>player_id_4='0'</em>, <em>player_id_5='0'</em>, <em>vs_player_id_1='201939'</em>, <em>vs_player_id_2='0'</em>, <em>vs_player_id_3='0'</em>, <em>vs_player_id_4='0'</em>, <em>vs_player_id_5='0'</em>, <em>rookie_year=''</em>, <em>context_measure='FGA'</em>, <em>player_position=''</em>, <em>game_id='0011800079'</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.player.Player" title="Permalink to this definition">¶</a></dt>
@@ -612,9 +717,10 @@ has the following player performance stats related API endpoints:</p>
 </div>
 <div class="section" id="scoreboard-class">
 <h2>ScoreBoard class<a class="headerlink" href="#scoreboard-class" title="Permalink to this headline">¶</a></h2>
+<p>(additional documentation <a class="reference external" href="https://github.com/basketballrelativity/py_ball/wiki/ScoreBoard">here</a>)</p>
 <dl class="class">
 <dt id="py_ball.scoreboard.ScoreBoard">
-<em class="property">class </em><code class="descclassname">py_ball.scoreboard.</code><code class="descname">ScoreBoard</code><span class="sig-paren">(</span><em>headers</em>, <em>endpoint='scoreboard'</em>, <em>league_id='00'</em>, <em>game_date='12/24/2018'</em>, <em>day_offset='0'</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.scoreboard.ScoreBoard" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">py_ball.scoreboard.</code><code class="descname">ScoreBoard</code><span class="sig-paren">(</span><em>headers</em>, <em>endpoint='scoreboard'</em>, <em>league_id='00'</em>, <em>game_date='12/26/2018'</em>, <em>day_offset='0'</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.scoreboard.ScoreBoard" title="Permalink to this definition">¶</a></dt>
 <dd><p>The ScoreBoard class contains all resources needed to use the
 score board API calls. <a class="reference external" href="https://stats.nba.com">stats.nba.com</a>
 has the following score board API endpoints:</p>
@@ -640,6 +746,7 @@ has the following score board API endpoints:</p>
 </div>
 <div class="section" id="team-class">
 <h2>Team class<a class="headerlink" href="#team-class" title="Permalink to this headline">¶</a></h2>
+<p>(additional documentation <a class="reference external" href="https://github.com/basketballrelativity/py_ball/wiki/Team">here</a>)</p>
 <dl class="class">
 <dt id="py_ball.team.Team">
 <em class="property">class </em><code class="descclassname">py_ball.team.</code><code class="descname">Team</code><span class="sig-paren">(</span><em>headers</em>, <em>endpoint='teamdashboardbyclutch'</em>, <em>player_id='2544'</em>, <em>league_id='00'</em>, <em>per_mode='PerGame'</em>, <em>plus_minus='N'</em>, <em>rank='Y'</em>, <em>pace_adjust='N'</em>, <em>measure_type='Base'</em>, <em>period='0'</em>, <em>vs_conference=''</em>, <em>last_n_games='0'</em>, <em>team_id='1610612747'</em>, <em>location=''</em>, <em>outcome=''</em>, <em>date_from=''</em>, <em>date_to=''</em>, <em>opp_team_id='0'</em>, <em>season='2017-18'</em>, <em>vs_division=''</em>, <em>game_segment=''</em>, <em>month='0'</em>, <em>season_type='Regular Season'</em>, <em>season_segment=''</em>, <em>vs_player_id='201939'</em>, <em>game_id='0011800079'</em>, <em>group_quantity='5'</em><span class="sig-paren">)</span><a class="headerlink" href="#py_ball.team.Team" title="Permalink to this definition">¶</a></dt>
@@ -779,12 +886,14 @@ has the following team-related API endpoints:</p>
   <ul>
 <li><a class="reference internal" href="#">py_ball</a><ul>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
-<li><a class="reference internal" href="#init">__init__</a></li>
+<li><a class="reference internal" href="#module-py_ball.utils">utils</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#classes">Classes</a><ul>
 <li><a class="reference internal" href="#boxscore-class">BoxScore class</a></li>
 <li><a class="reference internal" href="#draft-class">Draft class</a></li>
+<li><a class="reference internal" href="#headshot-class">Headshot class</a></li>
+<li><a class="reference internal" href="#logo-class">Logo class</a></li>
 <li><a class="reference internal" href="#leaderboard-class">LeaderBoard class</a></li>
 <li><a class="reference internal" href="#league-class">League class</a></li>
 <li><a class="reference internal" href="#leaguedash-class">LeagueDash class</a></li>
