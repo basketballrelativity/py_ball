@@ -7,7 +7,7 @@ Created on Sun Oct 21 15:41:34 2018
 
 setup.py
 
-Standard setup.py script for the py_ball package.
+Standard setup.py script for the pyball package.
 """
 
 import setuptools
@@ -16,7 +16,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="py_ball",
+    name="pyball",
     version="1.0.0",
     author="Patrick McFarlane",
     author_email="patmcfarla@gmail.com",
@@ -24,7 +24,7 @@ setuptools.setup(
                  NBA and WNBA applications",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/basketballrelativity/py_ball",
+    url="https://github.com/basketballrelativity/pyball",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
