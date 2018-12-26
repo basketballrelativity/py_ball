@@ -15,7 +15,7 @@ If successful, `pyball` should accomplish the following:
 
 ## Documentation
 
-While `nba_api` improves greatly upon the documentation of the [stats.nba.com](https://stats.nba.com) API in `nba_py`, `py_ball` strives to take documentation further through the following:
+While `nba_api` improves greatly upon the documentation of the [stats.nba.com](https://stats.nba.com) API in `nba_py`, `pyball` strives to take documentation further through the following:
 - Fully documented code, including function, class, and script docstrings.
 - Extend endpoint and parameter documentation to include feature definitions.
 
