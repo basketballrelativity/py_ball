@@ -127,14 +127,20 @@ has the following boxscore-related API endpoints:</p>
 </div></blockquote>
 <p>The BoxScore class has the following required parameters:</p>
 <blockquote>
-<div><ul class="simple">
-<li>&#64;param <strong>game_id</strong> (<em>str</em>): GameID in the API. 10-digit string that represents             a unique game. The format is two leading zeroes, followed by a             season indicator number (&#8216;1&#8217; for preseason,             &#8216;2&#8217; for regular season, &#8216;4&#8217; for the post-season),             then the trailing digits of the season in which the game             took place (e.g. &#8216;17&#8217; for the 2017-18 season). The following             5 digits increment from &#8216;00001&#8217; in order as the season progresses.             For example, &#8216;0021600001&#8217; is the <strong>game_id</strong> of the first game of the             2016-17 NBA regular season.</li>
-<li>&#64;param <strong>range_type</strong> (<em>str</em>): RangeType in the API. <strong>range_type</strong> controls the             type of boxscore that is returned. If using the <strong>start_period</strong> and             <strong>end_period</strong> parameters (defined below), <strong>range_type</strong> should have a value             of &#8216;0&#8217; (DNP players included) or &#8216;1&#8217; (DNP players excluded). With             a <strong>range_type</strong> value of &#8216;2&#8217;, the <strong>start_range</strong> and <strong>end_range</strong> values can be             used to return a boxscore from a customized subset of the given game.</li>
-<li>&#64;param <strong>start_period</strong> (<em>str</em>): StartPeriod in the API. String of an integer             that corresponds to the period for which the boxscore begins.</li>
-<li>&#64;param <strong>end_period</strong> (str): EndPeriod in the API. String of an integer that             corresponds to the period for which the boxscore ends (Overtime             increments logically, e.g. &#8216;5&#8217; is the first overtime period).</li>
-<li>&#64;param <strong>start_range</strong> (<em>str</em>): StartRange in the API. String of an integer             that corresponds to the tenths of seconds that have elapsed in the             game for which the boxscore begins. Valid when <strong>range_type</strong> =&#8216;2&#8217;.</li>
-<li>&#64;param <strong>end_range</strong> (<em>str</em>) : EndRange in the API. String of an integer             that corresponds to the tenths of seconds that have elapsed in the             game for which the boxscore ends. Valid when <strong>range_type</strong> =&#8216;2&#8217;.</li>
-</ul>
+<div><dl class="docutils">
+<dt>&#64;param <strong>headers</strong> (<em>dict</em>): Dictionary of request header information</dt>
+<dd>required by the API. Specifically, the API requires you to declare
+the &#8216;User-Agent&#8217; key of the request header dictionary. More information
+can be found <a class="reference external" href="https://stackoverflow.com/questions/46781563/how-to-obtain-a-json-response-from-the-stats-nba-com-api">here</a> and
+an example request header dictionary can be found in the __init__.py
+file in the tests folder of this module.</dd>
+</dl>
+<p>&#64;param <strong>game_id</strong> (<em>str</em>): GameID in the API. 10-digit string that represents             a unique game. The format is two leading zeroes, followed by a             season indicator number (&#8216;1&#8217; for preseason,             &#8216;2&#8217; for regular season, &#8216;4&#8217; for the post-season),             then the trailing digits of the season in which the game             took place (e.g. &#8216;17&#8217; for the 2017-18 season). The following             5 digits increment from &#8216;00001&#8217; in order as the season progresses.             For example, &#8216;0021600001&#8217; is the <strong>game_id</strong> of the first game of the             2016-17 NBA regular season.</p>
+<p>&#64;param <strong>range_type</strong> (<em>str</em>): RangeType in the API. <strong>range_type</strong> controls the             type of boxscore that is returned. If using the <strong>start_period</strong> and             <strong>end_period</strong> parameters (defined below), <strong>range_type</strong> should have a value             of &#8216;0&#8217; (DNP players included) or &#8216;1&#8217; (DNP players excluded). With             a <strong>range_type</strong> value of &#8216;2&#8217;, the <strong>start_range</strong> and <strong>end_range</strong> values can be             used to return a boxscore from a customized subset of the given game.</p>
+<p>&#64;param <strong>start_period</strong> (<em>str</em>): StartPeriod in the API. String of an integer             that corresponds to the period for which the boxscore begins.</p>
+<p>&#64;param <strong>end_period</strong> (str): EndPeriod in the API. String of an integer that             corresponds to the period for which the boxscore ends (Overtime             increments logically, e.g. &#8216;5&#8217; is the first overtime period).</p>
+<p>&#64;param <strong>start_range</strong> (<em>str</em>): StartRange in the API. String of an integer             that corresponds to the tenths of seconds that have elapsed in the             game for which the boxscore begins. Valid when <strong>range_type</strong> =&#8216;2&#8217;.</p>
+<p>&#64;param <strong>end_range</strong> (<em>str</em>) : EndRange in the API. String of an integer             that corresponds to the tenths of seconds that have elapsed in the             game for which the boxscore ends. Valid when <strong>range_type</strong> =&#8216;2&#8217;.</p>
 </div></blockquote>
 <p>Attributes:</p>
 <blockquote>
@@ -164,7 +170,15 @@ has the following draft-related API endpoints:</p>
 </div></blockquote>
 <p>The Draft class has the following required parameters:</p>
 <blockquote>
-<div><p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API. String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA. Draft data is only             available for the NBA.</p>
+<div><dl class="docutils">
+<dt>&#64;param <strong>headers</strong> (<em>dict</em>): Dictionary of request header information</dt>
+<dd>required by the API. Specifically, the API requires you to declare
+the &#8216;User-Agent&#8217; key of the request header dictionary. More information
+can be found <a class="reference external" href="https://stackoverflow.com/questions/46781563/how-to-obtain-a-json-response-from-the-stats-nba-com-api">here</a> and
+an example request header dictionary can be found in the __init__.py
+file in the tests folder of this module.</dd>
+</dl>
+<p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API. String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA. Draft data is only             available for the NBA.</p>
 <p>&#64;param <strong>season_year</strong> (<em>str</em>): SeasonYear in the API. String of             a two-year season year in a YYYY-ZZ format, where the ZZ are the             last two digits of the following year. For example, &#8216;2017-18&#8217; is             a valid value of <strong>season_year</strong> and represents the 2017-18 NBA season.             &#8216;All Time&#8217; is a valid value for the &#8216;draftcombinestats&#8217; endpoint.</p>
 </div></blockquote>
 <p>Attributes:</p>
@@ -251,7 +265,15 @@ has the following leader board API endpoints:</p>
 </div></blockquote>
 <p>The LeaderBoard class has the following required parameters:</p>
 <blockquote>
-<div><p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API. String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA.</p>
+<div><dl class="docutils">
+<dt>&#64;param <strong>headers</strong> (<em>dict</em>): Dictionary of request header information</dt>
+<dd>required by the API. Specifically, the API requires you to declare
+the &#8216;User-Agent&#8217; key of the request header dictionary. More information
+can be found <a class="reference external" href="https://stackoverflow.com/questions/46781563/how-to-obtain-a-json-response-from-the-stats-nba-com-api">here</a> and
+an example request header dictionary can be found in the __init__.py
+file in the tests folder of this module.</dd>
+</dl>
+<p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API. String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA.</p>
 <p>&#64;param <strong>stat_category</strong> (<em>str</em>): StatCategory in the API. String             corresponding to the <strong>stat_category</strong> desired in the API             response. Valid values include:</p>
 <blockquote>
 <div><blockquote>
@@ -352,7 +374,15 @@ has the following league-related API endpoints:</p>
 </div></blockquote>
 <p>The League class has the following required parameters:</p>
 <blockquote>
-<div><p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API. String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA.</p>
+<div><dl class="docutils">
+<dt>&#64;param <strong>headers</strong> (<em>dict</em>): Dictionary of request header information</dt>
+<dd>required by the API. Specifically, the API requires you to declare
+the &#8216;User-Agent&#8217; key of the request header dictionary. More information
+can be found <a class="reference external" href="https://stackoverflow.com/questions/46781563/how-to-obtain-a-json-response-from-the-stats-nba-com-api">here</a> and
+an example request header dictionary can be found in the __init__.py
+file in the tests folder of this module.</dd>
+</dl>
+<p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API. String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA.</p>
 <dl class="docutils">
 <dt>&#64;param <strong>season</strong> (<em>str</em>): Season in the API. String of a two-year</dt>
 <dd>season in a YYYY-ZZ format, where the ZZ are the last two             digits of the following year. For example, &#8216;2017-18&#8217; is a valid             value of <strong>season</strong> and represents the 2017-18 NBA season.             <strong>season</strong> is required by the &#8216;commonallplayers&#8217; and             &#8216;commonplayoffseries&#8217; endpoints.</dd>
@@ -391,7 +421,15 @@ league performance stats related API endpoints:</p>
 - <strong>leaguedashteamptshot</strong>: Shooting-related statistics for a         given season by team.</div></blockquote>
 <p>The LeagueDash class has the following required parameters:</p>
 <blockquote>
-<div><p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API). String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA.</p>
+<div><dl class="docutils">
+<dt>&#64;param <strong>headers</strong> (<em>dict</em>): Dictionary of request header information</dt>
+<dd>required by the API. Specifically, the API requires you to declare
+the &#8216;User-Agent&#8217; key of the request header dictionary. More information
+can be found <a class="reference external" href="https://stackoverflow.com/questions/46781563/how-to-obtain-a-json-response-from-the-stats-nba-com-api">here</a> and
+an example request header dictionary can be found in the __init__.py
+file in the tests folder of this module.</dd>
+</dl>
+<p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API). String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA.</p>
 <p>&#64;param <strong>group_quantity</strong> (<em>str</em>): GroupQuantity in the API. String             of an integer indicating the number of players to include a             lineup for the <strong>leaguedashlineups</strong> endpoint. The minimum value             is &#8216;2&#8217; and the maximum value is &#8216;5&#8217;.</p>
 <p>&#64;param <strong>per_mode</strong> (<em>str</em>): PerMode in the API. String indicating             the type of rate stats to be returned. Valid values include:</p>
 <blockquote>
@@ -551,7 +589,15 @@ has the following pbp-related API endpoints:</p>
 </div></blockquote>
 <p>The PlayByPlay class has the following required parameters:</p>
 <blockquote>
-<div><p>&#64;param <strong>game_id</strong> (<em>str</em>): GameID in the API. 10-digit string             that represents a unique game. The format is two leading zeroes,             followed by a season indicator number (&#8216;1&#8217; for preseason,             &#8216;2&#8217; for regular season, &#8216;4&#8217; for the post-season),             then the trailing digits of the season in which the game             took place (e.g. &#8216;17&#8217; for the 2017-18 season). The following             5 digits increment from &#8216;00001&#8217; in order as the season progresses.             For example, &#8216;0021600001&#8217; is the <strong>game_id</strong> of the first game             of the 2016-17 NBA regular season.</p>
+<div><dl class="docutils">
+<dt>&#64;param <strong>headers</strong> (<em>dict</em>): Dictionary of request header information</dt>
+<dd>required by the API. Specifically, the API requires you to declare
+the &#8216;User-Agent&#8217; key of the request header dictionary. More information
+can be found <a class="reference external" href="https://stackoverflow.com/questions/46781563/how-to-obtain-a-json-response-from-the-stats-nba-com-api">here</a> and
+an example request header dictionary can be found in the __init__.py
+file in the tests folder of this module.</dd>
+</dl>
+<p>&#64;param <strong>game_id</strong> (<em>str</em>): GameID in the API. 10-digit string             that represents a unique game. The format is two leading zeroes,             followed by a season indicator number (&#8216;1&#8217; for preseason,             &#8216;2&#8217; for regular season, &#8216;4&#8217; for the post-season),             then the trailing digits of the season in which the game             took place (e.g. &#8216;17&#8217; for the 2017-18 season). The following             5 digits increment from &#8216;00001&#8217; in order as the season progresses.             For example, &#8216;0021600001&#8217; is the <strong>game_id</strong> of the first game             of the 2016-17 NBA regular season.</p>
 <p>&#64;param <strong>start_period</strong> (<em>str</em>): StartPeriod in the API. String of             an integer that corresponds to the period for which the             boxscore begins.</p>
 <p>&#64;param <strong>end_period</strong> (<em>str</em>): EndPeriod in the API. String of an             integer that corresponds to the period for which the             boxscore ends (Overtime increments logically, e.g. &#8216;5&#8217; is             the first overtime period).</p>
 </div></blockquote>
@@ -597,7 +643,15 @@ has the following player performance stats related API endpoints:</p>
 </div></blockquote>
 <p>The Player class has the following required parameters:</p>
 <blockquote>
-<div><p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API. String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA.</p>
+<div><dl class="docutils">
+<dt>&#64;param <strong>headers</strong> (<em>dict</em>): Dictionary of request header information</dt>
+<dd>required by the API. Specifically, the API requires you to declare
+the &#8216;User-Agent&#8217; key of the request header dictionary. More information
+can be found <a class="reference external" href="https://stackoverflow.com/questions/46781563/how-to-obtain-a-json-response-from-the-stats-nba-com-api">here</a> and
+an example request header dictionary can be found in the __init__.py
+file in the tests folder of this module.</dd>
+</dl>
+<p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API. String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA.</p>
 <p>&#64;param <strong>player_id</strong> (<em>str</em>): PlayerID in the API. String of an             integer corresponding to a player ID for a given player.</p>
 <p>&#64;param <strong>player_id_list</strong> (<em>str</em>): PlayerIDList in the API. String             of a comma-separated list of player IDs for player comparisons             to the players given in <strong>vs_player_id_list</strong>. Valid only for             the &#8216;playercompare&#8217; endpoint.</p>
 <dl class="docutils">
@@ -732,7 +786,15 @@ has the following score board API endpoints:</p>
 </div></blockquote>
 <p>The ScoreBoard class has the following required parameters:</p>
 <blockquote>
-<div><p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API. String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA.</p>
+<div><dl class="docutils">
+<dt>&#64;param <strong>headers</strong> (<em>dict</em>): Dictionary of request header information</dt>
+<dd>required by the API. Specifically, the API requires you to declare
+the &#8216;User-Agent&#8217; key of the request header dictionary. More information
+can be found <a class="reference external" href="https://stackoverflow.com/questions/46781563/how-to-obtain-a-json-response-from-the-stats-nba-com-api">here</a> and
+an example request header dictionary can be found in the __init__.py
+file in the tests folder of this module.</dd>
+</dl>
+<p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API. String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA.</p>
 <p>&#64;param <strong>game_date</strong> (<em>str</em>): GameDate in the API. String of a             date formatted as &#8216;MM/DD/YYYY&#8217; representing the date for             which data is desired.</p>
 <p>&#64;param <strong>day_offset</strong> (<em>str</em>): DayOffset in the API. String of an             integer representing days from or before the date given in             <strong>game_date</strong> for which data is desired. Positive values             indicate days into the future, zero represents the current             day, and negative values indicate days into the past.</p>
 </div></blockquote>
@@ -778,7 +840,15 @@ has the following team-related API endpoints:</p>
 </div></blockquote>
 <p>The Team class has the following required parameters:</p>
 <blockquote>
-<div><p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API. String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA.</p>
+<div><dl class="docutils">
+<dt>&#64;param <strong>headers</strong> (<em>dict</em>): Dictionary of request header information</dt>
+<dd>required by the API. Specifically, the API requires you to declare
+the &#8216;User-Agent&#8217; key of the request header dictionary. More information
+can be found <a class="reference external" href="https://stackoverflow.com/questions/46781563/how-to-obtain-a-json-response-from-the-stats-nba-com-api">here</a> and
+an example request header dictionary can be found in the __init__.py
+file in the tests folder of this module.</dd>
+</dl>
+<p>&#64;param <strong>league_id</strong> (<em>str</em>): LeagueID in the API. String of a             two-digit number corresponding to the league. &#8216;00&#8217; is the NBA,             &#8216;10&#8217; is the WNBA, and &#8216;01&#8217; is the ABA.</p>
 <p>&#64;param <strong>per_mode</strong> (<em>str</em>): PerMode in the API. String indicating             the type of rate stats to be returned. Valid values include:</p>
 <blockquote>
 <div><ul class="simple">

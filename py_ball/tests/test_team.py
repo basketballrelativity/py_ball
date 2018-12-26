@@ -8,7 +8,7 @@ Created on Mon Dec 24 09:06:50 2018
 test_team.py
 
 This function contains the tests for
-functions in the team.py
+functions in the team.py file
 """
 
 import time

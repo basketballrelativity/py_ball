@@ -8,7 +8,7 @@ Created on Mon Dec 17 20:43:34 2018
 test_boxscore.py
 
 This function contains the tests for
-functions in the boxscore.py
+functions in the boxscore.py file
 """
 
 from .__init__ import HEADERS

@@ -8,7 +8,7 @@ Created on Sat Dec 22 12:29:35 2018
 test_draft.py
 
 This function contains the tests for
-functions in the draft.py
+functions in the draft.py file
 """
 
 from .__init__ import HEADERS

@@ -8,7 +8,7 @@ Created on Sun Dec 23 21:54:48 2018
 test_scoreboard.py
 
 This function contains the tests for
-functions in the scoreboard.py
+functions in the scoreboard.py file
 """
 
 import time

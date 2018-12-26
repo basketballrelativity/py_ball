@@ -7,9 +7,9 @@ Created on Mon Dec 17 20:51:55 2018
 """
 
 HEADERS = {'Connection': 'close',
-          'Host': 'stats.nba.com',
-          'Origin': 'http://stats.nba.com',
-          'Upgrade-Insecure-Requests': '1',
-          'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2)' + \
-                        'AppleWebKit/537.36 (KHTML, like Gecko) ' + \
-                        'Chrome/66.0.3359.117 Safari/537.36'}
+           'Host': 'stats.nba.com',
+           'Origin': 'http://stats.nba.com',
+           'Upgrade-Insecure-Requests': '1',
+           'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2)' + \
+                         'AppleWebKit/537.36 (KHTML, like Gecko) ' + \
+                         'Chrome/66.0.3359.117 Safari/537.36'}

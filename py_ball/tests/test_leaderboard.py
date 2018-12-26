@@ -8,7 +8,7 @@ Created on Sat Dec 22 13:04:35 2018
 test_leaderboard.py
 
 This function contains the tests for
-functions in the leaderboard.py
+functions in the leaderboard.py file
 """
 
 from .__init__ import HEADERS

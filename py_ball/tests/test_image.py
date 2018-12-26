@@ -8,7 +8,7 @@ Created on Sat Dec 22 12:46:48 2018
 test_image.py
 
 This function contains the tests for
-functions in the image.py
+functions in the image.py file
 """
 
 import PIL

@@ -8,7 +8,7 @@ Created on Sat Dec 22 15:37:02 2018
 test_playbyplay.py
 
 This function contains the tests for
-functions in the playbyplay.py
+functions in the playbyplay.py file
 """
 
 from .__init__ import HEADERS

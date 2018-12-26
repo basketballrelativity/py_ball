@@ -8,7 +8,7 @@ Created on Sat Dec 22 15:51:00 2018
 test_player.py
 
 This function contains the tests for
-functions in the player.py
+functions in the player.py file
 """
 
 import time

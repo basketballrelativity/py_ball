@@ -8,7 +8,7 @@ Created on Sat Dec 22 15:08:46 2018
 test_league_dash.py
 
 This function contains the tests for
-functions in the league_dash.py
+functions in the league_dash.py file
 """
 
 from .__init__ import HEADERS

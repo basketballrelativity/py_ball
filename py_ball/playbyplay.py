@@ -23,6 +23,14 @@ class PlayByPlay:
 
     The PlayByPlay class has the following required parameters:
 
+        @param **headers** (*dict*): Dictionary of request header information
+            required by the API. Specifically, the API requires you to declare
+            the 'User-Agent' key of the request header dictionary. More information
+            can be found `here <https://stackoverflow.com/questions/46781563/
+            how-to-obtain-a-json-response-from-the-stats-nba-com-api>`_ and
+            an example request header dictionary can be found in the __init__.py
+            file in the tests folder of this module.
+
         @param **game_id** (*str*): GameID in the API. 10-digit string \
             that represents a unique game. The format is two leading zeroes, \
             followed by a season indicator number ('1' for preseason, \
