@@ -1,4 +1,4 @@
-# pyball
+# py_ball
 Python API wrapper for stats.nba.com with a focus on NBA and WNBA applications
 
 ## Introduction
@@ -7,7 +7,7 @@ The motivation for this stems from [nba_py](https://github.com/seemethere/nba_py
 
 ## Goals
 
-If successful, `pyball` should accomplish the following:
+If successful, `py_ball` should accomplish the following:
 - By working with the community, improve the quality of documentation for [stats.nba.com](https://stats.nba.com).
 - Further enable the dissemination of basketball statistics to increase the understanding of the sport and encourage the practice of basketball analytics.
 - Produce introductory analyses leveraging NBA and WNBA data to reduce the barrier of entry to basketball analytics through demonstration.
@@ -15,11 +15,11 @@ If successful, `pyball` should accomplish the following:
 
 ## Documentation
 
-While `nba_api` improves greatly upon the documentation of the [stats.nba.com](https://stats.nba.com) API in `nba_py`, `pyball` strives to take documentation further through the following:
+While `nba_api` improves greatly upon the documentation of the [stats.nba.com](https://stats.nba.com) API in `nba_py`, `py_ball` strives to take documentation further through the following:
 - Fully documented code, including function, class, and script docstrings.
 - Extend endpoint and parameter documentation to include feature definitions.
 
-### [Current Documentation](https://github.com/basketballrelativity/pyball/wiki)
+### [Current Documentation](https://github.com/basketballrelativity/py_ball/wiki)
 
 Classes
 - [BoxScore](https://github.com/basketballrelativity/py_ball/wiki/BoxScore)
@@ -37,7 +37,7 @@ Classes
 
 1. ~~Initially map [stats.nba.com](https://stats.nba.com) API and fully document code.~~
 2. ~~Refactor code to generate a more consistent structure across classes.~~
-3. ~~Document endpoints and parameters with definitions.~~ (See Wiki [here](https://github.com/basketballrelativity/pyball/wiki))
+3. ~~Document endpoints and parameters with definitions.~~ (See Wiki [here](https://github.com/basketballrelativity/py_ball/wiki))
 4. Research other basketball-related APIs to map.
 5. ~Write unit tests for the package.~
 6. Begin introductory basketball analytics analyses.
