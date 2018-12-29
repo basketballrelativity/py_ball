@@ -67,3 +67,7 @@ franchises = league.League(headers=HEADERS,
 ```
 
 Each class, with the exception of the `Headshot` and `Logo` classes, has a `data` attribute. This is a dictionary containing table names as keys and a list of dictionaries of table data as values. The `Headshot` and `Logo` classes have an `image` attribute that is a PNG object.
+
+## Contact
+
+Follow along for updates or reach out on Twitter [@py_ball_](https://twitter.com/py_ball_)!
