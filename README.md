@@ -44,7 +44,7 @@ The functionality of the classes within the package are documented in both the d
 4. Research other basketball-related APIs to map.
 5. ~~Write unit tests for the package.~~
 6. ~~Begin introductory basketball analytics analyses.~~
-  - ~~Franchise History~~
+    - ~~Franchise History~~ ([here!](https://github.com/basketballrelativity/franchise_history))
 
 ## Installation
 
