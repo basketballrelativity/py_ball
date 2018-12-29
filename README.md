@@ -43,7 +43,8 @@ The functionality of the classes within the package are documented in both the d
 3. ~~Document endpoints and parameters with definitions.~~ (See Wiki [here](https://github.com/basketballrelativity/py_ball/wiki))
 4. Research other basketball-related APIs to map.
 5. ~~Write unit tests for the package.~~
-6. Begin introductory basketball analytics analyses.
+6. ~~Begin introductory basketball analytics analyses.~~
+  - ~~Franchise History~~
 
 ## Installation
 
