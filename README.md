@@ -55,7 +55,7 @@ pip install py_ball
 
 ## Usage
 
-The [stats.nba.com](https://stats.nba.com) API requires a request header for all API calls. A good discussion on this, including on steps to obtain a proper request header, can be found [here](https://stackoverflow.com/questions/46781563/how-to-obtain-a-json-response-from-the-stats-nba-com-api). With a request header in `HEADER`, the example below demonstrates usage of the package to pull franchise history for the WNBA:
+The [stats.nba.com](https://stats.nba.com) API requires a request header for all API calls. A good discussion on this, including steps to obtain a proper request header, can be found [here](https://stackoverflow.com/questions/46781563/how-to-obtain-a-json-response-from-the-stats-nba-com-api). With a request header in `HEADER`, the example below demonstrates usage of the package to pull franchise history for the WNBA:
 
 ```
 from py_ball import league, image
