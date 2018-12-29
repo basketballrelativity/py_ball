@@ -8,8 +8,7 @@ if "%SPHINXBUILD%" == "" (
 	set SPHINXBUILD=sphinx-build
 )
 set SOURCEDIR=.
-REM set BUILDDIR=build
-set BUILDDIR=..
+set BUILDDIR=_build
 set SPHINXPROJ=py_ball
 
 if "%1" == "" goto help
