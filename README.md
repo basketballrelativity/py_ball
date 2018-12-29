@@ -21,7 +21,10 @@ While `nba_api` improves greatly upon the documentation of the [stats.nba.com](h
 
 ### [Current Documentation](https://github.com/basketballrelativity/py_ball/wiki)
 
-Classes
+Classes:
+
+The functionality of the classes within the package are documented in both the docstrings and [this site](https://basketballrelativity.github.io/py_ball/_build/html/index.html). The endpoints, parameters, and tables are documented in the Wiki (linked below):
+
 - [BoxScore](https://github.com/basketballrelativity/py_ball/wiki/BoxScore)
 - [Draft](https://github.com/basketballrelativity/py_ball/wiki/Draft)
 - [Image](https://github.com/basketballrelativity/py_ball/wiki/Image)
