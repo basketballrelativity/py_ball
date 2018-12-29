@@ -6,7 +6,7 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 SPHINXPROJ    = py_ball
 SOURCEDIR     = .
-BUILDDIR      = _build
+BUILDDIR      = ..
 
 # Put it first so that "make" without argument is like "make help".
 help:
