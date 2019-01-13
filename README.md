@@ -1,3 +1,5 @@
+[![Downloads](https://pepy.tech/badge/py-ball)](https://pepy.tech/project/py-ball)
+
 # py_ball
 Python API wrapper for stats.nba.com with a focus on NBA and WNBA applications
 
