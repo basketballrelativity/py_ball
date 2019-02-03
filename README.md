@@ -47,6 +47,11 @@ The functionality of the classes within the package are documented in both the d
 5. ~~Write unit tests for the package.~~
 6. ~~Begin introductory basketball analytics analyses.~~
     - ~~Franchise History~~ ([here!](https://github.com/basketballrelativity/franchise_history))
+    - ~~Draft Combine Player Sheet~~ ([here!](https://github.com/basketballrelativity/draft_combine))
+    - ~~Live NBA/WNBA scoreboard~~ ([here!](https://github.com/basketballrelativity/scoreboard))
+    - ~~Shot Probability Model~~ ([here!](https://github.com/basketballrelativity/shot_probability))
+    - ~~Location Data Exploration~~ ([here!](https://github.com/basketballrelativity/location_data))
+    - Win Probability Model
 
 ## Installation
 
