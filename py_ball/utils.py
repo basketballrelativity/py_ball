@@ -11,8 +11,11 @@ Utilities for the py_ball package
 """
 
 from requests import get
+from xml.etree import ElementTree
 
 BASE_URL = 'http://stats.nba.com/stats/{endpoint}/'
+BASE_WNBA_URL = 'http://data.wnba.com/data/5s/xml/wnbacom/' +\
+    'noseason/scores/{date}/{teams}/shotchart_all.xml'
 
 def api_call(endpoint, params, headers):
     """ This function completes the API call at the given
@@ -34,6 +37,51 @@ def api_call(endpoint, params, headers):
 
     api_response.close()
     return json_resp
+
+
+def wnba_shot_call(params):
+    """ This function completes the API call for WNBA
+    shot data with the provided parameters.
+
+    Args:
+        - @param **params** (*str*): Dictionary containing required
+            parameters for the WNBA shot data URL
+
+    Returns:
+        - **api_resp** (*Class*):object of the API response
+    """
+
+    api_response = get(BASE_WNBA_URL.format(date=params['date'],
+                                            teams=params['teams']))
+
+    api_response.raise_for_status()
+
+    api_response.close()
+    return api_response
+
+
+def parse_wnba_shot_call(api_resp):
+    """ This function parses the API call returned from **wnba_shot_call**
+    and stores the response in a list of dictionaries
+
+    Args:
+        - @param **api_resp** (*dict*): object of an API response. \
+
+    Returns:
+        - List of dictionaries containing shot data
+    """
+
+    tree = ElementTree.fromstring(api_resp.content)
+    shot_list = []
+    for child in tree.iter('event'):
+        temp_dict = {}
+        keys = child.keys()
+        for key in keys:
+            temp_dict[key] = child.get(key)
+        shot_list.append(temp_dict)
+
+    return shot_list
+
 
 def parse_api_call(api_resp):
     """ This function parses the API call returned from **api_call**
