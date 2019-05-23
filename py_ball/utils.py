@@ -11,11 +11,10 @@ Utilities for the py_ball package
 """
 
 from requests import get
-from xml.etree import ElementTree
 
 BASE_URL = 'http://stats.nba.com/stats/{endpoint}/'
-BASE_WNBA_URL = 'http://data.wnba.com/data/5s/xml/wnbacom/' +\
-    'noseason/scores/{date}/{teams}/shotchart_all.xml'
+BASE_WNBA_URL = 'http://data.wnba.com/data/5s/v2015/json/mobile_teams/' + \
+    'wnba/{season}/scores/pbp/{game_id}_{quarter}_pbp.json'
 
 def api_call(endpoint, params, headers):
     """ This function completes the API call at the given
@@ -39,7 +38,7 @@ def api_call(endpoint, params, headers):
     return json_resp
 
 
-def wnba_shot_call(params):
+def wnba_shot_call(params, headers):
     """ This function completes the API call for WNBA
     shot data with the provided parameters.
 
@@ -48,39 +47,25 @@ def wnba_shot_call(params):
             parameters for the WNBA shot data URL
 
     Returns:
-        - **api_resp** (*Class*):object of the API response
+        - **pbp_list** (*list*): list of play-by-play data
     """
 
-    api_response = get(BASE_WNBA_URL.format(date=params['date'],
-                                            teams=params['teams']))
-
-    api_response.raise_for_status()
+    pbp_list = []
+    for i in range(1, 10):
+        try:
+            api_response = get(BASE_WNBA_URL.format(season=params['season'],
+                                                    game_id=params['game_id'],
+                                                    quarter=i,
+                                                    headers=headers))
+        
+            api_response.raise_for_status()
+            json_resp = api_response.json()
+            pbp_list += json_resp['g']['pla']
+        except:
+            break
 
     api_response.close()
-    return api_response
-
-
-def parse_wnba_shot_call(api_resp):
-    """ This function parses the API call returned from **wnba_shot_call**
-    and stores the response in a list of dictionaries
-
-    Args:
-        - @param **api_resp** (*dict*): object of an API response. \
-
-    Returns:
-        - List of dictionaries containing shot data
-    """
-
-    tree = ElementTree.fromstring(api_resp.content)
-    shot_list = []
-    for child in tree.iter('event'):
-        temp_dict = {}
-        keys = child.keys()
-        for key in keys:
-            temp_dict[key] = child.get(key)
-        shot_list.append(temp_dict)
-
-    return shot_list
+    return pbp_list
 
 
 def parse_api_call(api_resp):
