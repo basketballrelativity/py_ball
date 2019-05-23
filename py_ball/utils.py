@@ -13,6 +13,8 @@ Utilities for the py_ball package
 from requests import get
 
 BASE_URL = 'http://stats.nba.com/stats/{endpoint}/'
+BASE_WNBA_URL = 'http://data.wnba.com/data/5s/v2015/json/mobile_teams/' + \
+    'wnba/{season}/scores/pbp/{game_id}_{quarter}_pbp.json'
 
 def api_call(endpoint, params, headers):
     """ This function completes the API call at the given
@@ -34,6 +36,37 @@ def api_call(endpoint, params, headers):
 
     api_response.close()
     return json_resp
+
+
+def wnba_shot_call(params, headers):
+    """ This function completes the API call for WNBA
+    shot data with the provided parameters.
+
+    Args:
+        - @param **params** (*str*): Dictionary containing required
+            parameters for the WNBA shot data URL
+
+    Returns:
+        - **pbp_list** (*list*): list of play-by-play data
+    """
+
+    pbp_list = []
+    for i in range(1, 10):
+        try:
+            api_response = get(BASE_WNBA_URL.format(season=params['season'],
+                                                    game_id=params['game_id'],
+                                                    quarter=i,
+                                                    headers=headers))
+        
+            api_response.raise_for_status()
+            json_resp = api_response.json()
+            pbp_list += json_resp['g']['pla']
+        except:
+            break
+
+    api_response.close()
+    return pbp_list
+
 
 def parse_api_call(api_resp):
     """ This function parses the API call returned from **api_call**
