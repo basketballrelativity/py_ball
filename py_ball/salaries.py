@@ -42,9 +42,9 @@ URL_TO_ID_NBA = {'https://hoopshype.com/salaries/toronto_raptors/': '1610612761'
                  'https://hoopshype.com/salaries/chicago_bulls/': '1610612741'}
 
 
-def salary_columns(html_text):
+def salary_columns(html_text, context='current'):
     """ salary_columns returns the column names
-    for the team salary information
+    for the salary information
 
     @param **html_text** (*str*): String of the HTML response
     from SALARY_URL
@@ -58,8 +58,13 @@ def salary_columns(html_text):
         **column_list** (*list*): List of column names for
             salary information
     """
+    if context == 'current':
+        col_count = 6
+    else:
+        col_count = 2
+
     column_list = []
-    for col_count in range(0, 6):
+    for col_count in range(0, col_count):
         start_ind = html_text.find('>') + 1
         end_ind = html_text.find('</td>')
         column_list.append(html_text[start_ind:end_ind])
@@ -103,6 +108,42 @@ def team_salary_values(html_text):
     return team_salaries
 
 
+def historical_team_salary_values(html_text, season):
+    """ historical_team_salary_values returns a dictionary of
+    salary information keyed by NBA team ID
+
+    @param **html_text** (*str*): String of the HTML response
+    from SALARY_URL + season
+
+    Returns:
+
+        **team_salaries** (*dict*): Dictionary keyed by NBA
+            team ID with a list of yearly salaries (followed
+            by team salary URL) as values
+    """
+    value_str = 'data-value="'
+    team_salaries = {}
+    nba_teams = 30
+
+    for teams in range(0, nba_teams):
+        team_list = []
+        start_ind = html_text.find('<a')
+        end_ind = html_text.find('</a>')
+        team_key = html_text[start_ind + 2: end_ind]
+        team_key = team_key[team_key.find('href="') + 6:team_key.find('">\n')]
+        html_text = html_text[end_ind + 4:]
+        for col_count in range(0, 2):
+            start_ind = html_text.find(value_str) + len(value_str)
+            end_ind = html_text.find('">')
+            team_list.append(int(html_text[start_ind:end_ind]))
+            html_text = html_text[end_ind + 2:]
+        team_list.append(team_key)
+        team_key = team_key.replace(season + '/', '')
+        team_salaries[URL_TO_ID_NBA[team_key]] = team_list
+
+    return team_salaries
+
+
 def get_team_salary():
     """ This function pulls team salary information for six seasons
     from `hoopshype.com <https://hoopshype.com/salaries/>`
@@ -123,10 +164,38 @@ def get_team_salary():
 
     table_index = html_text.find(sorted_str)
     html_text = html_text[table_index:]
-    html_text, column_list = salary_columns(html_text)
+    html_text, column_list = salary_columns(html_text, 'current')
     column_list.append('url')
 
     team_salaries = team_salary_values(html_text)
+
+    return team_salaries, column_list
+
+
+def get_historical_team_salary(season):
+    """ This function pulls team salary information for the given season
+    from `hoopshype.com <https://hoopshype.com/salaries/>`
+
+    Returns:
+
+        **team_salaries** (*dict*): Dictionary keyed by NBA
+            team ID with a list of yearly salaries (followed
+            by team salary URL) as values
+
+        **column_list** (*list*): List of column names for team
+            salary information
+    """
+
+    api_resp = get(SALARY_URL + season)
+    html_text = api_resp.text
+    sorted_str = 'class="name">Team</td>'
+
+    table_index = html_text.find(sorted_str) + len(sorted_str)
+    html_text = html_text[table_index:]
+    html_text, column_list = salary_columns(html_text, 'historical')
+    column_list.append('url')
+
+    team_salaries = historical_team_salary_values(html_text, season)
 
     return team_salaries, column_list
 
@@ -223,7 +292,7 @@ def get_player_salary(team_url):
     api_resp = get(team_url)
     html_text = api_resp.text
     sorted_str = 'hh-salaries-sorted'
-
+    
     table_index = html_text.find(sorted_str)
     html_text = html_text[table_index:]
     html_text, column_list = salary_columns(html_text)
@@ -265,3 +334,28 @@ class TeamSalaries:
 
         self.team_player_salaries = team_player_salary
         self.team_player_columns = column_list
+
+
+class HistoricalSalaries:
+    """ The HistoricalSalaries class contains all resources needed
+    to scrape team salary information from
+    `hoopshype.com <https://hoopshype.com/salaries/>` for a given season.
+    This class contains both team total salary as well as individual
+    player breakdowns.
+
+    Attributes:
+
+        **totals** (*dict*): Dictionary keyed by NBA
+            team ID with a list of yearly salaries (followed
+            by team salary URL) as values
+
+        **totals_columns** (*list*): List of column names for team
+            salary information
+    """
+
+    def __init__(self, season='2017-2018'):
+
+        # First, total team salary information is pulled
+        team_salaries, column_list = get_historical_team_salary(season)
+        self.totals = team_salaries
+        self.totals_columns = column_list
