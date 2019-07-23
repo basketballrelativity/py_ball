@@ -18,6 +18,8 @@ BASE_NBA_URL = 'https://ak-static.cms.nba.com/wp-content/uploads/' + \
                 'headshots/nba/{team}/{season}/260x190/{player_id}.png'
 BASE_WNBA_URL = 'https://ak-static.cms.nba.com/wp-content/uploads/' + \
                 'headshots/wnba/{player_id}.png'
+BASE_G_LEAGUE_URL = 'https://ak-static.cms.nba.com/wp-content/uploads/' + \
+                    'headshots/dleague/{player_id}.png'
 
 BASE_NBA_LOGO_URL = 'https://stats.nba.com/media/img/teams/' + \
                     'logos/season/{year}/{team}_logo.svg'
@@ -25,6 +27,9 @@ BASE_NBA_LOGO_URL = 'https://stats.nba.com/media/img/teams/' + \
 BASE_WNBA_LOGO_URL = 'https://ak-static.cms.nba.com/wp-content/' + \
                      'themes/wnba-child/img/logos/' + \
                      '{team}-primary-logo.svg'
+
+BASE_G_LEAGUE_LOGO_URL = 'https://stats.gleague.nba.com/media/' + \
+                         'img/teams/logos/{team}.svg'
                      
 ID_TO_TEAM_NBA = {'1610612761': 'TOR', '1610612743': 'DEN',
                   '1610612765': 'DET', '1610612740': 'NOP',
@@ -49,13 +54,28 @@ ID_TO_TEAM_WNBA = {'1611661330': 'dream', '1611661321': 'wings',
                    '1611661323': 'sun', '1611661319': 'aces',
                    '1611661313': 'liberty', '1611661322': 'mystics'}
 
+ID_TO_TEAM_G_LEAGUE = {'1612709908': 'RGV', '1612709902': 'SCW',
+                       '1612709926': 'MHU', '1612709914': 'STO',
+                       '1612709903': 'SLC', '1612709921': 'LIN',
+                       '1612709889': 'OKL', '1612709925': 'LAK',
+                       '1612709920': 'RAP', '1612709919': 'WES',
+                       '1612709917': 'GRD', '1612709923': 'WCB',
+                       '1612709913': 'ERI', '1612709904': 'SXF',
+                       '1612709909': 'DEL', '1612709928': 'CAP',
+                       '1612709911': 'IWA', '1612709924': 'ACC',
+                       '1612709910': 'FWN', '1612709905': 'SBL',
+                       '1612709918': 'TEX', '1612709927': 'WIS',
+                       '1612709922': 'GBO', '1612709915': 'MNE',
+                       '1612709890': 'AUS', '1612709893': 'CTN',
+                       '1612709900': 'NAS'}
+
 class Headshot:
     """ The Headshot class contains all resources needed to pull
-    headshot images for NBA and WNBA players.
+    headshot images for NBA, G-League, and WNBA players.
 
     The Headshot class has the following required parameters:
 
-        @param **league** (*str*): String, either 'WNBA' or 'NBA',
+        @param **league** (*str*): String, either 'WNBA', 'G', or 'NBA',
             to the league in which the desired player or team plays.
 
         @param **player_id** (*str*): String of an \
@@ -81,23 +101,26 @@ class Headshot:
                  season=''):
         
         # Controlling the parameters depending on the endpoint
-        if league=='WNBA':
+        if league == 'WNBA':
             response = requests.get(BASE_WNBA_URL.format(player_id=player_id))
-        elif league=='NBA':
+        elif league == 'NBA':
             response = requests.get(BASE_NBA_URL.format(player_id=player_id,
                                                         team=team_id,
                                                         season=season))
+        elif league == 'G':
+            response = requests.get(BASE_G_LEAGUE_URL.format(player_id=player_id))
+
         im = Image.open(BytesIO(response.content))
         self.image = im
 
 
 class Logo:
     """ The Logo class contains all resources needed to pull
-    logo images for NBA and WNBA players.
+    logo images for NBA, G-League, and WNBA players.
 
     The Logo class has the following required parameters:
 
-        @param **league** (*str*): String, either 'WNBA' or 'NBA',
+        @param **league** (*str*): String, either 'WNBA', 'G', or 'NBA',
             to the league in which the desired player plays.
 
         @param **team_id** (*str*): String of a 10-digit \
@@ -124,13 +147,17 @@ class Logo:
                  season_year='2017-18'):
 
         # Controlling the parameters depending on the endpoint
-        if league=='WNBA':
+        if league == 'WNBA':
             team_str = ID_TO_TEAM_WNBA[team_id]
             response = requests.get(BASE_WNBA_LOGO_URL.format(team=team_str))
-        elif league=='NBA':
+        elif league == 'NBA':
             team_str = ID_TO_TEAM_NBA[team_id]
             response = requests.get(BASE_NBA_LOGO_URL.format(team=team_str,
                                                              year=season_year))
+        elif league == 'G':
+            team_str = ID_TO_TEAM_G_LEAGUE[team_id]
+            response = requests.get(BASE_G_LEAGUE_LOGO_URL.format(team=team_str))
+
         new_bites = svg2png(bytestring=response.content,
                             write_to=None)
         im = Image.open(BytesIO(new_bites))

@@ -49,7 +49,7 @@ class LeagueDash:
 
         @param **league_id** (*str*): LeagueID in the API). String of a \
             two-digit number corresponding to the league. '00' is the NBA, \
-            '10' is the WNBA, and '01' is the ABA.
+            '10' is the WNBA, '01' is the ABA, and '20' is the G-League.
 
         @param **group_quantity** (*str*): GroupQuantity in the API. String \
             of an integer indicating the number of players to include a \
