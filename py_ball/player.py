@@ -75,7 +75,7 @@ class Player:
 
         @param **league_id** (*str*): LeagueID in the API. String of a \
             two-digit number corresponding to the league. '00' is the NBA, \
-            '10' is the WNBA, and '01' is the ABA.
+            '10' is the WNBA, '01' is the ABA, and '20' is the G-League.
 
         @param **player_id** (*str*): PlayerID in the API. String of an \
             integer corresponding to a player ID for a given player.

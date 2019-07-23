@@ -39,7 +39,7 @@ class League:
 
         @param **league_id** (*str*): LeagueID in the API. String of a \
             two-digit number corresponding to the league. '00' is the NBA, \
-            '10' is the WNBA, and '01' is the ABA.
+            '10' is the WNBA, '01' is the ABA, and '20' is the G-League.
 
         @param **season** (*str*): Season in the API. String of a two-year
             season in a YYYY-ZZ format, where the ZZ are the last two \

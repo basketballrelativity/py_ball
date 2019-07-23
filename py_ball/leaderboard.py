@@ -38,7 +38,7 @@ class LeaderBoard:
 
         @param **league_id** (*str*): LeagueID in the API. String of a \
             two-digit number corresponding to the league. '00' is the NBA, \
-            '10' is the WNBA, and '01' is the ABA.
+            '10' is the WNBA, '01' is the ABA, and '20' is the G-League.
 
         @param **stat_category** (*str*): StatCategory in the API. String \
             corresponding to the **stat_category** desired in the API \

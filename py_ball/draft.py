@@ -33,8 +33,8 @@ class Draft:
 
         @param **league_id** (*str*): LeagueID in the API. String of a \
             two-digit number corresponding to the league. '00' is the NBA, \
-            '10' is the WNBA, and '01' is the ABA. Draft data is only \
-            available for the NBA.
+            '10' is the WNBA, '01' is the ABA, and '20' is the G-League. \
+            Draft data is only available for the NBA.
 
         @param **season_year** (*str*): SeasonYear in the API. String of \
             a two-year season year in a YYYY-ZZ format, where the ZZ are the \
