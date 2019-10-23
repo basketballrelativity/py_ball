@@ -37,7 +37,7 @@ class Synergy:
         @param **season_year** (*str*): SeasonYear in the API. String of a two-year \
             season in a YYYY-ZZ format, where the ZZ are the last two \
             digits of the following year. For example, '2017-18' is a valid \
-            value of **season** and represents the 2017-18 NBA season.
+            value of **season_year** and represents the 2017-18 NBA season.
 
         @param **season_type** (*str*): SeasonType in the API. String \
             indicating the type of season for data to be returned. \
@@ -60,8 +60,8 @@ class Synergy:
             indicating the type of play as defined by Synergy. Valid \
             values include:
 
-                - 'Cut', 'Handoff', 'Isolation', 'Misc', 'OffScreen',
-                'Postup', 'PRBallHandler', 'PRRollman', 'OffRebound',
+                - 'Cut', 'Handoff', 'Isolation', 'Misc', 'OffScreen', \
+                'Postup', 'PRBallHandler', 'PRRollman', 'OffRebound', \
                 'Spotup', 'Transition'
 
         @param **type_grouping** (*str*): TypeGrouping in the API. String \
