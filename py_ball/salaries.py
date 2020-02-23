@@ -4,6 +4,9 @@
 Created on Sun Jun  9 11:02:05 2019
 
 @author: patrickmcfarlane
+
+salaries.py contains the functions
+to gather NBA salary information
 """
 
 from requests import get
@@ -202,6 +205,8 @@ def historical_team_salary_values(html_text, season):
 
     @param **html_text** (*str*): String of the HTML response
     from SALARY_URL + season
+    @param **season** (*str*): String of season in YYYY-ZZZZ
+    format
 
     Returns:
 
@@ -402,6 +407,9 @@ def get_player_salary(team_url):
     """ This function pulls player salary information for six seasons
     from `hoopshype.com <https://hoopshype.com/salaries/>`
 
+    @param team_url (str): String of URL corresponding
+    to a single team's salary
+
     Returns:
 
         **player_salaries** (*dict*): Dictionary keyed by Hoopshype
@@ -505,6 +513,9 @@ class HistoricalSalaries:
     `hoopshype.com <https://hoopshype.com/salaries/>` for a given season.
     This class contains both team total salary as well as individual
     player breakdowns
+
+    @param **season** (*str*): String of season in YYYY-ZZZZ
+    format
 
     Attributes:
 
