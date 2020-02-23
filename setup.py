@@ -17,7 +17,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="py_ball",
-    version="1.0.4",
+    version="1.0.5",
     author="Patrick McFarlane",
     author_email="patmcfarla@gmail.com",
     description="Python API wrapper for stats.nba.com with a focus on \
