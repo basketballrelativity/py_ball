@@ -4,6 +4,9 @@
 Created on Sun Jun  9 11:02:05 2019
 
 @author: patrickmcfarlane
+
+salaries.py contains the functions
+to gather NBA salary information
 """
 
 from requests import get
