@@ -1,2 +1,4 @@
 requests==2.20.0
 cairosvg==2.2.1
+pkginfo==1.5.0.1
+matplotlib==3.2.1
