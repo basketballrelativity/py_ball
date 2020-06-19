@@ -10,6 +10,8 @@ class WinProbability:
         self.game_id = game_id
         self.model = open_model()
         self.test_data = self.get_test(game_id, headers)
+        self.home_win_probability = []
+        self.home_won = 0
     def get_test(self, game_id, headers):
         test_x = []
         test_y = []
@@ -84,13 +86,18 @@ class WinProbability:
 
         return test_x, times, diff, actual_times, home, away
 
-    def plot_probs_for_test(self,plot_wp=True):
-        print(self.game_id)
+    def plot_probs_for_test(self,plot_wp=True): 
         test_x, times, diff, actual_times, home, away = self.test_data
         times = np.insert(times, 0, 2880)
         probs = []
         for time in times[1:]:
-            time_prob = self.model[time].predict_proba([[test_x[time][0], test_x[time][2]]])[0]
+            training_key = time
+            if training_key < 0:
+                for ot in range(0,10):
+                    if (ot*5*60)+training_key > 0:
+                        training_key = (ot*5*60)+training_key
+                        break
+            time_prob = self.model[training_key].predict_proba([[test_x[time][0], test_x[time][2]]])[0]
             probs.append(time_prob)
         
         probs = np.array(probs)
@@ -113,6 +120,17 @@ class WinProbability:
             ax[1].set_title("Win Probability")
             plt.legend(loc='best')
             plt.show()
-        
+
+        self.home_win_probability = probs_home
+        self.home_won = int(probs_home[-1]>0.5)
         return probs_home, probs_away, home, away
-        
+
+    def brier_score(self):
+        if len(self.home_win_probability) == 0:
+            _, _, _, _ = self.plot_probs_for_test(plot_wp=False)
+
+        size_of_arr = len(self.home_win_probability)
+        cum_brier_score = 0
+        for ind_prob in self.home_win_probability:
+            cum_brier_score += (self.home_won-ind_prob)**2
+        return cum_brier_score/size_of_arr     
