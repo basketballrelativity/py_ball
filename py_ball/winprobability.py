@@ -46,7 +46,7 @@ class WinProbability:
             seconds_left_in_game = get_seconds_left(event['PERIOD'], event['PCTIMESTRING'])
 
             for sec in range(seconds_left_in_game+1, last_second):
-                if sec % 10 == 0 and (sec not in added_this_game):
+                if sec % 3 == 0 and (sec not in added_this_game):
                     game_x[sec] = [current_margin, home_wins, home_has_ball]
                     game_y.append(int(home_wins))
                     added_this_game.append(sec)
@@ -74,7 +74,7 @@ class WinProbability:
                     margin = (int(event['SCOREMARGIN']))
                     current_margin = margin
 
-            if seconds_left_in_game % 10 == 0 and seconds_left_in_game not in added_this_game:
+            if seconds_left_in_game % 3 == 0 and seconds_left_in_game not in added_this_game:
                 game_x[seconds_left_in_game] = [current_margin, home_wins, home_has_ball]
                 game_y.append(int(home_wins))
                 added_this_game.append(int(seconds_left_in_game))
@@ -86,7 +86,7 @@ class WinProbability:
 
         return test_x, times, diff, actual_times, home, away
 
-    def plot_probs_for_test(self,plot_wp=True): 
+    def plot_probs_for_test(self,plot_home=True, plot_away=False): 
         test_x, times, diff, actual_times, home, away = self.test_data
         times = np.insert(times, 0, 2880)
         probs = []
@@ -105,16 +105,24 @@ class WinProbability:
         probs_away = np.insert(probs[:,0], 0, 0.5)
         probs_home = np.insert(probs[:,1], 0, 0.5)
         
-        end_lim = 2880-(len(probs_home)*10)
+        end_lim = 2880-(len(probs_home)*3)
         
-        if plot_wp:
+        if plot_home or plot_away:
+
+            times, probs_home, probs_away = zip(*sorted(zip(times, probs_home, probs_away)))
+            
             plt.rcParams["figure.figsize"] = (20,6)
             fig, ax = plt.subplots(1,2)
             ax[0].set_title("Point Differential")
             ax[0].plot(actual_times, diff)
             ax[0].set_xlim(2880, end_lim)
-            ax[1].plot(times, probs_home, label=home)
-            ax[1].plot(times, probs_away, label=away)
+ 
+           
+            
+            if plot_home:
+                ax[1].plot(times, probs_home, label=home)
+            if plot_away:
+                ax[1].plot(times, probs_away, label=away)
             ax[1].set_xlim(2880, end_lim)
             ax[1].set_ylim(0.0, 1.0)
             ax[1].set_title("Win Probability")
