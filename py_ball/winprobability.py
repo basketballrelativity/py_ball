@@ -86,7 +86,7 @@ class WinProbability:
 
         return test_x, times, diff, actual_times, home, away
 
-    def plot_probs_for_test(self,plot_home=True, plot_away=False): 
+    def plot_probs_for_test(self,plot_home=True, plot_away=False, plot_diff=True): 
         test_x, times, diff, actual_times, home, away = self.test_data
         times = np.insert(times, 0, 2880)
         probs = []
@@ -112,25 +112,41 @@ class WinProbability:
             times, probs_home, probs_away = zip(*sorted(zip(times, probs_home, probs_away)))
             
             plt.rcParams["figure.figsize"] = (20,6)
-            fig, ax = plt.subplots(1,2)
-            ax[0].set_title("Point Differential")
-            ax[0].plot(actual_times, diff)
-            ax[0].set_xlim(2880, end_lim)
- 
-           
+
+            if plot_diff:
+                fig,ax = plt.subplots(1,2)
+                ax[0].set_title("Point Differential")
+                ax[0].plot(actual_times, diff)
+                ax[0].set_xlim(2880, end_lim)
+                pltting = ax[1]
+            else:
+                fig,ax = plt.subplots()
+                pltting = ax
+
+            home_won = int(diff[-1]>0)
+         
+            probs_home = list(probs_home)
+            probs_away = list(probs_away)
+            times = list(times)
+
+            
+            probs_home[0] = float(home_won)
+            probs_away[0] = float(1-home_won)
             
             if plot_home:
-                ax[1].plot(times, probs_home, label=home)
+                pltting.plot(times, probs_home, label=home)
             if plot_away:
-                ax[1].plot(times, probs_away, label=away)
-            ax[1].set_xlim(2880, end_lim)
-            ax[1].set_ylim(0.0, 1.0)
-            ax[1].set_title("Win Probability")
+                pltting.plot(times, probs_away, label=away)
+            
+            pltting.set_xlim(2880, end_lim)
+            pltting.set_ylim(0.0, 1.0)
+            pltting.set_title("Win Probability")
             plt.legend(loc='best')
             plt.show()
 
         self.home_win_probability = probs_home
-        self.home_won = int(probs_home[-1]>0.5)
+        self.home_won = int(diff[-1]>0)
+
         return probs_home, probs_away, home, away
 
     def brier_score(self):
