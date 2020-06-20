@@ -86,7 +86,7 @@ class WinProbability:
 
         return test_x, times, diff, actual_times, home, away
 
-    def plot_probs_for_test(self,plot_home=True, plot_away=False, plot_diff=True): 
+    def probs(self,plot_home=True, plot_away=False, plot_diff=False, get_values=False): 
         test_x, times, diff, actual_times, home, away = self.test_data
         times = np.insert(times, 0, 2880)
         probs = []
@@ -104,13 +104,18 @@ class WinProbability:
         
         probs_away = np.insert(probs[:,0], 0, 0.5)
         probs_home = np.insert(probs[:,1], 0, 0.5)
+        times, probs_home, probs_away = zip(*sorted(zip(times, probs_home, probs_away)))
+        probs_home = list(probs_home)
+        probs_away = list(probs_away)
+        times = list(times)
+        home_won = int(diff[-1]>0)
+        probs_home[0] = float(home_won)
+        probs_away[0] = float(1-home_won)
         
         end_lim = 2880-(len(probs_home)*3)
-        
-        if plot_home or plot_away:
 
-            times, probs_home, probs_away = zip(*sorted(zip(times, probs_home, probs_away)))
-            
+        if plot_home or plot_away:
+        
             plt.rcParams["figure.figsize"] = (20,6)
 
             if plot_diff:
@@ -118,25 +123,26 @@ class WinProbability:
                 ax[0].set_title("Point Differential")
                 ax[0].plot(actual_times, diff)
                 ax[0].set_xlim(2880, end_lim)
+                for normal_q in range(0,4):
+                    ax[0].plot([2880-normal_q*12*60, 2880-normal_q*12*60], [min(diff),max(diff)], 'gray')
+                for ot in range(0,10):
+                    ax[0].plot([-ot*5*60, -ot*5*60], [min(diff),max(diff)], 'gray')
+                ax[0].set_ylim(min(diff), max(diff))
                 pltting = ax[1]
             else:
                 fig,ax = plt.subplots()
-                pltting = ax
+                pltting = ax 
+        
+            for normal_q in range(0,4):
+                pltting.plot([2880-normal_q*12*60, 2880-normal_q*12*60], [0,1], 'gray')
 
-            home_won = int(diff[-1]>0)
-         
-            probs_home = list(probs_home)
-            probs_away = list(probs_away)
-            times = list(times)
+            for ot in range(0,10):
+                pltting.plot([-ot*5*60, -ot*5*60], [0,1], 'gray')
 
-            
-            probs_home[0] = float(home_won)
-            probs_away[0] = float(1-home_won)
-            
             if plot_home:
-                pltting.plot(times, probs_home, label=home)
+                pltting.plot(times, probs_home, 'blue', label=home)
             if plot_away:
-                pltting.plot(times, probs_away, label=away)
+                pltting.plot(times, probs_away, 'green', label=away)
             
             pltting.set_xlim(2880, end_lim)
             pltting.set_ylim(0.0, 1.0)
@@ -146,12 +152,15 @@ class WinProbability:
 
         self.home_win_probability = probs_home
         self.home_won = int(diff[-1]>0)
-
-        return probs_home, probs_away, home, away
+        times.reverse()
+        probs_home.reverse()
+        probs_away.reverse()
+        if get_values:
+            return times, probs_home, probs_away, home, away
 
     def brier_score(self):
         if len(self.home_win_probability) == 0:
-            _, _, _, _ = self.plot_probs_for_test(plot_wp=False)
+            self.probs(plot_home=False)
 
         size_of_arr = len(self.home_win_probability)
         cum_brier_score = 0
