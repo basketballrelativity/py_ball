@@ -12,7 +12,6 @@ NBA games
 
 import numpy as np
 import json
-from sklearn import linear_model
 # from .utils import get_seconds_left, open_model
 # from . import playbyplay, boxscore, team
 from utils import get_seconds_left, open_model

@@ -146,7 +146,22 @@ def parse_api_call(api_resp):
 
     return data
 
+
 def get_seconds_left(period, time_string):
+    """ get_seconds_left calculates the seconds
+    remaining in the game
+
+    @param period (int): Integer indicating which quarter
+        the game is in
+    @param time_string (str): String of the format
+        MM:SS for the time remaining in the quarter
+
+    Returns:
+
+        - seconds_remaining (int): Number of seconds
+        remaining in the game
+    """
+
     time_in_quarter = 12 #normal quarter is 12 minutes long
     if period > 4:
         time_in_quarter=5 #if it's overtime, 5 mins long
@@ -156,11 +171,24 @@ def get_seconds_left(period, time_string):
         #if overtime, we go into negatives, so 10 seconds into overtime is -10 and so on
         extra_after_quarter = (5-period)*time_in_quarter*60 
         time_elapsed = (time_in_quarter*60) - ((int(mins)*60)+(int(seconds))) # convert to seconds
-        return extra_after_quarter-time_elapsed
+        seconds_remaining = extra_after_quarter-time_elapsed
     else:
-        return extra_after_quarter+(int(mins)*60)+(int(seconds)) #convert to seconds
+        seconds_remaining = extra_after_quarter+(int(mins)*60)+(int(seconds)) #convert to seconds
 
-def open_model(fname="model.pickle"):
+    return seconds_remaining
+
+
+def open_model(fname="models/model.pickle"):
+    """ This function opens the win probability model
+
+    @param fname (str): Name of the file containing
+        the win probability model
+
+    Returns:
+
+        - time_to_model (sklearn.linear_model): Win
+            probability model
+    """
     pickle_data = pkgutil.get_data(__name__, fname)
     time_to_model = pickle.loads(pickle_data)
     return time_to_model
