@@ -186,8 +186,8 @@ def open_model(fname="models/model.pickle"):
 
     Returns:
 
-        - time_to_model (sklearn.linear_model): Win
-            probability model
+        - time_to_model (sklearn.linear_model.Logistic_Regression):
+            Win probability model
     """
     pickle_data = pkgutil.get_data(__name__, fname)
     time_to_model = pickle.loads(pickle_data)

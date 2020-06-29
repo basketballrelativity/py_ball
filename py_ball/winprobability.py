@@ -10,12 +10,9 @@ calculates win probability from play-by-play data for
 NBA games
 """
 
-import numpy as np
 import json
-# from .utils import get_seconds_left, open_model
-# from . import playbyplay, boxscore, team
-from utils import get_seconds_left, open_model
-import playbyplay, boxscore, team
+from .utils import get_seconds_left, open_model
+from . import playbyplay, boxscore, team
 import matplotlib.pyplot as plt
 
 
@@ -26,6 +23,10 @@ def discern_possession_and_margin(event, current_margin, home_has_ball):
     @param event (pd.Series): pandas Series
         containing a row from a play-by-play
         DataFrame
+    @param current_margin (int): Current score margin
+            relative to the home team
+    @param home_has_ball (bool): True if the home
+            team has possession, False otherwise
 
     Returns:
 
@@ -99,7 +100,35 @@ def get_team_abr(headers, game_id):
 
 
 def plot_win_prob(times, diff, end_lim, probs, team_abr, bools):
-    """ This function plot
+    """ This function plots the win probability and
+    score differential for the game
+
+    @param times (list): list containing actual_times
+        and times. times contains all of the times at
+        which win probability was calculated
+    @param diff (list): List of score differentials
+        corresponding to all times in actual_times
+    @param end_lim (int): Time at which the last win
+        probability value is calculated
+    @param probs (list): List of win probability
+        lists (probs_home and probs_away). probs_home
+        contains all of the home win probability
+        values for all times in the times list.
+        probs_away is the same, but for win probability
+        for the away team
+    @param team_abr (list): List contraining the
+        home team abbreviation in the first index
+        and the away team abbreviation in the
+        second index
+    @param bools (list): List of booleans controlling
+        which figures are plotted
+
+    Returns:
+
+        - fig (matplotlib.figure.Figure): Figure
+            containing score differential and/or
+            win probability. None if all of the
+            booleans are False
     """
 
     actual_times, times = times
@@ -108,6 +137,7 @@ def plot_win_prob(times, diff, end_lim, probs, team_abr, bools):
 
     plt.rcParams["figure.figsize"] = (20,6)
 
+    # Score differential
     if plot_diff:
         fig, pltting = \
             plot_score_differential(actual_times,
@@ -117,14 +147,17 @@ def plot_win_prob(times, diff, end_lim, probs, team_abr, bools):
         fig,ax = plt.subplots()
         pltting = ax 
 
+    # Quarter deliniation
     for normal_q in range(0,4):
         pltting.plot([2880-normal_q*12*60, 2880-normal_q*12*60],
                      [0,1], 'gray')
 
+    # OT deliniation
     for ot in range(0,10):
         pltting.plot([-ot*5*60, -ot*5*60],
                      [0,1], 'gray')
 
+    # Win probability
     if plot_home:
         pltting.plot(times, probs_home, 'blue', label=team_abr[0])
     if plot_away:
@@ -142,7 +175,22 @@ def plot_win_prob(times, diff, end_lim, probs, team_abr, bools):
 def plot_score_differential(actual_times, diff, end_lim):
     """ This function plots the score differential
     throughout the game
+
+    @param actualtimes (list): list that contains
+        all of the times at which a score
+        differential was calculated
+    @param diff (list): List of score differentials
+        corresponding to all times in actual_times
+    @param end_lim (int): Time at which the last win
+        probability value is calculated
+
+    Returns:
+
+        - fig (matplotlib.figure.Figure): Figure
+            containing the score differential
+        - ax (matplotlib.axes): Axis object
     """
+
     fig, ax = plt.subplots(1,2)
     ax[0].set_title("Point Differential")
     ax[0].plot(actual_times, diff)
@@ -158,15 +206,35 @@ def plot_score_differential(actual_times, diff, end_lim):
 
 
 def organize_probabilities(probs, times, diff):
-    """
+    """ This function organizes the predicted
+    win probability into a form more amenable
+    to visualization
+
+    @param probs (list): list of win probability
+        values relative to the home team
+    @param times (list): list of times at which
+        the win probability values are calculated
+    @param diff (list): list of score differentials
+        relative to the home team
+
+    Returns:
+
+        - times (list): list of times at which
+        the win probability values are calculated
+        - probs_home (list): list of win probability
+        values relative to the home team
+        - probs_away (list): list of win probability
+        values relative to the away team
     """
 
-    probs_away = np.insert(probs[:,0], 0, 0.5)
-    probs_home = np.insert(probs[:,1], 0, 0.5)
+    probs_home = [0.5] + probs
+    probs_away = [1 - x for x in probs_home]
+
     times, probs_home, probs_away = zip(*sorted(zip(times, probs_home, probs_away)))
     probs_home = list(probs_home)
     probs_away = list(probs_away)
     times = list(times)
+
     home_won = int(diff[-1]>0)
     probs_home[0] = float(home_won)
     probs_away[0] = float(1-home_won)
@@ -302,7 +370,7 @@ class WinProbability:
                 the away team in the second index
         """
         test_x, times, diff, actual_times, team_abr = self.test_data
-        times = np.insert(times, 0, 2880)
+        times = [2880] + times
         probs = []
         for time in times[1:]:
             training_key = time
@@ -311,10 +379,8 @@ class WinProbability:
                     if (ot*5*60)+training_key > 0:
                         training_key = (ot*5*60)+training_key
                         break
-            time_prob = self.model[training_key].predict_proba([test_x[time]])[0]
+            time_prob = self.model[training_key].predict_proba([test_x[time]])[0][1]
             probs.append(time_prob)
-        
-        probs = np.array(probs)
         
         times, probs_home, probs_away = \
             organize_probabilities(probs, times, diff)
