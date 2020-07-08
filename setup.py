@@ -17,8 +17,8 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="py_ball",
-    version="1.0.5",
-    author="Patrick McFarlane",
+    version="1.1",
+    author="Patrick McFarlane & Avyay Varadarajan",
     author_email="patmcfarla@gmail.com",
     description="Python API wrapper for stats.nba.com with a focus on \
                  NBA and WNBA applications",
@@ -31,4 +31,8 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    package_data={
+        'models': ['py_ball/models/model.pickle'],
+    },
+    include_package_data=True,
 )
