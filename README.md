@@ -39,6 +39,7 @@ The functionality of the classes within the package are documented in both the d
 - [ScoreBoard](https://github.com/basketballrelativity/py_ball/wiki/ScoreBoard)
 - [Shots](https://github.com/basketballrelativity/py_ball/wiki/Shots)
 - [Team](https://github.com/basketballrelativity/py_ball/wiki/Team)
+- [WinProbability](https://github.com/basketballrelativity/py_ball/wiki/WinProbability)
 
 ## Development
 
@@ -54,7 +55,7 @@ The functionality of the classes within the package are documented in both the d
     - ~~Shot Probability Model~~ ([here!](https://github.com/basketballrelativity/shot_probability))
     - ~~Location Data Exploration~~ ([here!](https://github.com/basketballrelativity/location_data))
     - ~~Assist Networks~~ ([here!](https://github.com/basketballrelativity/assist_networks))
-    - Win Probability Model
+    - ~Win Probability Model~ ([here!](https://github.com/basketballrelativity/py_ball/wiki/WinProbability))
 
 ## Installation
 
