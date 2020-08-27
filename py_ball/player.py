@@ -326,7 +326,7 @@ class Player:
                           'playerprofilev2']:
             params = {'PlayerID': player_id,
                       'PerMode': per_mode}
-        elif endpoint == 'playergamelog':
+        elif endpoint == 'playergamelogs':
             params = {'PlayerID': player_id,
                       'Season': season,
                       'SeasonType': season_type}
