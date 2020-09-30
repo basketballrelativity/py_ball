@@ -43,19 +43,19 @@ The functionality of the classes within the package are documented in both the d
 
 ## Development
 
-1. ~~Initially map [stats.nba.com](https://stats.nba.com) API and fully document code.~~
-2. ~~Refactor code to generate a more consistent structure across classes.~~
-3. ~~Document endpoints and parameters with definitions.~~ (See Wiki [here](https://github.com/basketballrelativity/py_ball/wiki))
+1. Initially map [stats.nba.com](https://stats.nba.com) API and fully document code.
+2. Refactor code to generate a more consistent structure across classes.
+3. Document endpoints and parameters with definitions. (See Wiki [here](https://github.com/basketballrelativity/py_ball/wiki))
 4. Research other basketball-related APIs to map.
-5. ~~Write unit tests for the package.~~
-6. ~~Begin introductory basketball analytics analyses.~~
-    - ~~Franchise History~~ ([here!](https://github.com/basketballrelativity/franchise_history))
-    - ~~Draft Combine Player Sheet~~ ([here!](https://github.com/basketballrelativity/draft_combine))
-    - ~~Live NBA/WNBA scoreboard~~ ([here!](https://github.com/basketballrelativity/scoreboard))
-    - ~~Shot Probability Model~~ ([here!](https://github.com/basketballrelativity/shot_probability))
-    - ~~Location Data Exploration~~ ([here!](https://github.com/basketballrelativity/location_data))
-    - ~~Assist Networks~~ ([here!](https://github.com/basketballrelativity/assist_networks))
-    - ~Win Probability Model~ ([here!](https://github.com/basketballrelativity/py_ball/wiki/WinProbability))
+5. Write unit tests for the package.
+6. Begin introductory basketball analytics analyses.
+    - Franchise History ([here!](https://github.com/basketballrelativity/franchise_history))
+    - Draft Combine Player Sheet ([here!](https://github.com/basketballrelativity/draft_combine))
+    - Live NBA/WNBA scoreboard ([here!](https://github.com/basketballrelativity/scoreboard))
+    - Shot Probability Model ([here!](https://github.com/basketballrelativity/shot_probability))
+    - Location Data Exploration ([here!](https://github.com/basketballrelativity/location_data))
+    - Assist Networks ([here!](https://github.com/basketballrelativity/assist_networks))
+    - Win Probability Model ([here!](https://github.com/basketballrelativity/py_ball/wiki/WinProbability))
 
 ## Installation
 
