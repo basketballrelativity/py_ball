@@ -264,7 +264,9 @@ class LeagueDash:
                  player_experience='',
                  player_position='', starters_bench='',
                  distance_range='By Zone',
-                 defense_category='Overall'):
+                 defense_category='Overall',
+                 player_or_team="Player",
+                 pt_measure_type='SpeedDistance'):
 
         # Controlling the parameters depending on the endpoint
         if endpoint not in ['leaguedashplayerbiostats',
@@ -316,6 +318,9 @@ class LeagueDash:
         elif endpoint in ['leaguedashptdefend',
                           'leaguedashptteamdefend']:
             params['DefenseCategory'] = defense_category
+        elif endpoint in ["leaguedashptstats"]:
+            params["PlayerOrTeam"] = player_or_team
+            params["PtMeasureType"] = pt_measure_type
 
 
         self.api_resp = api_call(endpoint=endpoint,
