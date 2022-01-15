@@ -33,6 +33,7 @@ The functionality of the classes within the package are documented in both the d
 - [LeaderBoard](https://github.com/basketballrelativity/py_ball/wiki/LeaderBoard)
 - [League](https://github.com/basketballrelativity/py_ball/wiki/League)
 - [LeagueDash](https://github.com/basketballrelativity/py_ball/wiki/LeagueDash)
+- [LeagueHustle](https://github.com/basketballrelativity/py_ball/wiki/LeagueHustle)
 - [PlayByPlay](https://github.com/basketballrelativity/py_ball/wiki/PlayByPlay)
 - [Player](https://github.com/basketballrelativity/py_ball/wiki/Player)
 - [Salaries](https://github.com/basketballrelativity/py_ball/wiki/Salaries) (using [Hoopshype](https://hoopshype.com/))
