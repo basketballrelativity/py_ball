@@ -56,7 +56,21 @@ The functionality of the classes within the package are documented in both the d
     - ~~Shot Probability Model~~ ([here!](https://github.com/basketballrelativity/shot_probability))
     - ~~Location Data Exploration~~ ([here!](https://github.com/basketballrelativity/location_data))
     - ~~Assist Networks~~ ([here!](https://github.com/basketballrelativity/assist_networks))
-    - ~Win Probability Model~ ([here!](https://github.com/basketballrelativity/py_ball/wiki/WinProbability))
+    - ~~Win Probability Model~~ ([here!](https://github.com/basketballrelativity/py_ball/wiki/WinProbability))
+
+### Endpoints TO-DO
+
+    - playerestimatedmetrics
+    - teamestimatedmetrics
+    - leaguegamelog
+    - playergamelogs
+    - teamgamelogs
+    - alltimeleadersgrids
+    - playerindex
+    - leaguedashteamstats
+    - leaguedashteamclutch
+    - leaguedashteamshotlocations
+    - leaguehustlestatsteam
 
 ## Installation
 
