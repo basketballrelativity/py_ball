@@ -233,6 +233,10 @@ class LeagueDash:
                 - 'Overall', '3 Pointers', '2 Pointers', 'Less Than 6Ft', \
                 'Less Than 10Ft', 'Greater Than 15Ft'
 
+        @param **player_or_team** (*str*): PlayerOrTeam in the API. String
+            indicating whether to return data for a "Player" ("P") or "Team"
+            ("T")
+
     Attributes:
 
         **api_resp** (*dict*): JSON object of the API response. The API \

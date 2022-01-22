@@ -26,6 +26,8 @@ class League:
         including performance and franchise metadata.
         - **playoffpicture**: Current state of the playoff picture by \
         conference.
+        - **leaguegamelog**: Game logs at the player-level across multiple
+        games
 
     The League class has the following required parameters:
 
@@ -62,6 +64,34 @@ class League:
             players in league history. **current_season** is required by the \
             'commonallplayers' endpoint.
 
+        @param **date_from** (*str*): DateFrom in the API. String of a date \
+            in a MM/DD/YYYY format indicating the start date for which \
+            data is to be returned.
+
+        @param **date_to** (*str*): DateTo in the API. String of a date \
+            in a MM/DD/YYYY format indicating the end date for which \
+            data is to be returned.
+
+        @param **season_type** (*str*): SeasonType in the API. String \
+            indicating the type of season for data to be returned. \
+            Valid values include:
+
+                - 'Regular Season', 'Pre Season', 'Playoffs', 'All Star'
+
+        @param **counter** (*str*): Counter in the API. Unknown definition
+
+        @param **direction** (*str*): Direction in the API. Either
+            ascending ("ASC") or descending ("DESC") to indicate the order
+            in which to sort the data by the feature provided in **sorter**
+
+        @param **sorter** (*str*): Sorter in the API. Variable name on which
+            to sort the results. Valid values include variables returned
+            in the response. Note, use "DATE" instead of "GAME_DATE"
+
+        @param **player_or_team** (*str*): PlayerOrTeam in the API. String
+            indicating whether to return data for a "Player" ("P") or "Team"
+            ("T")
+
     Attributes:
 
         **api_resp** (*dict*): JSON object of the API response. The API \
@@ -77,7 +107,10 @@ class League:
 
     def __init__(self, headers, endpoint='commonallplayers',
                  league_id='00', season='2017-18',
-                 season_id='22017', current_season='1'):
+                 season_id='22017', current_season='1',
+                 date_from='', date_to='', season_type="Regular Season",
+                 counter="1000", direction="DESC", sorter="DATE",
+                 player_or_team="P"):
 
         # Controlling the parameters depending on the endpoint
         if endpoint in ['commonteamyears', 'franchisehistory']:
@@ -88,6 +121,16 @@ class League:
         elif endpoint in ['playoffpicture']:
             params = {'LeagueID': league_id,
                       'SeasonID': season_id}
+        elif endpoint in ["leaguegamelog"]:
+            params = {'LeagueID': league_id,
+                      'Season': season,
+                      "DateFrom": date_from,
+                      "DateTo": date_to,
+                      "SeasonType": season_type,
+                      "Counter": counter,
+                      "Direction": direction,
+                      "Sorter": sorter,
+                      "PlayerOrTeam": player_or_team}
         else:
             params = {'LeagueID': league_id,
                       'Season': season,
