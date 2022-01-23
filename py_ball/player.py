@@ -53,6 +53,7 @@ class Player:
         type, shot clock time, number of tribbles, defender proximity, and \
         length of touch.
         - **playergamelog**: Game log statistics for a given year.
+        - **playergamelogs**: Game log statistics for multiple players in a given year
         - **playerprofilev2**: Career and season summary statistics broken down \
         by season type.
         - **playervsplayer**: Player statistics versus a given opponent player \
@@ -259,6 +260,21 @@ class Player:
             For example, '0021600001' is the **game_id** of the first game of \
             the 2016-17 NBA regular season.
 
+        @param **po_round** (*str*): PORound in the API. If *season_type* == "Playoffs" \
+            this field further filters to a specific round of the playoffs. \
+            Valid values include:
+
+                - "0" or "" (all rounds), "1" (Conference Quarter-Finals), "2"
+                (Conference Semi-Finals), "3" (Conference Finals),
+                "4" (Finals)
+
+        @param **shot_clock_range** (*str*): ShotClockRange in the API. This \
+            field filters statistics to a particular range of shot clock time. \
+            Valid values include:
+
+            - "" (entire shot clock range), "24-22", "22-18" (Very Early),
+            "18-15" (Early), "15-7" (Average), "7-4" (Late), "4-0" (Very Late)
+
     Attributes:
 
         **api_resp** (*dict*): JSON object of the API response. The API \
@@ -296,7 +312,7 @@ class Player:
                  vs_player_id_3='0', vs_player_id_4='0',
                  vs_player_id_5='0', rookie_year='',
                  context_measure = 'FGA', player_position='',
-                 game_id='0011800079'):
+                 game_id='0011800079', po_round='', shot_clock_range=''):
 
         # Controlling the parameters depending on the endpoint
         if endpoint not in ['playercareerstats', 'playergamelog',
@@ -321,7 +337,9 @@ class Player:
                       'Month': month,
                       'SeasonType': season_type,
                       'SeasonSegment': season_segment,
-                      'LastNGames': last_n_games}
+                      'LastNGames': last_n_games,
+                      'PORound': po_round,
+                      'ShotClockRange': shot_clock_range}
         elif endpoint in  ['playercareerstats',
                           'playerprofilev2']:
             params = {'PlayerID': player_id,

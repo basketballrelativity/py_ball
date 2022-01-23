@@ -24,10 +24,10 @@ class League:
         - **commonplayoffseries**: Playoff series matchup breakdown by game.
         - **franchisehistory**: Current and defunct franchise histories, \
         including performance and franchise metadata.
-        - **playoffpicture**: Current state of the playoff picture by \
-        conference.
         - **leaguegamelog**: Game logs at the player-level across multiple
         games
+        - **playoffpicture**: Current state of the playoff picture by \
+        conference.
 
     The League class has the following required parameters:
 
