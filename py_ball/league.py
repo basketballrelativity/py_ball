@@ -28,6 +28,8 @@ class League:
         conference.
         - **playerindex**: Historical player metadata for all players \
         in league history
+        - **alltimeleadersgrids**: All time leaders across various \
+        metrics
 
     The League class has the following required parameters:
 
@@ -108,6 +110,27 @@ class League:
         @param **top_x** (*str*): TopX in the API. String of the number \
             of top players to return
 
+        @param **counter** (*str*): Counter in the API. String of the \
+            number of records to return. Defaults to 1000
+
+        @param **date_from** (*str*): DateFrom in the API. String of a date \
+            in a MM/DD/YYYY format indicating the start date for which \
+            data is to be returned.
+
+        @param **date_to** (*str*): DateTo in the API. String of a date \
+            in a MM/DD/YYYY format indicating the end date for which \
+            data is to be returned.
+
+        @param **direction** (*str*): Direction in the API. String of \
+            ASC or DESC corresponding to how the returned data should be sorted
+
+        @param **player_or_team** (*str*): PlayerOrTeam in the API. String \
+            indicating whether data returned is for 'P' or 'T' \
+            leaders.
+
+        @param **sorter** (*str*): Sorter in the API. String of the field \
+            to sort the returned data
+
     Attributes:
 
         **api_resp** (*dict*): JSON object of the API response. The API \
@@ -128,7 +151,9 @@ class League:
                  draft_round='', draft_year='', height='',
                  weight='', historical='1',
                  season_type='Regular Season', team_id='0',
-                 per_mode="Totals", top_x="10"):
+                 per_mode='Totals', top_x='10', counter='1000',
+                 date_from='', date_to='', direction='DESC',
+                 player_or_team='P', sorter='DATE'):
 
         # Controlling the parameters depending on the endpoint
         if endpoint in ['commonteamyears', 'franchisehistory']:
@@ -157,6 +182,16 @@ class League:
                       'SeasonType': season_type,
                       'PerMode': per_mode,
                       'TopX': top_x}
+        elif endpoint == "leaguegamelog":
+            params = {'LeagueID': league_id,
+                      'Season': season,
+                      'SeasonType': season_type,
+                      'Counter': counter,
+                      'DateFrom': date_from,
+                      'DateTo': date_to,
+                      'Direction': direction,
+                      'PlayerOrTeam': player_or_team,
+                      'Sorter': sorter}
         else:
             params = {'LeagueID': league_id,
                       'Season': season,
