@@ -98,6 +98,16 @@ class League:
             integer that uniquely identifies a team for which data is to \
             be returned.
 
+        @param **per_mode** (*str*): PerMode in the API. String indicating \
+            the type of rate stats to be returned. Valid values include:
+
+                - 'Totals', 'PerGame', 'MinutesPer', 'Per48', 'Per40', \
+                'Per36', 'PerMinute', 'PerPossession', 'PerPlay', \
+                'Per100Possessions', 'Per100Plays'
+
+        @param **top_x** (*str*): TopX in the API. String of the number \
+            of top players to return
+
     Attributes:
 
         **api_resp** (*dict*): JSON object of the API response. The API \
@@ -117,7 +127,8 @@ class League:
                  college='', country='', draft_pick='',
                  draft_round='', draft_year='', height='',
                  weight='', historical='1',
-                 season_type='Regular Season', team_id='0'):
+                 season_type='Regular Season', team_id='0',
+                 per_mode="Totals", top_x="10"):
 
         # Controlling the parameters depending on the endpoint
         if endpoint in ['commonteamyears', 'franchisehistory']:
@@ -141,6 +152,11 @@ class League:
                       'Historical': historical,
                       'SeasonType': season_type,
                       'TeamID': team_id}
+        elif endpoint == 'alltimeleadersgrids':
+            params = {'LeagueID': league_id,
+                      'SeasonType': season_type,
+                      'PerMode': per_mode,
+                      'TopX': top_x}
         else:
             params = {'LeagueID': league_id,
                       'Season': season,

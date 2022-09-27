@@ -93,7 +93,7 @@ class Player:
             comparisons to the players given in **player_id_list**. \
             Valid only for the 'playercompare' endpoint.
 
-        @param **per_mode** (*str*): PerMode in the API String indicating \
+        @param **per_mode** (*str*): PerMode in the API. String indicating \
             the type of rate stats to be returned. Valid values include:
 
                 - 'Totals', 'PerGame', 'MinutesPer', 'Per48', 'Per40', \
