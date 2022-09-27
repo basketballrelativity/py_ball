@@ -26,6 +26,8 @@ class League:
         including performance and franchise metadata.
         - **playoffpicture**: Current state of the playoff picture by \
         conference.
+        - **playerindex**: Historical player metadata for all players \
+        in league history
 
     The League class has the following required parameters:
 
@@ -62,6 +64,40 @@ class League:
             players in league history. **current_season** is required by the \
             'commonallplayers' endpoint.
 
+        @param **college** (*str*): College in the API. String of the college \
+            desired. "Kansas" is an example
+
+        @param **country** (*str*): Country in the API. String of the country \
+            desired. "Cameroon" is an example
+
+        @param **draft_pick** (*str*): DraftPick in the API. String of the overall \
+            draft pick number
+
+        @param **draft_round** (*str*): DraftRound in the API. String of the \
+            draft round number
+
+        @param **draft_year** (*str*): DraftYear in the API. String of the \
+            draft year in YYYY format
+
+        @param **height** (*str*): Height in the API. Height in Feet-Inches \
+            format
+
+        @param **weight** (*str*): Weight in the API. Weight in pounds
+
+        @param **historical** (*str*): Historical in the API. Unclear what \
+            this corresponds to, but it takes boolean values. Hardcoded to 1 \
+            as a default
+
+        @param **season_type** (*str*): SeasonType in the API. String \
+            indicating the type of season for data to be returned. \
+            Valid values include:
+
+                - 'Regular Season', 'Pre Season', 'Playoffs', 'All Star'
+
+        @param **team_id** (*str*): TeamID in the API. String of a 10-digit \
+            integer that uniquely identifies a team for which data is to \
+            be returned.
+
     Attributes:
 
         **api_resp** (*dict*): JSON object of the API response. The API \
@@ -77,7 +113,11 @@ class League:
 
     def __init__(self, headers, endpoint='commonallplayers',
                  league_id='00', season='2017-18',
-                 season_id='22017', current_season='1'):
+                 season_id='22017', current_season='1',
+                 college='', country='', draft_pick='',
+                 draft_round='', draft_year='', height='',
+                 weight='', historical='1',
+                 season_type='Regular Season', team_id='0'):
 
         # Controlling the parameters depending on the endpoint
         if endpoint in ['commonteamyears', 'franchisehistory']:
@@ -88,6 +128,19 @@ class League:
         elif endpoint in ['playoffpicture']:
             params = {'LeagueID': league_id,
                       'SeasonID': season_id}
+        elif endpoint == "playerindex":
+            params = {'LeagueID': league_id,
+                      'Season': season,
+                      'College': college,
+                      'Country': country,
+                      'DraftPick': draft_pick,
+                      'DraftRound': draft_round,
+                      'DraftYear': draft_year,
+                      'Height': height,
+                      'Weight': weight,
+                      'Historical': historical,
+                      'SeasonType': season_type,
+                      'TeamID': team_id}
         else:
             params = {'LeagueID': league_id,
                       'Season': season,
