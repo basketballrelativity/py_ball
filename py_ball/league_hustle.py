@@ -18,6 +18,7 @@ class LeagueHustle:
     league performance stats related API endpoints:
 
         *- **leaguehustlestatsplayer**: Player hustle stats.
+        *- **leaguehustlestatsteam**: Team hustle stats.
 
     The LeagueHustle class has the following required parameters:
 
@@ -179,6 +180,35 @@ class LeagueHustle:
 
                 - 'Starters', 'Bench', ''
 
+        @param **po_round** (*str*): PORound in the API. 1, 2, 3, or 4 \
+            corresponding to the deired playoff round
+
+        @param **shot_clock_range** (*str*): ShotClockRange in the API \
+            Accepts one of the following strings for windows of the shot \
+            clock:
+
+                - "24-22"
+                - "22-18": very early
+                - "18-15": early
+                - "15-7": average
+                - "7-4": late
+                - "4-0": very late
+
+        @param **two_way** (*str*): TwoWay in the API. 1 to return stats \
+            for players on two-way contracts only. 0 to return all players
+
+        @param **draft_pick** (*str*): DraftPick in the API. String of the overall \
+            draft pick number
+
+        @param **draft_year** (*str*): DraftYear in the API. String of the \
+            draft year in YYYY format
+
+        @param **height** (*str*): Height in the API. Height in Feet-Inches \
+            format
+
+        @param **weight** (*str*): Weight in the API. Weight in pounds
+
+
     Attributes:
 
         **api_resp** (*dict*): JSON object of the API response. The API \
@@ -206,10 +236,13 @@ class LeagueHustle:
                  season_type='Regular Season', season_segment='',
                  game_scope='',
                  player_experience='',
-                 player_position='', starters_bench='',):
+                 player_position='', starters_bench='',
+                 po_round='', shot_clock_range='',
+                 two_way='0', draft_pick='',
+                 draft_year='', height='', weight=''):
 
         # Controlling the parameters depending on the endpoint
-        if endpoint == "leaguehustlestatsplayer":
+        if endpoint in ['leaguehustlestatsplayer', 'leaguehustlestatsteam']:
             params = {'LeagueID': league_id,
                       'PerMode': per_mode,
                       'PlusMinus': plus_minus,
@@ -234,7 +267,14 @@ class LeagueHustle:
                       'GameScope': game_scope,
                       'PlayerExperience': player_experience,
                       'PlayerPosition': player_position,
-                      'StarterBench': starters_bench}
+                      'StarterBench': starters_bench,
+                      'PORound': po_round,
+                      'ShotClockRange': shot_clock_range,
+                      'TwoWay': two_way,
+                      'DraftPick': draft_pick,
+                      'DraftYear': draft_year,
+                      'Height': height,
+                      'Weight': weight}
 
 
         self.api_resp = api_call(endpoint=endpoint,

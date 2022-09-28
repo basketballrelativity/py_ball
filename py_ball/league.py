@@ -26,6 +26,12 @@ class League:
         including performance and franchise metadata.
         - **playoffpicture**: Current state of the playoff picture by \
         conference.
+        - **playerindex**: Historical player metadata for all players \
+        in league history
+        - **alltimeleadersgrids**: All time leaders across various \
+        metrics
+        - **leaguegamelog**: Game logs for players or teams across the \
+        league
 
     The League class has the following required parameters:
 
@@ -62,6 +68,71 @@ class League:
             players in league history. **current_season** is required by the \
             'commonallplayers' endpoint.
 
+        @param **college** (*str*): College in the API. String of the college \
+            desired. "Kansas" is an example
+
+        @param **country** (*str*): Country in the API. String of the country \
+            desired. "Cameroon" is an example
+
+        @param **draft_pick** (*str*): DraftPick in the API. String of the overall \
+            draft pick number
+
+        @param **draft_round** (*str*): DraftRound in the API. String of the \
+            draft round number
+
+        @param **draft_year** (*str*): DraftYear in the API. String of the \
+            draft year in YYYY format
+
+        @param **height** (*str*): Height in the API. Height in Feet-Inches \
+            format
+
+        @param **weight** (*str*): Weight in the API. Weight in pounds
+
+        @param **historical** (*str*): Historical in the API. Unclear what \
+            this corresponds to, but it takes boolean values. Hardcoded to 1 \
+            as a default
+
+        @param **season_type** (*str*): SeasonType in the API. String \
+            indicating the type of season for data to be returned. \
+            Valid values include:
+
+                - 'Regular Season', 'Pre Season', 'Playoffs', 'All Star'
+
+        @param **team_id** (*str*): TeamID in the API. String of a 10-digit \
+            integer that uniquely identifies a team for which data is to \
+            be returned.
+
+        @param **per_mode** (*str*): PerMode in the API. String indicating \
+            the type of rate stats to be returned. Valid values include:
+
+                - 'Totals', 'PerGame', 'MinutesPer', 'Per48', 'Per40', \
+                'Per36', 'PerMinute', 'PerPossession', 'PerPlay', \
+                'Per100Possessions', 'Per100Plays'
+
+        @param **top_x** (*str*): TopX in the API. String of the number \
+            of top players to return
+
+        @param **counter** (*str*): Counter in the API. String of the \
+            number of records to return. Defaults to 1000
+
+        @param **date_from** (*str*): DateFrom in the API. String of a date \
+            in a MM/DD/YYYY format indicating the start date for which \
+            data is to be returned.
+
+        @param **date_to** (*str*): DateTo in the API. String of a date \
+            in a MM/DD/YYYY format indicating the end date for which \
+            data is to be returned.
+
+        @param **direction** (*str*): Direction in the API. String of \
+            ASC or DESC corresponding to how the returned data should be sorted
+
+        @param **player_or_team** (*str*): PlayerOrTeam in the API. String \
+            indicating whether data returned is for 'P' or 'T' \
+            leaders.
+
+        @param **sorter** (*str*): Sorter in the API. String of the field \
+            to sort the returned data
+
     Attributes:
 
         **api_resp** (*dict*): JSON object of the API response. The API \
@@ -77,7 +148,14 @@ class League:
 
     def __init__(self, headers, endpoint='commonallplayers',
                  league_id='00', season='2017-18',
-                 season_id='22017', current_season='1'):
+                 season_id='22017', current_season='1',
+                 college='', country='', draft_pick='',
+                 draft_round='', draft_year='', height='',
+                 weight='', historical='1',
+                 season_type='Regular Season', team_id='0',
+                 per_mode='Totals', top_x='10', counter='1000',
+                 date_from='', date_to='', direction='DESC',
+                 player_or_team='P', sorter='DATE'):
 
         # Controlling the parameters depending on the endpoint
         if endpoint in ['commonteamyears', 'franchisehistory']:
@@ -88,6 +166,34 @@ class League:
         elif endpoint in ['playoffpicture']:
             params = {'LeagueID': league_id,
                       'SeasonID': season_id}
+        elif endpoint == "playerindex":
+            params = {'LeagueID': league_id,
+                      'Season': season,
+                      'College': college,
+                      'Country': country,
+                      'DraftPick': draft_pick,
+                      'DraftRound': draft_round,
+                      'DraftYear': draft_year,
+                      'Height': height,
+                      'Weight': weight,
+                      'Historical': historical,
+                      'SeasonType': season_type,
+                      'TeamID': team_id}
+        elif endpoint == 'alltimeleadersgrids':
+            params = {'LeagueID': league_id,
+                      'SeasonType': season_type,
+                      'PerMode': per_mode,
+                      'TopX': top_x}
+        elif endpoint == "leaguegamelog":
+            params = {'LeagueID': league_id,
+                      'Season': season,
+                      'SeasonType': season_type,
+                      'Counter': counter,
+                      'DateFrom': date_from,
+                      'DateTo': date_to,
+                      'Direction': direction,
+                      'PlayerOrTeam': player_or_team,
+                      'Sorter': sorter}
         else:
             params = {'LeagueID': league_id,
                       'Season': season,

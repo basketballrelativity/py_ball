@@ -53,6 +53,7 @@ class Player:
         type, shot clock time, number of tribbles, defender proximity, and \
         length of touch.
         - **playergamelog**: Game log statistics for a given year.
+        - **playergamelogs**: Game log statistics for a given year.
         - **playerprofilev2**: Career and season summary statistics broken down \
         by season type.
         - **playervsplayer**: Player statistics versus a given opponent player \
@@ -62,6 +63,8 @@ class Player:
         - **shotchartdetail**: Player and league shot chart data giving results \
         and location-related information for several player actions, \
         such as shots and fouls.
+        - **playerestimatedmetrics**: Estimated player statistics for a \
+        given year
 
     The Player class has the following required parameters:
 
@@ -90,7 +93,7 @@ class Player:
             comparisons to the players given in **player_id_list**. \
             Valid only for the 'playercompare' endpoint.
 
-        @param **per_mode** (*str*): PerMode in the API String indicating \
+        @param **per_mode** (*str*): PerMode in the API. String indicating \
             the type of rate stats to be returned. Valid values include:
 
                 - 'Totals', 'PerGame', 'MinutesPer', 'Per48', 'Per40', \
@@ -259,6 +262,20 @@ class Player:
             For example, '0021600001' is the **game_id** of the first game of \
             the 2016-17 NBA regular season.
 
+        @param **po_round** (*str*): PORound in the API. 1, 2, 3, or 4 \
+            corresponding to the deired playoff round
+
+        @param **shot_clock_range** (*str*): ShotClockRange in the API \
+            Accepts one of the following strings for windows of the shot \
+            clock:
+
+                - "24-22"
+                - "22-18": very early
+                - "18-15": early
+                - "15-7": average
+                - "7-4": late
+                - "4-0": very late
+
     Attributes:
 
         **api_resp** (*dict*): JSON object of the API response. The API \
@@ -296,11 +313,12 @@ class Player:
                  vs_player_id_3='0', vs_player_id_4='0',
                  vs_player_id_5='0', rookie_year='',
                  context_measure = 'FGA', player_position='',
-                 game_id='0011800079'):
+                 game_id='0011800079', po_round='',
+                 shot_clock_range=''):
 
         # Controlling the parameters depending on the endpoint
         if endpoint not in ['playercareerstats', 'playergamelog',
-                            'playerprofilev2']:
+                            'playerprofilev2', 'playerestimatedmetrics']:
             params = {'LeagueID': league_id,
                       'PerMode': per_mode,
                       'PlusMinus': plus_minus,
@@ -321,13 +339,19 @@ class Player:
                       'Month': month,
                       'SeasonType': season_type,
                       'SeasonSegment': season_segment,
-                      'LastNGames': last_n_games}
+                      'LastNGames': last_n_games,
+                      'PORound': po_round,
+                      'ShotClockRange': shot_clock_range}
         elif endpoint in  ['playercareerstats',
                           'playerprofilev2']:
             params = {'PlayerID': player_id,
                       'PerMode': per_mode}
         elif endpoint == 'playergamelog':
             params = {'PlayerID': player_id,
+                      'Season': season,
+                      'SeasonType': season_type}
+        elif endpoint == 'playerestimatedmetrics':
+            params = {'LeagueID': league_id,
                       'Season': season,
                       'SeasonType': season_type}
         

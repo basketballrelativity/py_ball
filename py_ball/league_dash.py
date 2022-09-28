@@ -24,18 +24,24 @@ class LeagueDash:
         statistics for a given season.
         *- **leaguedashplayerclutch**: Traditional, plus/minus, and rank \
         statistics for players in a defined clutch period.
+        *- **leaguedashteamclutch**: Traditional, plus/minus, and rank \
+        statistics for teams in a defined clutch period.
         *- **leaguedashplayershotlocations**: Player shooting-related \
         statistics by shot distance/type.
         - **leaguedashplayerptshot**: Shooting-related statistics for \
         a given season by player.
         *- **leaguedashplayerstats**: Traditional, plus/minus, and rank \
         statistics for players.
+        *- **leaguedashteamstats**: Traditional, plus/minus, and rank \
+        statistics for teams.
         - **leaguedashptdefend**: Defensive statistics for a given season \
         by player.
         - **leaguedashptteamdefend**: Defensive statistics for a given \
         season by team.
         - **leaguedashteamptshot**: Shooting-related statistics for a \
         given season by team.
+        - **leaguedashteamshotlocations**: Location-related shooting \
+        statistics for a given season by team
 
     The LeagueDash class has the following required parameters:
 
@@ -96,6 +102,13 @@ class LeagueDash:
 
         @param **vs_conference** (*str*): VsConference in the API. String \
             indicating the conference of the opposing team for data to be \
+            returned. An empty string returns data across all conferences. \
+            Valid values include:
+
+                - 'East', 'West', ''
+
+        @param **conference** (*str*): Conference in the API. String \
+            indicating the conference of the team for data to be \
             returned. An empty string returns data across all conferences. \
             Valid values include:
 
@@ -233,6 +246,23 @@ class LeagueDash:
                 - 'Overall', '3 Pointers', '2 Pointers', 'Less Than 6Ft', \
                 'Less Than 10Ft', 'Greater Than 15Ft'
 
+        @param **po_round** (*str*): PORound in the API. 1, 2, 3, or 4 \
+            corresponding to the deired playoff round
+
+        @param **shot_clock_range** (*str*): ShotClockRange in the API \
+            Accepts one of the following strings for windows of the shot \
+            clock:
+
+                - "24-22"
+                - "22-18": very early
+                - "18-15": early
+                - "15-7": average
+                - "7-4": late
+                - "4-0": very late
+
+        @param **two_way** (*str*): TwoWay in the API. 1 to return stats \
+            for players on two-way contracts only. 0 to return all players
+
     Attributes:
 
         **api_resp** (*dict*): JSON object of the API response. The API \
@@ -252,7 +282,8 @@ class LeagueDash:
                  per_mode='PerGame', plus_minus='N',
                  rank='Y', pace_adjust='N',
                  measure_type='Base', period='0',
-                 vs_conference='', last_n_games='0',
+                 vs_conference='', conference='',
+                 last_n_games='0',
                  team_id='0', location='', outcome='',
                  date_from='', date_to='', opp_team_id='0',
                  season='2017-18', vs_division='',
@@ -266,7 +297,9 @@ class LeagueDash:
                  distance_range='By Zone',
                  defense_category='Overall',
                  player_or_team="Player",
-                 pt_measure_type='SpeedDistance'):
+                 pt_measure_type='SpeedDistance',
+                 po_round='', shot_clock_range='',
+                 two_way='0'):
 
         # Controlling the parameters depending on the endpoint
         if endpoint not in ['leaguedashplayerbiostats',
@@ -282,6 +315,7 @@ class LeagueDash:
                       'MeasureType': measure_type,
                       'Period': period,
                       'VsConference': vs_conference,
+                      'Conference': conference,
                       'Location': location,
                       'Outcome': outcome,
                       'DateFrom': date_from,
@@ -298,7 +332,10 @@ class LeagueDash:
                       'GameScope': game_scope,
                       'PlayerExperience': player_experience,
                       'PlayerPosition': player_position,
-                      'StarterBench': starters_bench}
+                      'StarterBench': starters_bench,
+                      'PORound': po_round,
+                      'ShotClockRange': shot_clock_range,
+                      'TwoWay': two_way}
         else:
             params = {'LeagueID': league_id,
                       'PerMode': per_mode,
