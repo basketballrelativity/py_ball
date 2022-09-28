@@ -24,6 +24,8 @@ class LeagueDash:
         statistics for a given season.
         *- **leaguedashplayerclutch**: Traditional, plus/minus, and rank \
         statistics for players in a defined clutch period.
+        *- **leaguedashteamclutch**: Traditional, plus/minus, and rank \
+        statistics for teams in a defined clutch period.
         *- **leaguedashplayershotlocations**: Player shooting-related \
         statistics by shot distance/type.
         - **leaguedashplayerptshot**: Shooting-related statistics for \

@@ -30,6 +30,8 @@ class League:
         in league history
         - **alltimeleadersgrids**: All time leaders across various \
         metrics
+        - **leaguegamelog**: Game logs for players or teams across the \
+        league
 
     The League class has the following required parameters:
 
