@@ -62,11 +62,8 @@ The functionality of the classes within the package are documented in both the d
 
     - playerestimatedmetrics
     - teamestimatedmetrics
-    - leaguegamelog
     - playergamelogs
     - teamgamelogs
-    - alltimeleadersgrids
-    - playerindex
     - leaguedashteamstats
     - leaguedashteamclutch
     - leaguedashteamshotlocations
