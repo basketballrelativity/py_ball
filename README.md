@@ -65,7 +65,6 @@ The functionality of the classes within the package are documented in both the d
     - playergamelogs
     - teamgamelogs
     - leaguedashteamshotlocations
-    - leaguehustlestatsteam
 
 ## Installation
 
