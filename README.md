@@ -60,11 +60,8 @@ The functionality of the classes within the package are documented in both the d
 
 ### Endpoints TO-DO
 
-    - playerestimatedmetrics
     - teamestimatedmetrics
-    - playergamelogs
     - teamgamelogs
-    - leaguedashteamshotlocations
 
 ## Installation
 
