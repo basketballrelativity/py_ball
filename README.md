@@ -58,11 +58,6 @@ The functionality of the classes within the package are documented in both the d
     - ~~Assist Networks~~ ([here!](https://github.com/basketballrelativity/assist_networks))
     - ~~Win Probability Model~~ ([here!](https://github.com/basketballrelativity/py_ball/wiki/WinProbability))
 
-### Endpoints TO-DO
-
-    - teamestimatedmetrics
-    - teamgamelogs
-
 ## Installation
 
 The package is built for Python 3 and leverages the packages in the `requirements.txt` file. `py_ball` can be installed via pip (more info [here](https://pypi.org/project/py-ball/)):
