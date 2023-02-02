@@ -9,7 +9,7 @@ synergy.py contains the Synergy class that
 enables API calls for synergy-related endpoints
 """
 
-from .utils import api_call, parse_api_call
+from .utils import api_call, parse_api_call, get_season_year
 
 class Synergy:
     """ The Synergy class contains all resources needed to use the synergy-
@@ -83,7 +83,7 @@ class Synergy:
     """
 
     def __init__(self, headers, endpoint='synergyplaytypes',
-                 league_id='00', season_year='2018-19',
+                 league_id='00', season_year=get_season_year("00"),
                  season_type='Regular Season', per_mode='PerGame',
                  player_or_team='P', play_type='Cut',
                  type_grouping='offensive'):
