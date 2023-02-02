@@ -9,7 +9,7 @@ draft.py contains the Draft class that
 enables API calls for draft related endpoints
 """
 
-from .utils import api_call, parse_api_call
+from .utils import api_call, parse_api_call, get_season_year
 
 class Draft:
     """ The Draft class contains all resources needed to use the draft-
@@ -56,7 +56,7 @@ class Draft:
     """
 
     def __init__(self, headers, endpoint='draftcombinestats',
-                 league_id='00', season_year='2017-18'):
+                 league_id='00', season_year=get_season_year("00")):
 
         # Controlling the parameters depending on the endpoint
         if endpoint in ['drafthistory']:

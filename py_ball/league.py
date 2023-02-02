@@ -9,7 +9,7 @@ league.py contains the League class that
 enables API calls for general league related endpoints
 """
 
-from .utils import api_call, parse_api_call
+from .utils import api_call, parse_api_call, get_season_year
 
 class League:
     """ The League class contains all resources needed to use the league-
@@ -147,7 +147,7 @@ class League:
     """
 
     def __init__(self, headers, endpoint='commonallplayers',
-                 league_id='00', season='2017-18',
+                 league_id='00', season=get_season_year("00"),
                  season_id='22017', current_season='1',
                  college='', country='', draft_pick='',
                  draft_round='', draft_year='', height='',

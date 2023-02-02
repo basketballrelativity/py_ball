@@ -534,7 +534,7 @@ class HistoricalSalaries:
             team-player salary information
     """
 
-    def __init__(self, season='2017-2018'):
+    def __init__(self, season='2022-2023'):
 
         # First, total team salary information is pulled
         team_salaries, column_list = get_historical_team_salary(season)
