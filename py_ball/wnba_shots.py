@@ -10,7 +10,7 @@ enables API calls for WNBA shot-related
 data
 """
 
-from .utils import wnba_shot_call
+from .utils import wnba_shot_call, get_season_year
 
 class Shots:
     """ The Shots class contains all resources needed
@@ -49,7 +49,7 @@ class Shots:
         **data** (*dict*): A list of dictionaries containing a play. Each list
         contains play-by-play data for one game.
     """
-    def __init__(self, headers, season='2018', game_id='1021800050'):
+    def __init__(self, headers, season=get_season_year("10"), game_id='1021800050'):
 
         params = {'season': season, 'game_id': game_id}
         self.data = wnba_shot_call(params=params, headers=headers)

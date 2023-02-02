@@ -14,15 +14,14 @@ import requests
 from io import BytesIO
 from cairosvg import svg2png
 
-BASE_NBA_URL = 'https://ak-static.cms.nba.com/wp-content/uploads/' + \
-                'headshots/nba/{team}/{season}/260x190/{player_id}.png'
+BASE_NBA_URL = 'https://cdn.nba.com/headshots/nba/latest/1040x760/{player_id}.png'
 BASE_WNBA_URL = 'https://ak-static.cms.nba.com/wp-content/uploads/' + \
                 'headshots/wnba/{player_id}.png'
 BASE_G_LEAGUE_URL = 'https://ak-static.cms.nba.com/wp-content/uploads/' + \
                     'headshots/dleague/{player_id}.png'
 
-BASE_NBA_LOGO_URL = 'https://stats.nba.com/media/img/teams/' + \
-                    'logos/season/{year}/{team}_logo.svg'
+BASE_NBA_LOGO_URL = 'https://cdn.nba.com/logos/nba/' + \
+                    '{team}/primary/L/logo.svg'
                     
 BASE_WNBA_LOGO_URL = 'https://ak-static.cms.nba.com/wp-content/' + \
                      'themes/wnba-child/img/logos/' + \
@@ -81,13 +80,6 @@ class Headshot:
         @param **player_id** (*str*): String of an \
             integer corresponding to a player ID for a given player.
 
-        @param **team_id** (*str*): String of a 10-digit \
-            integer that uniquely identifies a team for which data \
-            is to be returned.
-
-        @param **season** (*str*): String of a year in YYYY format \
-            corresponding to the year in which the NBA season begins.
-
     Attributes:
 
         **image** (*PngImageFile*): Image file of the desired headshot.
@@ -97,16 +89,13 @@ class Headshot:
     """
 
     def __init__(self, league='WNBA',
-                 player_id='203400', team_id='',
-                 season=''):
+                 player_id='203400'):
         
         # Controlling the parameters depending on the endpoint
         if league == 'WNBA':
             response = requests.get(BASE_WNBA_URL.format(player_id=player_id))
         elif league == 'NBA':
-            response = requests.get(BASE_NBA_URL.format(player_id=player_id,
-                                                        team=team_id,
-                                                        season=season))
+            response = requests.get(BASE_NBA_URL.format(player_id=player_id))
         elif league == 'G':
             response = requests.get(BASE_G_LEAGUE_URL.format(player_id=player_id))
 
@@ -127,13 +116,6 @@ class Logo:
             integer that uniquely identifies a team for which data \
             is to be returned.
 
-        @param **season_year** (*str*): String of a two-year season \
-            year in a YYYY-ZZ format, where the ZZ are the \
-            last two digits of the following year. For example, \
-            '2017-18' is a valid value of **season_year** and \
-            represents the 2017-18 NBA season. **season_year** is \
-            only required for NBA logos.
-
     Attributes:
 
         **image** (*PngImageFile*): Image file of the desired headshot.
@@ -143,17 +125,14 @@ class Logo:
     """
 
     def __init__(self, league='WNBA',
-                 team_id='1611661319',
-                 season_year='2017-18'):
+                 team_id='1611661319'):
 
         # Controlling the parameters depending on the endpoint
         if league == 'WNBA':
             team_str = ID_TO_TEAM_WNBA[team_id]
             response = requests.get(BASE_WNBA_LOGO_URL.format(team=team_str))
         elif league == 'NBA':
-            team_str = ID_TO_TEAM_NBA[team_id]
-            response = requests.get(BASE_NBA_LOGO_URL.format(team=team_str,
-                                                             year=season_year))
+            response = requests.get(BASE_NBA_LOGO_URL.format(team=team_id))
         elif league == 'G':
             team_str = ID_TO_TEAM_G_LEAGUE[team_id]
             response = requests.get(BASE_G_LEAGUE_LOGO_URL.format(team=team_str))

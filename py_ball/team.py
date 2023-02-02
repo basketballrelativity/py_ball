@@ -10,7 +10,7 @@ enables API calls for team-related
 endpoints
 """
 
-from .utils import api_call, parse_api_call
+from .utils import api_call, parse_api_call, get_season_year
 
 class Team:
     """ The Team class contains all resources needed
@@ -252,7 +252,7 @@ class Team:
                  vs_conference='', last_n_games='0',
                  team_id='1610612747', location='', outcome='',
                  date_from='', date_to='', opp_team_id='0',
-                 season='2017-18', vs_division='',
+                 season=get_season_year("00"), vs_division='',
                  game_segment='', month='0',
                  season_type='Regular Season', season_segment='',
                  vs_player_id='201939',

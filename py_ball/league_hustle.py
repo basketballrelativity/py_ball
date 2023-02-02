@@ -9,7 +9,7 @@ league_hustle.py contains the LeagueHustle class that
 enables API calls for player and team hustle stats
 """
 
-from .utils import api_call, parse_api_call
+from .utils import api_call, parse_api_call, get_season_year
 
 class LeagueHustle:
     """ The LeagueHustle class contains all resources needed
@@ -231,7 +231,7 @@ class LeagueHustle:
                  vs_conference='', last_n_games='0',
                  team_id='0', location='', outcome='',
                  date_from='', date_to='', opp_team_id='0',
-                 season='2017-18', vs_division='',
+                 season=get_season_year("00"), vs_division='',
                  game_segment='', month='0',
                  season_type='Regular Season', season_segment='',
                  game_scope='',

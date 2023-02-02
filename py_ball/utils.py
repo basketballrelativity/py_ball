@@ -9,6 +9,7 @@ utils.py
 
 Utilities for the py_ball package
 """
+from datetime import date
 
 from requests import get
 import pkgutil
@@ -192,3 +193,38 @@ def open_model(fname="models/model.pickle"):
     pickle_data = pkgutil.get_data(__name__, fname)
     time_to_model = pickle.loads(pickle_data)
     return time_to_model
+
+
+def get_season_year(league_id):
+    """ This function returns the season in either XXXX-YY
+    format for the NBA or G-League or XXXX format for
+    the WNBA
+
+    @param league_id (str): One of "00" for NBA, "10" for
+        the WNBA, or "20" for the G-League
+
+    Returns:
+
+        - season_year (str): Season in the correct
+            format for the corresponding league
+    """
+
+    today = date.today()
+
+    month = today.month
+    year = today.year
+
+    if league_id == "10":
+        season_year = str(year)
+    else:
+        if month >= 10:
+            # Defaulting to current season in October
+            next_year = int(str(year)[-2:]) + 1
+            season_year = str(year) + "-" + str(next_year)
+        else:
+            # Defaulting to the current or just completed season
+            # from Jan. to Sept.
+            next_year = int(str(year)[-2:])
+            season_year = str(year - 1) + "-" + str(next_year)
+
+    return season_year
