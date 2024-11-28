@@ -93,8 +93,10 @@ def parse_api_call(api_resp):
         dictionary_key = 'resultSets'
     elif 'resultSet' in api_resp:
         dictionary_key = 'resultSet'
+    elif 'dunks' in api_resp:
+        dictionary_key = 'dunks'
 
-    if isinstance(api_resp[dictionary_key], list):
+    if isinstance(api_resp[dictionary_key], list) and dictionary_key != 'dunks':
         for result_set in api_resp[dictionary_key]:
             headers = result_set['headers']
             if len(headers) > 0:
@@ -119,7 +121,7 @@ def parse_api_call(api_resp):
             name = result_set['name']
             data[name] = [dict(zip(headers, value)) 
                           for value in values]
-    else:
+    elif dictionary_key != 'dunks':
         result_set = api_resp[dictionary_key]
         headers = result_set['headers']
         if isinstance(headers[0], dict):
@@ -144,6 +146,8 @@ def parse_api_call(api_resp):
         name = result_set['name']
         data[name] = [dict(zip(headers, value)) 
                       for value in values]
+    else:
+        data['dunks'] = api_resp['dunks']
 
     return data
 
