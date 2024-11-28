@@ -147,7 +147,7 @@ def parse_api_call(api_resp):
         data[name] = [dict(zip(headers, value)) 
                       for value in values]
     else:
-        data['dunks'] = api_resp['dunks']
+        data['DunkScoreLeaders'] = api_resp['dunks']
 
     return data
 
