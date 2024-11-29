@@ -25,6 +25,8 @@ class LeaderBoard:
         not.
         - **leagueleaders**: Longer list of league leaders in a number \
         of statistical categories.
+        - **dunkscoreleaders**: Leaderboard of dunks with overall and component \
+            grades along with corresponding tracking data
 
     The LeaderBoard class has the following required parameters:
 

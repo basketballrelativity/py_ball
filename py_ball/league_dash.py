@@ -42,6 +42,8 @@ class LeagueDash:
         given season by team.
         - **leaguedashteamshotlocations**: Location-related shooting \
         statistics for a given season by team
+        - **leagueplayerondetails**: Opponent statistics when a given \
+        player is on the floor
 
     The LeagueDash class has the following required parameters:
 
